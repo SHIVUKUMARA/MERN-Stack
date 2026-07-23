@@ -6,6 +6,8 @@ const router = express.Router();
 // const ApiResponse = require("../../utils/ApiResponse");
 
 const authController = require("../../controllers/auth.controller");
+const { registerValidation } = require("../../validators/auth.validator");
+const validate = require("../../validators/validate.middleware");
 
 /* 
 Remember the remaining URL? --- '/'
@@ -43,7 +45,9 @@ It executes: the below method
 //   }),
 // );
 
-router.get("/", authController.test);
-router.get("/error", authController.testError);
+// router.get("/", authController.test);
+// router.get("/error", authController.testError);
+
+router.post("/register", registerValidation, validate, authController.register);
 
 module.exports = router;

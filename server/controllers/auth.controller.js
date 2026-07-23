@@ -1,9 +1,11 @@
 const asyncHandler = require("../utils/asyncHandler");
-const ApiError = require("../utils/ApiError");
+// const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
+const authService = require("../services/auth.service");
 
-const test = asyncHandler(async (req, res) => {
-  return res.status(200).json(
+/* const test = asyncHandler(async (req, res) => {
+  return res.status
+  (200).json(
     new ApiResponse(
       200,
       {
@@ -19,3 +21,14 @@ const testError = asyncHandler(async (req, res) => {
 });
 
 module.exports = { test, testError };
+ */
+
+const register = asyncHandler(async (req, res) => {
+  const user = await authService.registerUser(req.body);
+
+  return res
+    .status(201)
+    .json(new ApiResponse(201, user, "User registered successfully"));
+});
+
+module.exports = { register };
