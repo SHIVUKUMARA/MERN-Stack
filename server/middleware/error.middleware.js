@@ -2,7 +2,7 @@ const errorHandler = (err, req, res, next) => {
   /* 
   That first err parameter tells Express: "This middleware handles errors." 
   */
-  console.log(err);
+  console.error(err);
 
   const statusCode = err.statusCode || 500;
 
