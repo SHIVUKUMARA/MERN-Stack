@@ -40,11 +40,11 @@ app.use(cookieParser());
 // Request Logger - Logs every incoming request.
 app.use(morgan("dev"));
 
-app.get("/", (req, res) => {
-  res.json({
-    success: true,
-    message: "Backend is running successfully",
-  });
-});
+const routes = require("../routes");
+/* request come from server.js --->>>, app.use(routes); ====>>>>> It tells Express:
+"For every request that comes into this application, pass it to the main router."
+Think of it like the reception desk in a company. */
+
+app.use(routes); // The reception doesn't solve the customer's problem. It only forwards them to the correct department. --->>> routes.index.js
 
 module.exports = app;

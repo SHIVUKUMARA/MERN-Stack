@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ quiet: true }); //{ quiet: true } - to hide .env to print message to the terminal
 
 module.exports = {
   nodeEnv: process.env.NODE_ENV,
