@@ -6,7 +6,10 @@ const router = express.Router();
 // const ApiResponse = require("../../utils/ApiResponse");
 
 const authController = require("../../controllers/auth.controller");
-const { registerValidation } = require("../../validators/auth.validator");
+const {
+  registerValidation,
+  loginValidation,
+} = require("../../validators/auth.validator");
 const validate = require("../../validators/validate.middleware");
 
 /* 
@@ -49,5 +52,7 @@ It executes: the below method
 // router.get("/error", authController.testError);
 
 router.post("/register", registerValidation, validate, authController.register);
+
+router.post("/login", loginValidation, validate, authController.login);
 
 module.exports = router;

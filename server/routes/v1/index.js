@@ -1,4 +1,6 @@
 const express = require("express");
+const authRoutes = require("./auth.routes");
+const userRoutes = require("./user.routes");
 const router = express.Router();
 
 /* 
@@ -21,4 +23,7 @@ This Is Called Nested Routing -- Instead of writing everything in one file, we o
 
 // Authentication Routtes
 router.use("/auth", require("./auth.routes"));
+
+// User Routes
+router.use("/users", require("./user.routes"));
 module.exports = router;

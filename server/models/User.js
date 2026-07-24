@@ -1,5 +1,12 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const {
+  jwtSecret,
+  jwtExpiresIn,
+  jwtRefreshSecret,
+  jwtRefreshExpiresIn,
+} = require("../config/env");
 
 const userSchema = new mongoose.Schema(
   {
@@ -41,9 +48,9 @@ const userSchema = new mongoose.Schema(
 );
 
 // every time check if password is updated or not before saving to hash the password
-userSchema.pre("save", async function (next) {
+userSchema.pre("save", async function () {
   if (!this.isModified("password")) {
-    return next();
+    return;
   }
   this.password = await bcrypt.hash(this.password, 10);
 });
@@ -51,6 +58,34 @@ userSchema.pre("save", async function (next) {
 // before login compare the user entered password with the db saved password
 userSchema.methods.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
+};
+
+// On Succssful login, generate JWT access token
+userSchema.methods.generateAccessToken = function () {
+  return jwt.sign(
+    {
+      userId: this._id,
+      email: this.email,
+      role: this.role,
+    },
+    jwtSecret,
+    {
+      expiresIn: jwtExpiresIn,
+    },
+  );
+};
+
+// On successful login generate refresh token
+userSchema.methods.generateRefreshToken = function () {
+  return jwt.sign(
+    {
+      userId: this._id,
+    },
+    jwtRefreshSecret,
+    {
+      expiresIn: jwtRefreshExpiresIn,
+    },
+  );
 };
 
 module.exports = mongoose.model("User", userSchema);

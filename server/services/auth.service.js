@@ -22,4 +22,31 @@ const registerUser = async (userData) => {
   return user;
 };
 
-module.exports = { registerUser };
+const loginUser = async ({ email, password }) => {
+  const user = await User.findOne({ email }).select("+password");
+
+  if (!user) {
+    throw new ApiError(401, "Invalid email or password");
+  }
+
+  const isPasswordValid = await user.comparePassword(password);
+
+  if (!isPasswordValid) {
+    throw new ApiError(401, "Invalid email or password");
+  }
+
+  const accessToken = user.generateAccessToken();
+  const refreshToken = user.generateRefreshToken();
+
+  user.refreshToken = refreshToken;
+  await user.save();
+
+  const userResponse = await User.findById(user._id);
+  return {
+    user: userResponse,
+    accessToken,
+    refreshToken,
+  };
+};
+
+module.exports = { registerUser, loginUser };

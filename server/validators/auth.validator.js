@@ -19,4 +19,14 @@ const registerValidation = [
     .withMessage("Password must be at least 8 characters long"),
 ];
 
-module.exports = { registerValidation };
+const loginValidation = [
+  body("email")
+    .trim()
+    .isEmail()
+    .withMessage("Invalid email address")
+    .normalizeEmail(),
+
+  body("password").trim().notEmpty().withMessage("Password is required"),
+];
+
+module.exports = { registerValidation, loginValidation };
