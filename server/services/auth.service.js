@@ -1,5 +1,7 @@
 const User = require("../models/User");
 const ApiError = require("../utils/ApiError");
+const jwt = require("jsonwebtoken");
+const config = require("../config/env");
 
 const registerUser = async (userData) => {
   const { firstName, lastName, email, password } = userData;
@@ -35,11 +37,7 @@ const loginUser = async ({ email, password }) => {
     throw new ApiError(401, "Invalid email or password");
   }
 
-  const accessToken = user.generateAccessToken();
-  const refreshToken = user.generateRefreshToken();
-
-  user.refreshToken = refreshToken;
-  await user.save();
+  const { accessToken, refreshToken } = await generateTokens(user);
 
   const userResponse = await User.findById(user._id);
   return {
@@ -49,4 +47,59 @@ const loginUser = async ({ email, password }) => {
   };
 };
 
-module.exports = { registerUser, loginUser };
+const generateTokens = async (user) => {
+  const accessToken = user.generateAccessToken();
+  const refreshToken = user.generateRefreshToken();
+
+  user.refreshToken = refreshToken;
+  await user.save();
+
+  return {
+    accessToken,
+    refreshToken,
+  };
+};
+
+const refreshAccessToken = async (refreshToken) => {
+  if (!refreshToken) {
+    throw new ApiError(401, "Unauthorized access, Please login again");
+  }
+
+  let decoded;
+  try {
+    decoded = jwt.verify(refreshToken, config.jwtRefreshSecret);
+  } catch (error) {
+    throw new ApiError(401, "Unauthorized access, Please login again");
+  }
+
+  const user = await User.findById(decoded.userId).select("+refreshToken");
+
+  if (!user) {
+    throw new ApiError(401, "User not found !!!");
+  }
+
+  if (user.refreshToken !== refreshToken) {
+    throw new ApiError(401, "Refresh Token is invalid");
+  }
+
+  const tokens = await generateTokens(user);
+
+  return {
+    accessToken: tokens.accessToken,
+    refreshToken: tokens.refreshToken,
+  };
+};
+
+const logoutUser = async (userId) => {
+  await User.findByIdAndUpdate(
+    userId,
+    {
+      refreshToken: null,
+    },
+    {
+      returnDocument: "after",
+    },
+  );
+};
+
+module.exports = { registerUser, loginUser, refreshAccessToken, logoutUser };

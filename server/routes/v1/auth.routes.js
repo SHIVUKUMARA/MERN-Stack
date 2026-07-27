@@ -4,7 +4,7 @@ const router = express.Router();
 // const asyncHandler = require("../../utils/asyncHandler");
 // const ApiError = require("../../utils/ApiError");
 // const ApiResponse = require("../../utils/ApiResponse");
-
+const { protect } = require("../../middleware/auth.middleware");
 const authController = require("../../controllers/auth.controller");
 const {
   registerValidation,
@@ -54,5 +54,9 @@ It executes: the below method
 router.post("/register", registerValidation, validate, authController.register);
 
 router.post("/login", loginValidation, validate, authController.login);
+
+router.post("/refresh-token", authController.refreshToken);
+
+router.post("/logout", protect, authController.logout);
 
 module.exports = router;
