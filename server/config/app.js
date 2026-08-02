@@ -1,8 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-const morgan = require("morgan");
+// const morgan = require("morgan");
+const { apiRateLimit } = require("../middleware/rateLimit");
+const requestLogger = require("../logger/request.logger");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const env = require("./env");
 
@@ -25,6 +28,9 @@ app.use(
   }),
 );
 
+// Rate Limit Middleware
+app.use(apiRateLimit);
+
 // body or json parser - This parses HTML form submissions.
 app.use(express.json());
 
@@ -34,11 +40,19 @@ app.use(
   }),
 );
 
+// file upload
+app.use(
+  "/uploads",
+  express.static(path.join(process.cwd(), env.uploadDestination)),
+);
+
 // cookie-parser
 app.use(cookieParser());
 
 // Request Logger - Logs every incoming request.
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
+// Request Logger
+app.use(requestLogger);
 
 /* request come from server.js --->>>, app.use(routes); ====>>>>> It tells Express:
 "For every request that comes into this application, pass it to the main router."

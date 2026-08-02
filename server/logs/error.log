@@ -1,0 +1,403 @@
+2026-07-30 12:00:25 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-07-30 12:00:45 [ERROR] Error: User not found
+    at getUserByIdService (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:33:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:20:16
+2026-07-30 12:42:17 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-07-30 12:42:35 [ERROR] TypeError: Cannot read properties of undefined (reading 'body')
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:33:66
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:26:3
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-07-30 12:48:10 [ERROR] TypeError: Cannot read properties of undefined (reading 'body')
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:33:66
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:19:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-07-30 12:51:30 [ERROR] ReferenceError: emailExists is not defined
+    at updateUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:58:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:33:16
+2026-07-30 12:57:26 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-07-30 12:58:28 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-07-30 12:58:59 [ERROR] Error: Email already exists
+    at updateUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:58:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:33:16
+2026-07-30 15:08:49 [ERROR] Error: Invalid User ID
+    at validObjectId (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\validateObjectId.js:6:11)
+    at updateUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:41:3)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:33:22
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:19:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-07-30 15:09:52 [ERROR] Error: Invalid User ID
+    at validObjectId (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\validateObjectId.js:6:11)
+    at updateUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:41:3)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:39:22
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:19:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-07-30 15:10:40 [ERROR] Error: Invalid User ID
+    at validObjectId (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\validateObjectId.js:6:11)
+    at updateUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:41:3)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:39:22
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:19:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-07-30 15:14:02 [ERROR] Error: Invalid User ID
+    at validObjectId (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\validateObjectId.js:6:11)
+    at updateUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:41:3)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:40:22
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:19:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-07-30 16:10:03 [ERROR] Error: User not found
+    at getUserById (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:37:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:27:16
+2026-07-30 16:11:13 [ERROR] Error: User not found
+    at updateUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:55:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:33:16
+2026-07-30 16:22:50 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-07-30 16:23:59 [ERROR] Error: User not found
+    at getUserById (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:36:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:28:16
+2026-07-30 16:27:08 [ERROR] Error: User not found
+    at getUserById (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:36:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:28:16
+2026-07-30 16:31:48 [ERROR] Error: User not found
+    at deleteUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:91:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:49:3
+2026-07-30 16:46:34 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-07-30 16:46:53 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-07-30 16:55:55 [ERROR] Error: Your account has been deleted, Please contact the administrator
+    at Object.loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:37:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:37:47
+2026-07-30 17:03:23 [ERROR] Error: Your Account has been deleted, Please contact the administrator.
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:26:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-07-30 17:21:25 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-07-30 17:37:34 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-07-31 10:25:39 [ERROR] Error: Unauthorized access, Please login again
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:11:11
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:295:15
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+2026-07-31 10:44:04 [ERROR] Error: Password changed. Please login again.
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:29:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-07-31 10:59:12 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-07-31 10:59:16 [ERROR] Error: Invalid email or password
+    at Object.loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:50:11)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:37:47
+2026-07-31 11:15:31 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-07-31 12:48:58 [ERROR] ReferenceError: forgotPassword is not defined
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:93:3
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:19:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-07-31 12:56:59 [ERROR] TypeError: crypto.creareHash is not a function
+    at resetPassword (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:146:30)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:108:9
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:19:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-07-31 12:57:36 [ERROR] ReferenceError: authService is not defined
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:19:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-07-31 13:00:58 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:52:11)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
+2026-07-31 13:24:25 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:52:11)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
+2026-07-31 13:24:26 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:52:11)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
+2026-07-31 13:24:27 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:52:11)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
+2026-07-31 13:24:28 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:52:11)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
+2026-07-31 13:24:29 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:52:11)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
+2026-07-31 14:53:44 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:52:11)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
+2026-07-31 14:54:25 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:52:11)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
+2026-07-31 14:54:25 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:52:11)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
+2026-08-01 07:59:46 [ERROR] Error: Invalid resource type 'auto'. Must be one of: image, javascript, css, video, raw.
+    at remove (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\upload\cloudinary.service.js:65:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Object.replace (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\upload\cloudinary.service.js:75:5)
+    at async updateAvatar (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:179:7)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:86:16
+2026-08-01 08:00:33 [ERROR] Error: Invalid resource type 'auto'. Must be one of: image, javascript, css, video, raw.
+    at remove (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\upload\cloudinary.service.js:65:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Object.replace (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\upload\cloudinary.service.js:75:5)
+    at async updateAvatar (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:179:7)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:86:16
+2026-08-01 08:12:25 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-08-01 18:10:40 [ERROR] Error: avatar is required.
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\upload.middleware.js:129:21
+    at done (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\multer\lib\make-middleware.js:70:7)
+    at indicateDone (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\multer\lib\make-middleware.js:74:68)
+    at Multipart.<anonymous> (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\multer\lib\make-middleware.js:258:7)
+    at Multipart.emit (node:events:509:28)
+    at emitCloseNT (node:internal/streams/destroy:148:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+2026-08-01 18:11:02 [ERROR] Error: .pdf files are not allowed.
+    at validateFile (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\upload.middleware.js:212:11)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\upload.middleware.js:135:11
+    at done (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\multer\lib\make-middleware.js:70:7)
+    at indicateDone (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\multer\lib\make-middleware.js:74:68)
+    at Multipart.<anonymous> (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\multer\lib\make-middleware.js:258:7)
+    at Multipart.emit (node:events:509:28)
+    at emitCloseNT (node:internal/streams/destroy:148:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+2026-08-01 18:16:37 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-08-01 19:32:18 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-08-01 19:33:12 [ERROR] Error: File not found
+    at deleteMultipleFile (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:305:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:143:3
+2026-08-01 19:35:10 [ERROR] Error: File not found
+    at deleteMultipleFile (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\user.service.js:305:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\user.controller.js:143:3
+2026-08-01 19:44:08 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-08-01 19:44:38 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+2026-08-02 10:35:31 [ERROR] Error: avatar is required.
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\upload.middleware.js:64:21
+    at multerMiddleware (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\multer\lib\make-middleware.js:18:41)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\upload.middleware.js:54:5
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:47:3
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-02 16:04:46 [ERROR] TokenExpiredError: jwt expired
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:190:21
+    at getSecret (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:97:14)
+    at module.exports [as verify] (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\jsonwebtoken\verify.js:101:10)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:19:23
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:295:15
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+2026-08-02 16:05:55 [ERROR] Error: spawn C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\ffmpeg-static\ffmpeg.exe ENOENT
+    at ChildProcess._handle.onexit (node:internal/child_process:287:19)
+    at onErrorNT (node:internal/child_process:508:16)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:472:9)
+2026-08-02 16:08:42 [ERROR] Error: spawn C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\ffmpeg-static\ffmpeg.exe ENOENT
+    at ChildProcess._handle.onexit (node:internal/child_process:287:19)
+    at onErrorNT (node:internal/child_process:508:16)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at runNextTicks (node:internal/process/task_queues:69:3)
+    at process.processImmediate (node:internal/timers:472:9)

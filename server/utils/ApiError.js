@@ -19,11 +19,11 @@ Our error middleware will read that status code.
 */
 
 class ApiError extends Error {
-  constructor(statusCode, message) {
+  constructor(statusCode, message, errors = []) {
     super(message);
 
     this.statusCode = statusCode;
-    this.success = false;
+    this.errors = errors;
 
     Error.captureStackTrace(this, this.constructor);
   }
