@@ -7,9 +7,12 @@ const router = express.Router();
 const { protect } = require("../../middleware/auth.middleware");
 const authController = require("../../controllers/auth.controller");
 const {
-  registerValidation,
-  loginValidation,
+  registerSchema,
+  loginSchema,
+  forgotPasswordSchema,
+  resetPasswordSchema,
 } = require("../../validators/auth.validator");
+const { authRateLimit } = require("../../middleware/rateLimit");
 const validate = require("../../validators/validate.middleware");
 
 /* 
@@ -51,12 +54,36 @@ It executes: the below method
 // router.get("/", authController.test);
 // router.get("/error", authController.testError);
 
-router.post("/register", registerValidation, validate, authController.register);
+router.post(
+  "/register",
+  authRateLimit,
+  validate(registerSchema),
+  authController.register,
+);
 
-router.post("/login", loginValidation, validate, authController.login);
+router.post(
+  "/login",
+  authRateLimit,
+  validate(loginSchema),
+  authController.login,
+);
 
 router.post("/refresh-token", authController.refreshToken);
 
 router.post("/logout", protect, authController.logout);
+
+router.post(
+  "/forgot-password",
+  authRateLimit,
+  validate(forgotPasswordSchema),
+  authController.forgotPassword,
+);
+
+router.post(
+  "/reset-password",
+  authRateLimit,
+  validate(resetPasswordSchema),
+  authController.resetPassword,
+);
 
 module.exports = router;

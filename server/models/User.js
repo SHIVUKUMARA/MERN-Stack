@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 const {
   jwtSecret,
   jwtExpiresIn,
   jwtRefreshSecret,
   jwtRefreshExpiresIn,
 } = require("../config/env");
+const fileSchema = require("./schemas/file.schema");
 
 const userSchema = new mongoose.Schema(
   {
@@ -37,12 +39,55 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "staff", "student"],
       default: "student",
     },
+    // upload exactly one image
+    avatar: {
+      type: fileSchema,
+      default: null,
+    },
+    // upload multiple images
+    gallery: {
+      type: [fileSchema],
+      default: [],
+    },
+    // upload multiple documents
+    documents: {
+      type: [fileSchema],
+      default: [],
+    },
+    videos: {
+  type: [fileSchema],
+  default: [],
+},
     isActive: {
       type: Boolean,
       default: true,
     },
+    isDeleted: {
+      type: Boolean,
+      default: false,
+      index: true,
+    },
+    deletedAt: {
+      type: Date,
+      default: null,
+    },
+    passwordChangedAt: {
+      type: Date,
+      default: null,
+    },
     refreshToken: {
       type: String,
+      default: null,
+      select: false,
+    },
+    passwordResetToken: {
+      type: String,
+      default: null,
+      select: false,
+    },
+
+    passwordResetExpires: {
+      type: Date,
       default: null,
       select: false,
     },
@@ -91,6 +136,17 @@ userSchema.methods.generateRefreshToken = function () {
       expiresIn: jwtRefreshExpiresIn,
     },
   );
+};
+
+// Generate Password Reset Token
+userSchema.methods.generatePasswordResetToken = function () {
+  const resetToken = crypto.randomBytes(32).toString("hex");
+  this.passwordResetToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+  return resetToken;
 };
 
 module.exports = mongoose.model("User", userSchema);

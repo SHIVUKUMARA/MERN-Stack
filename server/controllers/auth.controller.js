@@ -2,7 +2,14 @@ const ms = require("ms");
 const asyncHandler = require("../utils/asyncHandler");
 // const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
-const authService = require("../services/auth.service");
+const {
+  registerUser,
+  loginUser,
+  refreshAccessToken,
+  logoutUser,
+  forgotPassword,
+  resetPassword,
+} = require("../services/auth.service");
 const config = require("../config/env");
 
 /* const test = asyncHandler(async (req, res) => {
@@ -26,7 +33,7 @@ module.exports = { test, testError };
  */
 
 const register = asyncHandler(async (req, res) => {
-  const user = await authService.registerUser(req.body);
+  const user = await registerUser(req.body);
 
   return res
     .status(201)
@@ -34,9 +41,7 @@ const register = asyncHandler(async (req, res) => {
 });
 
 const login = asyncHandler(async (req, res) => {
-  const { user, accessToken, refreshToken } = await authService.loginUser(
-    req.body,
-  );
+  const { user, accessToken, refreshToken } = await loginUser(req.body);
 
   res.cookie("refreshToken", refreshToken, {
     //This protects the refresh token from many XSS attacks.If: httpOnly: false, JavaScript can read it.
@@ -57,7 +62,7 @@ const refreshToken = asyncHandler(async (req, res) => {
   const cookieRefreshToken = req.cookies.refreshToken;
 
   const { accessToken, refreshToken: newRefreshToken } =
-    await authService.refreshAccessToken(cookieRefreshToken);
+    await refreshAccessToken(cookieRefreshToken);
 
   res.cookie("refreshToken", newRefreshToken, {
     httpOnly: true,
@@ -78,7 +83,7 @@ const refreshToken = asyncHandler(async (req, res) => {
 });
 
 const logout = asyncHandler(async (req, res) => {
-  await authService.logoutUser(req.user._id);
+  await logoutUser(req.user._id);
 
   res.clearCookie("refreshToken", {
     httpOnly: true,
@@ -89,4 +94,27 @@ const logout = asyncHandler(async (req, res) => {
   return res.status(200).json(new ApiResponse(200, null, "Logout Successful"));
 });
 
-module.exports = { register, login, refreshToken, logout };
+const forgotPasswordController = asyncHandler(async (req, res) => {
+  await forgotPassword(req.body.email);
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, null, "Email sent successfully"));
+});
+
+const resetPasswordController = asyncHandler(async (req, res) => {
+  await resetPassword(req.body.token, req.body.password);
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, null, "Password reset Successfully"));
+});
+
+module.exports = {
+  register,
+  login,
+  refreshToken,
+  logout,
+  forgotPassword: forgotPasswordController,
+  resetPassword: resetPasswordController,
+};

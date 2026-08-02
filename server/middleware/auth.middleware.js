@@ -22,6 +22,27 @@ const protect = asyncHandler(async (req, res, next) => {
     throw new ApiError(401, "User no longer Exist !!!");
   }
 
+  if (
+    user.passwordChangedAt &&
+    decoded.iat * 1000 < user.passwordChangedAt.getTime()
+  ) {
+    throw new ApiError(401, "Password changed. Please login again.");
+  }
+
+  if (user.isDeleted) {
+    throw new ApiError(
+      403,
+      "Your Account has been deleted, Please contact the administrator.",
+    );
+  }
+
+  if (!user.isActive) {
+    throw new ApiError(
+      403,
+      "Your account has been deactivated. Please contact the administrator.",
+    );
+  }
+
   req.user = user;
   next();
 });

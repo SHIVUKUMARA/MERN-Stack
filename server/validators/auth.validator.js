@@ -1,32 +1,46 @@
-const { body } = require("express-validator");
+const { z } = require("zod");
 
-const registerValidation = [
-  body("firstName").trim().notEmpty().withMessage("First name is required"),
+const {
+  firstNameSchema,
+  lastNameSchema,
+  emailSchema,
+  passwordSchema,
+  roleSchema,
+} = require("./user.validator");
 
-  body("lastName").trim().notEmpty().withMessage("Last name is required"),
+const registerSchema = z.object({
+  body: z.object({
+    firstName: firstNameSchema,
+    lastName: lastNameSchema,
+    email: emailSchema,
+    password: passwordSchema,
+    role: roleSchema.optional(),
+  }),
+});
 
-  body("email")
-    .trim()
-    .notEmpty()
-    .withMessage("Email is required")
-    .isEmail()
-    .withMessage("Invalid email address")
-    .normalizeEmail(),
+const loginSchema = z.object({
+  body: z.object({
+    email: emailSchema,
+    password: passwordSchema,
+  }),
+});
 
-  body("password")
-    .trim()
-    .isLength({ min: 8 })
-    .withMessage("Password must be at least 8 characters long"),
-];
+const forgotPasswordSchema = z.object({
+  body: z.object({
+    email: emailSchema,
+  }),
+});
 
-const loginValidation = [
-  body("email")
-    .trim()
-    .isEmail()
-    .withMessage("Invalid email address")
-    .normalizeEmail(),
+const resetPasswordSchema = z.object({
+  body: z.object({
+    token: z.string().trim().length(64, "Invalid reset token"),
+    password: passwordSchema,
+  }),
+});
 
-  body("password").trim().notEmpty().withMessage("Password is required"),
-];
-
-module.exports = { registerValidation, loginValidation };
+module.exports = {
+  registerSchema,
+  loginSchema,
+  forgotPasswordSchema,
+  resetPasswordSchema,
+};
