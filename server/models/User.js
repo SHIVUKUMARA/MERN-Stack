@@ -55,9 +55,9 @@ const userSchema = new mongoose.Schema(
       default: [],
     },
     videos: {
-  type: [fileSchema],
-  default: [],
-},
+      type: [fileSchema],
+      default: [],
+    },
     isActive: {
       type: Boolean,
       default: true,

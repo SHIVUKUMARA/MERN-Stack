@@ -30,26 +30,6 @@ router.patch(
   userController.updateProfile,
 );
 
-// // add or update the user avatar
-// router.patch(
-//   "/profile/avatar",
-//   protect,
-//   uploadMiddleware({
-//     type: "single",
-//     field: "avatar",
-//     fileType: FILE_TYPES.IMAGE,
-//     required: true,
-//   }),
-//   userController.updateAvatar,
-// );
-
-// // delete the user avatar
-// router.delete("/profile/avatar", protect, userController.deleteAvatar);
-
-// ==============================
-// Avatar
-// ==============================
-
 // Upload / Replace Avatar
 router.patch(
   "/profile/avatar",
@@ -66,10 +46,6 @@ router.patch(
 
 // Delete Avatar
 router.delete("/profile/avatar", protect, userController.deleteAvatar);
-
-// ==============================
-// Gallery Images
-// ==============================
 
 // Upload Multiple Images
 router.post(
@@ -93,10 +69,6 @@ router.delete(
   userController.deleteGallery,
 );
 
-// ==============================
-// Documents
-// ==============================
-
 // Upload Multiple Documents
 router.post(
   "/profile/documents",
@@ -118,10 +90,6 @@ router.delete(
   protect,
   userController.deleteDocument,
 );
-
-// ==============================
-// Videos
-// ==============================
 
 // Upload Multiple Videos
 router.post(

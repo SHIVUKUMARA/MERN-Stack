@@ -1,6 +1,5 @@
 const { Storage } = require("@google-cloud/storage");
 const crypto = require("crypto");
-
 const config = require("../../config/env");
 const ApiError = require("../../utils/ApiError");
 const { STORAGE_PROVIDERS, getExtension } = require("../../utils/file");
@@ -12,10 +11,7 @@ const storage = new Storage({
 
 const bucket = storage.bucket(config.gcsBucket);
 
-// ======================================================
 // Upload
-// ======================================================
-
 const upload = async (file, options = {}) => {
   const { folder } = options;
 
@@ -25,13 +21,9 @@ const upload = async (file, options = {}) => {
 
   try {
     const extension = getExtension(file.originalname);
-
     const filename = `${crypto.randomUUID()}.${extension}`;
-
     const objectName = `${folder}/${filename}`;
-
     const blob = bucket.file(objectName);
-
     await blob.save(file.buffer, {
       metadata: {
         contentType: file.mimetype,
@@ -41,33 +33,19 @@ const upload = async (file, options = {}) => {
 
     return {
       storage: STORAGE_PROVIDERS.GCS,
-
       path: objectName,
-
       url: `https://storage.googleapis.com/${config.gcsBucket}/${objectName}`,
-
       publicId: objectName,
-
       resourceType: null,
-
       filename,
-
       originalName: file.originalname,
-
       mimeType: file.mimetype,
-
       extension,
-
       size: file.size,
-
       width: file.width ?? null,
-
       height: file.height ?? null,
-
       isOptimized: file.isOptimized ?? false,
-
       thumbnail: null,
-
       uploadedAt: new Date(),
     };
   } catch (error) {
@@ -78,10 +56,7 @@ const upload = async (file, options = {}) => {
   }
 };
 
-// ======================================================
 // Delete
-// ======================================================
-
 const remove = async (file) => {
   if (!file?.publicId) {
     return;
@@ -99,10 +74,7 @@ const remove = async (file) => {
   }
 };
 
-// ======================================================
 // Replace
-// ======================================================
-
 const replace = async (oldFile, newFile, options = {}) => {
   const uploaded = await upload(newFile, options);
 
@@ -113,26 +85,17 @@ const replace = async (oldFile, newFile, options = {}) => {
   return uploaded;
 };
 
-// ======================================================
 // Upload Multiple
-// ======================================================
-
 const uploadMany = async (files = [], options = {}) => {
   return Promise.all(files.map((file) => upload(file, options)));
 };
 
-// ======================================================
 // Delete Multiple
-// ======================================================
-
 const deleteMany = async (files = []) => {
   await Promise.all(files.map(remove));
 };
 
-// ======================================================
 // Replace Multiple
-// ======================================================
-
 const replaceMany = async (oldFiles = [], newFiles = [], options = {}) => {
   const uploadedFiles = await uploadMany(newFiles, options);
 

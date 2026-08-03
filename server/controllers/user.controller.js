@@ -87,22 +87,6 @@ const changePasswordController = asyncHandler(async (req, res) => {
     );
 });
 
-// const updateAvatarController = asyncHandler(async (req, res) => {
-//   const user = await updateAvatar(req.user._id, req.file);
-
-//   return res
-//     .status(200)
-//     .json(new ApiResponse(200, user, "Avatar updated successfully"));
-// });
-
-// const deleteAvatarController = asyncHandler(async (req, res) => {
-//   await deleteAvatar(req.user._id);
-
-//   return res
-//     .status(200)
-//     .json(new ApiResponse(200, null, "Avatar deleted successfully"));
-// });
-
 // Upload or Replace Avatar
 const updateAvatarController = asyncHandler(async (req, res) => {
   const user = await uploadSingleFile(req.user._id, req.file, {
@@ -207,20 +191,15 @@ module.exports = {
   deleteUser: deleteUserController,
   restoreUser: restoreUserController,
   changePassword: changePasswordController,
-  // updateAvatar: updateAvatarController,
-  // deleteAvatar: deleteAvatarController,
   // Avatar
   updateAvatar: updateAvatarController,
   deleteAvatar: deleteAvatarController,
-
   // Gallery
   uploadGallery: uploadGalleryController,
   deleteGallery: deleteGalleryController,
-
   // Documents
   uploadDocuments: uploadDocumentsController,
   deleteDocument: deleteDocumentController,
-
   // video
   uploadVideos: uploadVideosController,
   deleteVideo: deleteVideoController,

@@ -39,10 +39,7 @@ async function process(file) {
   };
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                   PDF                                      */
-/* -------------------------------------------------------------------------- */
-
+// PDF processing using pdf-parse
 async function processPdf(file) {
   const pdf = await pdfParse(file.buffer);
 
@@ -56,10 +53,7 @@ async function processPdf(file) {
   };
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                  DOCX                                      */
-/* -------------------------------------------------------------------------- */
-
+// DOCX processing using mammoth
 async function processWord(file) {
   const { value } = await mammoth.extractRawText({
     buffer: file.buffer,
@@ -75,10 +69,7 @@ async function processWord(file) {
   };
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                  XLSX                                      */
-/* -------------------------------------------------------------------------- */
-
+// XLSX processing using exceljs
 async function processExcel(file) {
   const workbook = new ExcelJS.Workbook();
 
@@ -98,10 +89,7 @@ async function processExcel(file) {
   };
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                  PPTX                                      */
-/* -------------------------------------------------------------------------- */
-
+// PPTX processing using pptx2json
 async function processPowerPoint(file) {
   const presentation = await pptx2json(file.buffer);
 
@@ -114,10 +102,7 @@ async function processPowerPoint(file) {
   };
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                   TXT                                      */
-/* -------------------------------------------------------------------------- */
-
+// TXT processing
 async function processText(file) {
   const text = file.buffer.toString("utf8");
 

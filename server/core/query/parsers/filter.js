@@ -73,7 +73,7 @@ const filter = (query, options = {}) => {
       }
     }
   }
-  console.log(conditions);
+  // console.log(conditions);
   return conditions;
 };
 

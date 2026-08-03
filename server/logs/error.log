@@ -401,3 +401,16 @@
     at processTicksAndRejections (node:internal/process/task_queues:90:21)
     at runNextTicks (node:internal/process/task_queues:69:3)
     at process.processImmediate (node:internal/timers:472:9)
+2026-08-03 10:42:43 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-03 10:42:54 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-03 10:42:54 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-03 10:43:33 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
