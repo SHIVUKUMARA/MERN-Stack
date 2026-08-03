@@ -1,15 +1,12 @@
 const fs = require("fs/promises");
 const path = require("path");
 const crypto = require("crypto");
-
 const config = require("../../config/env");
 const ApiError = require("../../utils/ApiError");
 const { STORAGE_PROVIDERS, getExtension } = require("../../utils/file");
 
-// ======================================================
-// Upload
-// ======================================================
 
+// Upload
 const upload = async (file, options = {}) => {
   const { folder } = options;
 
@@ -18,60 +15,39 @@ const upload = async (file, options = {}) => {
   }
 
   const uploadDir = path.join(config.uploadDestination, folder);
-
   await fs.mkdir(uploadDir, {
     recursive: true,
   });
 
   const extension = getExtension(file.originalname);
-
   const filename = `${crypto.randomUUID()}.${extension}`;
-
   const absolutePath = path.join(uploadDir, filename);
-
   await fs.writeFile(absolutePath, file.buffer);
-
   const relativePath = path
     .join(config.uploadDestination, folder, filename)
     .replace(/\\/g, "/");
 
   return {
     storage: STORAGE_PROVIDERS.LOCAL,
-
     path: relativePath,
-
     url: `${config.uploadBaseUrl}/${relativePath}`.replace(/\\/g, "/"),
-
     publicId: null,
-
     resourceType: null,
-
     filename,
-
     originalName: file.originalname,
-
     mimeType: file.mimetype,
-
     extension,
-
     size: file.size,
-
     width: file.width ?? null,
-
     height: file.height ?? null,
-
     isOptimized: file.isOptimized ?? false,
-
     thumbnail: null,
-
     uploadedAt: new Date(),
   };
 };
 
-// ======================================================
-// Delete
-// ======================================================
 
+// Delete
 const remove = async (file) => {
   if (!file?.path) {
     return;
@@ -88,10 +64,8 @@ const remove = async (file) => {
   }
 };
 
-// ======================================================
-// Replace
-// ======================================================
 
+// Replace
 const replace = async (oldFile, newFile, options = {}) => {
   const uploaded = await upload(newFile, options);
 
@@ -102,26 +76,20 @@ const replace = async (oldFile, newFile, options = {}) => {
   return uploaded;
 };
 
-// ======================================================
-// Upload Multiple
-// ======================================================
 
+// Upload Multiple
 const uploadMany = async (files = [], options = {}) => {
   return Promise.all(files.map((file) => upload(file, options)));
 };
 
-// ======================================================
-// Delete Multiple
-// ======================================================
 
+// Delete Multiple
 const deleteMany = async (files = []) => {
   await Promise.all(files.map(remove));
 };
 
-// ======================================================
-// Replace Multiple
-// ======================================================
 
+// Replace Multiple
 const replaceMany = async (oldFiles = [], newFiles = [], options = {}) => {
   const uploadedFiles = await uploadMany(newFiles, options);
 

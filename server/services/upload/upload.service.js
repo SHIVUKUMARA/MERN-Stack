@@ -31,31 +31,8 @@ const getProvider = () => {
   return provider;
 };
 
-// =====================================================
+
 // Upload
-// =====================================================
-
-// const upload = async (file, options = {}) => {
-//   const provider = getProvider();
-
-//   // Process once only
-//   const processed = await processors.process(file, options);
-
-//   // Upload processed original
-//   const uploaded = await provider.upload(processed.original, options);
-
-//   // Upload thumbnail WITHOUT processing again
-//   if (processed.thumbnail) {
-//     uploaded.thumbnail = await provider.upload(processed.thumbnail, {
-//       ...options,
-//       folder: `${options.folder}/thumbnails`,
-//       skipProcessing: true,
-//     });
-//   }
-
-//   return uploaded;
-// };
-
 const upload = async (file, options = {}) => {
   const provider = getProvider();
 
@@ -82,65 +59,51 @@ const upload = async (file, options = {}) => {
   return uploaded;
 };
 
-// =====================================================
-// Upload Many
-// =====================================================
 
+// Upload Many
 const uploadMany = async (files = [], options = {}) => {
   return Promise.all(files.map((file) => upload(file, options)));
 };
 
-// =====================================================
-// Delete
-// =====================================================
 
+// Delete
 const remove = async (file) => {
   if (!file) {
     return;
   }
 
   const provider = getProvider();
-
   await provider.delete(file);
-
   if (file.thumbnail) {
     await provider.delete(file.thumbnail);
   }
 };
 
-// =====================================================
-// Delete Many
-// =====================================================
 
+// Delete Many
 const deleteMany = async (files = []) => {
   await Promise.all(files.map(remove));
 };
 
-// =====================================================
-// Replace
-// =====================================================
 
+// Replace
 const replace = async (oldFile, newFile, options = {}) => {
   const uploaded = await upload(newFile, options);
 
   if (oldFile) {
     await remove(oldFile);
   }
-
   return uploaded;
 };
 
-// =====================================================
-// Replace Many
-// =====================================================
 
+// Replace Many
 const replaceMany = async (oldFiles = [], newFiles = [], options = {}) => {
   const uploadedFiles = await uploadMany(newFiles, options);
 
   if (oldFiles.length) {
     await deleteMany(oldFiles);
   }
-
   return uploadedFiles;
 };
 

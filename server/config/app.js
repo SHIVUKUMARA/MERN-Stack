@@ -8,6 +8,12 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 
 const env = require("./env");
+/* request come from server.js --->>>, app.use(routes); ====>>>>> It tells Express:
+"For every request that comes into this application, pass it to the main router."
+Think of it like the reception desk in a company. */
+const routes = require("../routes");
+const notFound = require("../middleware/notFound.middleware");
+const errorHandler = require("../middleware/error.middleware");
 
 const app = express();
 
@@ -53,13 +59,6 @@ app.use(cookieParser());
 // app.use(morgan("dev"));
 // Request Logger
 app.use(requestLogger);
-
-/* request come from server.js --->>>, app.use(routes); ====>>>>> It tells Express:
-"For every request that comes into this application, pass it to the main router."
-Think of it like the reception desk in a company. */
-const routes = require("../routes");
-const notFound = require("../middleware/notFound.middleware");
-const errorHandler = require("../middleware/error.middleware");
 
 // The reception doesn't solve the customer's problem. It only forwards them to the correct department. --->>> routes.index.js
 app.use(routes);

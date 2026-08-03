@@ -9,10 +9,7 @@ const process = async (file, options = {}) => {
     thumbnail = null,
   } = options;
 
-  // =====================================================
   // ORIGINAL IMAGE
-  // =====================================================
-
   let pipeline = sharp(file.buffer).rotate();
 
   if (resize) {
@@ -38,35 +35,22 @@ const process = async (file, options = {}) => {
   }
 
   const originalBuffer = await pipeline.toBuffer();
-
   const originalMetadata = await sharp(originalBuffer).metadata();
-
   const original = {
     ...file,
-
     buffer: originalBuffer,
-
     size: originalBuffer.length,
-
     originalname: convertToWebp
       ? file.originalname.replace(/\.[^.]+$/, ".webp")
       : file.originalname,
-
     mimetype: convertToWebp ? "image/webp" : file.mimetype,
-
     width: originalMetadata.width,
-
     height: originalMetadata.height,
-
     isOptimized: convertToWebp,
   };
 
-  // =====================================================
   // THUMBNAIL
-  // =====================================================
-
   let thumbnailFile = null;
-
   if (thumbnail) {
     let thumbPipeline = sharp(file.buffer)
       .rotate()
@@ -79,30 +63,20 @@ const process = async (file, options = {}) => {
       .webp({
         quality: thumbnail.quality ?? quality,
       });
-
     if (!stripMetadata) {
       thumbPipeline = thumbPipeline.withMetadata();
     }
 
     const thumbBuffer = await thumbPipeline.toBuffer();
-
     const thumbMetadata = await sharp(thumbBuffer).metadata();
-
     thumbnailFile = {
       ...file,
-
       buffer: thumbBuffer,
-
       size: thumbBuffer.length,
-
       originalname: file.originalname.replace(/\.[^.]+$/, "") + "_thumb.webp",
-
       mimetype: "image/webp",
-
       width: thumbMetadata.width,
-
       height: thumbMetadata.height,
-
       isOptimized: true,
     };
   }

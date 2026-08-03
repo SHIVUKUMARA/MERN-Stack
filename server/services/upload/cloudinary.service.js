@@ -11,10 +11,7 @@ cloudinary.config({
   api_secret: config.cloudinaryApiSecret,
 });
 
-// ======================================================
 // Upload
-// ======================================================
-
 const upload = async (file, options = {}) => {
   const { folder } = options;
 
@@ -34,51 +31,33 @@ const upload = async (file, options = {}) => {
             new ApiError(500, error.message || "Cloudinary upload failed."),
           );
         }
-
         resolve(result);
       },
     );
-
     streamifier.createReadStream(file.buffer).pipe(uploadStream);
   });
 
   return {
     storage: STORAGE_PROVIDERS.CLOUDINARY,
-
     path: null,
-
     url: result.secure_url,
-
     publicId: result.public_id,
-
     resourceType: result.resource_type,
-
     filename: result.public_id.split("/").pop(),
-
     originalName: file.originalname,
-
     mimeType: file.mimetype,
-
     extension: getExtension(file.originalname),
-
     size: file.size,
-
     width: file.width ?? result.width ?? null,
-
     height: file.height ?? result.height ?? null,
-
     isOptimized: file.isOptimized ?? false,
-
     thumbnail: null,
-
     uploadedAt: new Date(),
   };
 };
 
-// ======================================================
-// Delete
-// ======================================================
 
+// Delete
 const remove = async (file) => {
   if (!file?.publicId) {
     return;
@@ -96,47 +75,37 @@ const remove = async (file) => {
   }
 };
 
-// ======================================================
-// Replace
-// ======================================================
 
+// Replace
 const replace = async (oldFile, newFile, options = {}) => {
   const uploaded = await upload(newFile, options);
 
   if (oldFile) {
     await remove(oldFile);
   }
-
   return uploaded;
 };
 
-// ======================================================
-// Upload Multiple
-// ======================================================
 
+// Upload Multiple
 const uploadMany = async (files = [], options = {}) => {
   return Promise.all(files.map((file) => upload(file, options)));
 };
 
-// ======================================================
-// Delete Multiple
-// ======================================================
 
+// Delete Multiple
 const deleteMany = async (files = []) => {
   await Promise.all(files.map(remove));
 };
 
-// ======================================================
-// Replace Multiple
-// ======================================================
 
+// Replace Multiple
 const replaceMany = async (oldFiles = [], newFiles = [], options = {}) => {
   const uploadedFiles = await uploadMany(newFiles, options);
 
   if (oldFiles.length) {
     await deleteMany(oldFiles);
   }
-
   return uploadedFiles;
 };
 

@@ -599,3 +599,31 @@
 2026-08-02 16:08:42 [INFO] POST /api/v1/users/profile/videos | 500 | 519.606 ms | IP: ::1 | User: Guest
 2026-08-02 16:13:14 [INFO] POST /api/v1/users/profile/videos | 200 | 1744.847 ms | IP: ::1 | User: Guest
 2026-08-02 16:15:18 [INFO] DELETE /api/v1/users/profile/videos/6a6f1f42cbf51edd2424e49d | 200 | 43.379 ms | IP: ::1 | User: Guest
+2026-08-03 10:24:33 [INFO] GET /__ai-internal/routes | 200 | 4.781 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:25:22 [INFO] GET /__ai-internal/routes | 200 | 1.990 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:25:23 [INFO] GET /favicon.ico | 404 | 1.973 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:27:51 [INFO] GET /__ai-internal/routes | 200 | 5.699 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:27:59 [INFO] GET /__ai-internal/routes | 304 | 1.275 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:31:37 [INFO] GET /__ai-internal/routes | 200 | 6.133 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:31:42 [INFO] GET /__ai-internal/routes | 304 | 2.042 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:32:34 [INFO] GET /__ai-internal/routes | 404 | 4.500 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:36:22 [INFO] GET /__ai-internal/routes | 404 | 3.930 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:37:28 [INFO] GET /__ai-internal/routes/v1 | 200 | 2.231 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:39:44 [INFO] GET /__ai-internal/routes/v1 | 200 | 5.473 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:42:43 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-03 10:42:43 [INFO] POST /api/v1/auth/register | 400 | 7.812 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:42:54 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-03 10:42:54 [INFO] POST /api/v1/auth/register | 400 | 4.576 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:42:54 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-03 10:42:54 [INFO] POST /api/v1/auth/register | 400 | 5.120 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-03 10:43:33 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
+2026-08-03 10:43:33 [INFO] POST /api/v1/auth/login | 401 | 20.676 ms | IP: ::ffff:127.0.0.1 | User: Guest
