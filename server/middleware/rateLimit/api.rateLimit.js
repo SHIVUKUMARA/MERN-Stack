@@ -6,4 +6,7 @@ module.exports = createRateLimiter({
   max: config.authRateLimitMaxRequests,
   message:
     "Too many authentication attempts. Please try again after 15 minutes.",
+  skip: (req) => {
+    return req.path === "/health" || req.path === "/health/ready";
+  },
 });

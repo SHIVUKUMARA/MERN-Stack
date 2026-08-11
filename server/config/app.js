@@ -12,10 +12,14 @@ const env = require("./env");
 "For every request that comes into this application, pass it to the main router."
 Think of it like the reception desk in a company. */
 const routes = require("../routes");
-const notFound = require("../middleware/notFound.middleware");
+const notFound = require("../middleware/notfound.middleware");
 const errorHandler = require("../middleware/error.middleware");
 
 const app = express();
+
+// make sure Express aware that Nginx is the trusted reverse proxy.
+app.set("trust proxy", 1);
+// Do not use `app.set("trust proxy", true);` for this setup. because we have a known single proxy
 
 // Security Middleware
 

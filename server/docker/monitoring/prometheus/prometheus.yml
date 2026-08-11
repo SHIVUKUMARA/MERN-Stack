@@ -1,0 +1,112 @@
+# ==========================================================
+# Prometheus Configuration
+# ==========================================================
+#
+# Prometheus is responsible for collecting and storing
+# application/system metrics.
+#
+# This file tells Prometheus:
+#
+# 1. How often to collect metrics.
+# 2. Which endpoint to collect metrics from.
+# 3. What name to give that monitored target.
+#
+# IMPORTANT:
+# Prometheus can only collect metrics from an application when
+# that application exposes a Prometheus-compatible metrics
+# endpoint.
+#
+# We have NOT added that endpoint to the Node.js application
+# yet. Therefore this configuration is the structure we will
+# use, but the application metrics endpoint will be implemented
+# in a later step.
+# ==========================================================
+
+# ==========================================================
+# Global Configuration
+# ==========================================================
+
+global:
+  # scrape_interval:
+  #
+  # Defines how frequently Prometheus collects metrics from
+  # configured targets.
+  #
+  # 15s means:
+  #
+  #     Collect metrics every 15 seconds.
+  #
+  # We use a moderate interval because this application is
+  # initially intended for resource-limited environments such
+  # as Render's free tier.
+  #
+  # A shorter interval produces more monitoring data and can
+  # consume more CPU, memory, and storage.
+  scrape_interval: 15s
+
+  # evaluation_interval:
+  #
+  # Defines how frequently Prometheus evaluates alerting and
+  # recording rules.
+  #
+  # We currently have no alerting rules, but defining the
+  # interval now gives us a standard production structure.
+  evaluation_interval: 15s
+
+# ==========================================================
+# Scrape Configurations
+# ==========================================================
+
+scrape_configs:
+  # --------------------------------------------------------
+  # Backend Application
+  # --------------------------------------------------------
+  #
+  # This is the name Prometheus gives to this monitoring job.
+  #
+  # The job name will appear in Prometheus queries and
+  # dashboards.
+  # --------------------------------------------------------
+
+  - job_name: "backend"
+
+    # ------------------------------------------------------
+    # static_configs:
+    #
+    # Defines the targets Prometheus should monitor.
+    #
+    # We are intentionally using a Docker service hostname
+    # instead of localhost.
+    #
+    # Inside Docker:
+    #
+    #     localhost
+    #
+    # means the Prometheus container itself.
+    #
+    # It does NOT mean the backend container.
+    #
+    # Docker Compose service names allow containers on the
+    # same Docker network to communicate with each other.
+    # ------------------------------------------------------
+
+    static_configs:
+      - targets:
+          - "backend:5000"
+
+# ==========================================================
+# Future Monitoring
+# ==========================================================
+#
+# Later we can add additional targets such as:
+#
+#     MongoDB
+#     Nginx
+#     Node.js metrics
+#     Docker/container metrics
+#
+# But we are intentionally NOT adding them now.
+#
+# We want to introduce monitoring incrementally instead of
+# running several monitoring services unnecessarily.
+# ==========================================================

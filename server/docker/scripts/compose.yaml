@@ -1,0 +1,145 @@
+# ==========================================================
+# Docker Compose - Operational Scripts
+# ==========================================================
+
+services:
+  # --------------------------------------------------------
+  # Operational scripts container.
+  #
+  # This container is used for:
+  #
+  #   - MongoDB backup
+  #   - MongoDB restore
+  #   - MongoDB readiness checks
+  #   - Backend health checks
+  #
+  # It is NOT the application container.
+  # --------------------------------------------------------
+
+  scripts:
+    # ------------------------------------------------------
+    # Build the scripts Docker image.
+    #
+    # The build context is the server/ directory.
+    # ------------------------------------------------------
+
+    build:
+      context: ../..
+      dockerfile: docker/scripts/Dockerfile
+
+    # ------------------------------------------------------
+    # Give the container a predictable name.
+    # ------------------------------------------------------
+
+    container_name: docker-scripts
+
+    # ------------------------------------------------------
+    # This is a utility container.
+    #
+    # We don't want Docker to automatically restart it after
+    # we intentionally stop it.
+    # ------------------------------------------------------
+
+    restart: "no"
+
+    # ------------------------------------------------------
+    # Environment variables used by our scripts.
+    # ------------------------------------------------------
+
+    environment:
+      # ----------------------------------------------------
+      # Docker service name of MongoDB.
+      #
+      # Docker's internal DNS resolves:
+      #
+      # mongodb
+      #
+      # to the MongoDB container.
+      # ----------------------------------------------------
+
+      MONGO_HOST: mongodb
+
+      # MongoDB's internal container port.
+      MONGO_PORT: "27017"
+
+      # ----------------------------------------------------
+      # Directory where MongoDB backups are stored.
+      # ----------------------------------------------------
+
+      BACKUP_DIR: /backups
+
+      # ----------------------------------------------------
+      # Docker service name of the backend.
+      # ----------------------------------------------------
+
+      APP_HOST: backend
+
+      # Backend's internal container port.
+      APP_PORT: "5000"
+
+    # ------------------------------------------------------
+    # Persistent storage for database backups.
+    #
+    # Backups survive recreation of the scripts container.
+    # ------------------------------------------------------
+
+    volumes:
+      - backup-data:/backups
+
+    # ------------------------------------------------------
+    # Connect to the ACTUAL production Compose network.
+    #
+    # Your current production network is:
+    #
+    # backend-production_default
+    #
+    # This network already contains:
+    #
+    #   backend-prod
+    #   mongo-prod
+    #   nginx-prod
+    #
+    # Therefore the scripts container must join this network.
+    # ------------------------------------------------------
+
+    networks:
+      - production-network
+
+# ==========================================================
+# Networks
+# ==========================================================
+
+networks:
+  production-network:
+    # ------------------------------------------------------
+    # The network already exists.
+    #
+    # We are NOT creating another network.
+    # ------------------------------------------------------
+
+    external: true
+
+    # ------------------------------------------------------
+    # This tells Docker which existing network to use.
+    #
+    # Without this line Docker would look for a network named:
+    #
+    # production-network
+    #
+    # We actually want:
+    #
+    # backend-production_default
+    # ------------------------------------------------------
+
+    name: backend-production_default
+
+# ==========================================================
+# Volumes
+# ==========================================================
+
+volumes:
+  # --------------------------------------------------------
+  # Docker-managed persistent storage for backups.
+  # --------------------------------------------------------
+
+  backup-data:
