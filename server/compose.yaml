@@ -1,0 +1,133 @@
+# ===============================================
+# STEP 1: Build the backend image
+# ===============================================
+
+# Unlike MongoDB, our backend doesn't come from Docker Hub. We built it ourselves.
+# Tell Compose:
+services:
+  server:
+    #health checking for the server container. If the server is not healthy, Compose can restart it automatically.
+    healthcheck:
+      test: [
+          "CMD",
+          # Many use `curl` That works only if curl is installed inside the image.
+          # Many slim images do not include curl.
+          # You could install it, but that makes your image larger.
+          # Since Node.js already includes fetch(), we can use Node itself to perform the health check.
+          # This keeps the image smaller and avoids unnecessary packages.
+          "node",
+          "-e",
+          "fetch('http://localhost:5000/health/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 30s # Check every 30 seconds
+      timeout: 5s # How long should Docker wait?
+      retries: 3 # How many failures before marking unhealthy?
+      start_period: 20s # Wait for the some specified time before starting health check or ignore failures for the first 20 seconds.
+    build: .
+    container_name: server
+    restart: unless-stopped #If Docker or your computer restarts, the container comes back automatically.
+    # Meaning: Build the image using the Dockerfile in the current directory. The `.` refers to the directory containing your compose.yaml.
+    # Container Name, Without this, Docker creates names like server-backend-1 or server_backend_1depending on the project name, We want something cleaner while learning.
+
+    # ===============================================
+    # STEP 2: PORTs
+    # ===============================================
+    ports:
+      - "5000:5000"
+    # Our Express app runs on 5000 => inside the container. Our browser is outside the container. We need to connect them.
+    # Left side : Host, Right side : Container, i.e, 5000:5000
+    # Browser
+    # ↓
+    # localhost:5000
+    # ↓
+    # Docker
+    # ↓
+    # Container:5000
+
+    # ===============================================
+    # STEP 3: Environment Variables
+    # ===============================================
+    # We already have ".env", Compose can load it. No need to repeat every variable.
+    env_file:
+      - .env.docker
+
+    # ===============================================
+    # STEP 4: Volumes
+    # ===============================================
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    # Development should always use volumes:
+    #   - .:/app
+    # Meaning : Host Folder
+    # ↓
+    # Container /app
+    # Now editing : controllers/, services/, routes/, instantly changes the files inside the container.No rebuild needed.
+
+    # Didn't we already install node_modules in the image? ===>>> Yes.
+    # Now here's the first professional Docker issue you'll encounter.
+    # Our bind mount "- .:/app" -> mounts your entire project into /app.
+    # If our host has a node_modules directory, it will hide the Linux node_modules that were installed during the image build. Those host modules are compiled for Windows, not Linux.
+    # There are two good approaches:
+    # 1. Don't keep a host node_modules at all and do your development entirely inside the container.
+    # 2. Or mount a separate Docker volume for /app/node_modules.
+
+    # volumes:
+    # - .:/app
+    # - node_modules:/app/node_modules
+    # The second line tells Docker: Keep /app/node_modules in a Docker-managed volume.
+    # Now:
+    # Source code comes from your host.
+    # Linux node_modules stay inside Docker.
+
+    # ===============================================
+    # STEP 5: Dependencies
+    # ===============================================
+    # command: npm run dev
+    #  Our Dockerfile already contains, CMD ["npm", "run", "dev"], Do we need "command:  " No. Not yet.
+    # Compose uses the Dockerfile's CMD by default. We'll override it later only if needed.
+    depends_on:
+      - mongodb
+      # - redis
+
+  # ===============================================
+  # STEP 6: Add MongoDB and Redis
+  # ===============================================
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: unless-stopped
+
+    healthcheck:
+      # mongosh --eval "db.adminCommand('ping')" ===>>> It simply asks MongoDB: "Are you alive?" ==>> If MongoDB responds: { "ok": 1 }, Exit code = 0 Healthy. Otherwise Unhealthy.
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+    volumes:
+      - mongo-data:/data/db
+    # Compose downloads it automatically. Persistent Data. If we delete the container, our database shouldn't disappear. Use a named volume.
+    # volumes:
+    #     - mongo-data:/data/db
+    # Visual
+    # MongoDB
+    # ↓
+    # /data/db
+    # ↓
+    # Docker Volume
+    # ↓
+    # mongo-data
+    # Delete container.
+    # Database stays.
+
+  # redis:
+  #   image: redis
+  #   container_name: redis
+  #   restart: unless-stopped
+
+# This declares the named volumes used by the services.
+volumes:
+  mongo-data:
+  node_modules:

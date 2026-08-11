@@ -8,17 +8,28 @@ node_modules/
 # Environment Files
 # ==========================================================
 
-# Root environment files
+# Application environment files
 .env
 .env.*
 !.env.example
 
-# Docker environment files
-docker/**/.env
-docker/**/.env.*
-
-# Learning environment file
+# Learning / local Docker environment
 .env.docker
+
+docker/development/.env
+docker/testing/.env
+docker/production/.env
+
+docker/development/.env.*
+docker/testing/.env.*
+docker/production/.env.*
+
+# ==========================================================
+# Docker Configuration
+# ==========================================================
+
+# Docker configuration files are not required inside the image.
+# docker/
 
 # ==========================================================
 # Runtime Data
@@ -29,6 +40,13 @@ logs/
 npm-debug.log*
 
 uploads/
+
+# ==========================================================
+# Git
+# ==========================================================
+
+.git
+.gitignore
 
 # ==========================================================
 # IDE / Editor
@@ -43,3 +61,10 @@ uploads/
 
 .DS_Store
 Thumbs.db
+
+# ==========================================================
+# Documentation
+# ==========================================================
+
+docs/
+README.md

@@ -627,3 +627,395 @@
     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
     at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:47
 2026-08-03 10:43:33 [INFO] POST /api/v1/auth/login | 401 | 20.676 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 06:52:02 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 06:52:02 [INFO] POST /api/v1/auth/register | 400 | 13.188 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 06:52:08 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 06:52:08 [INFO] POST /api/v1/auth/register | 400 | 3.219 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 06:52:08 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 06:52:08 [INFO] POST /api/v1/auth/register | 400 | 4.112 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 06:52:17 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:23:47
+2026-08-05 06:52:17 [INFO] POST /api/v1/auth/login | 401 | 101.071 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 06:52:22 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:23:47
+2026-08-05 06:52:22 [INFO] POST /api/v1/auth/login | 401 | 3.605 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:02:21 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:02:21 [INFO] POST /api/v1/auth/register | 400 | 12.474 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:02:21 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:02:21 [INFO] POST /api/v1/auth/register | 400 | 3.053 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:02:21 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:02:21 [INFO] POST /api/v1/auth/register | 400 | 3.153 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:02:40 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:23:47
+2026-08-05 07:02:40 [INFO] POST /api/v1/auth/login | 401 | 13.861 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:02:40 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:23:47
+2026-08-05 07:02:40 [INFO] POST /api/v1/auth/login | 401 | 7.689 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:13:17 [INFO] POST /api/v1/auth/forgot-password | 200 | 18.827 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:13:17 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:13:17 [INFO] POST /api/v1/auth/forgot-password | 400 | 4.386 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:13:17 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:13:17 [INFO] POST /api/v1/auth/forgot-password | 400 | 2.633 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:13:41 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:13:41 [INFO] POST /api/v1/auth/reset-password | 400 | 2.360 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:13:41 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:13:41 [INFO] POST /api/v1/auth/reset-password | 400 | 2.712 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:13:41 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:13:41 [INFO] POST /api/v1/auth/reset-password | 400 | 2.478 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:13:58 [ERROR] Error: Unauthorized access, Please login again
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:11:11
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:295:15
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+2026-08-05 07:13:58 [INFO] GET /api/v1/users | 401 | 6.994 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:13:58 [ERROR] Error: Unauthorized access, Please login again
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:11:11
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:295:15
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+2026-08-05 07:13:58 [INFO] GET /api/v1/users | 401 | 2.014 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:13:58 [ERROR] Error: Unauthorized access, Please login again
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:11:11
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:295:15
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+2026-08-05 07:13:58 [INFO] GET /api/v1/users | 401 | 3.919 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:15:07 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:15:07 [INFO] POST /api/v1/auth/register | 400 | 2.186 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:15:07 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:15:07 [INFO] POST /api/v1/auth/register | 400 | 4.327 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:15:07 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:15:07 [INFO] POST /api/v1/auth/register | 400 | 1.602 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:15:33 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:23:47
+2026-08-05 07:15:33 [INFO] POST /api/v1/auth/login | 401 | 15.737 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:15:33 [ERROR] Error: Invalid email or password
+    at loginUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:23:47
+2026-08-05 07:15:33 [INFO] POST /api/v1/auth/login | 401 | 5.307 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:15:33 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:15:33 [INFO] POST /api/v1/auth/login | 400 | 1.570 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:15:54 [ERROR] Error: Unauthorized access, Please login again
+    at refreshAccessToken (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:80:11)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:11
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:295:15
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+2026-08-05 07:15:54 [INFO] POST /api/v1/auth/refresh-token | 401 | 1.288 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:15:54 [ERROR] Error: Unauthorized access, Please login again
+    at refreshAccessToken (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:80:11)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:11
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:295:15
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+2026-08-05 07:15:54 [INFO] POST /api/v1/auth/refresh-token | 401 | 1.024 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:15:54 [ERROR] Error: Unauthorized access, Please login again
+    at refreshAccessToken (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:80:11)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:44:11
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:295:15
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+2026-08-05 07:15:54 [INFO] POST /api/v1/auth/refresh-token | 401 | 2.200 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:16:13 [ERROR] Error: Unauthorized access, Please login again
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:11:11
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:295:15
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+2026-08-05 07:16:13 [INFO] POST /api/v1/auth/logout | 401 | 1.010 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:16:13 [ERROR] Error: Unauthorized access, Please login again
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:11:11
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:295:15
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+2026-08-05 07:16:13 [INFO] POST /api/v1/auth/logout | 401 | 0.994 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:16:13 [ERROR] Error: Unauthorized access, Please login again
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\middleware\auth.middleware.js:11:11
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\utils\asyncHandler.js:22:21
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\route.js:117:3)
+    at handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:295:15
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+    at processParams (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:582:12)
+    at next (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:291:5)
+    at router.handle (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:186:3)
+    at router (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:342:13)
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\node_modules\router\index.js:297:9
+2026-08-05 07:16:13 [INFO] POST /api/v1/auth/logout | 401 | 1.479 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:16:41 [INFO] POST /api/v1/auth/forgot-password | 200 | 7.273 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:16:41 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:16:41 [INFO] POST /api/v1/auth/forgot-password | 400 | 2.900 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:16:41 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:16:41 [INFO] POST /api/v1/auth/forgot-password | 400 | 1.328 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:16:59 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:16:59 [INFO] POST /api/v1/auth/reset-password | 400 | 1.590 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:16:59 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:16:59 [INFO] POST /api/v1/auth/reset-password | 400 | 1.583 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 07:16:59 [ERROR] Error: Validation failed
+    at C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\validators\validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-05 07:16:59 [INFO] POST /api/v1/auth/reset-password | 400 | 3.377 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 05:17:56 [INFO] GET /api/health | 404 | 5.243 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-05 05:18:52 [INFO] GET /api/health/ | 404 | 0.807 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-05 05:19:12 [INFO] GET /health/ | 200 | 1.641 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-05 05:24:04 [ERROR] Error: Invalid email or password
+    at loginUser (/app/services/auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/auth.controller.js:23:47
+2026-08-05 05:24:04 [INFO] POST /api/v1/auth/login | 401 | 34.996 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-05 05:24:27 [ERROR] Error: Invalid email or password
+    at loginUser (/app/services/auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/auth.controller.js:23:47
+2026-08-05 05:24:27 [INFO] POST /api/v1/auth/login | 401 | 5.722 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-05 05:43:19 [INFO] POST /api/v1/auth/register | 201 | 373.890 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-05 05:46:29 [ERROR] Error: Invalid email or password
+    at loginUser (/app/services/auth.service.js:52:11)
+    at async /app/controllers/auth.controller.js:23:47
+2026-08-05 05:46:29 [INFO] POST /api/v1/auth/login | 401 | 110.568 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-05 05:46:35 [INFO] POST /api/v1/auth/login | 200 | 112.449 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-05 08:56:20 [INFO] GET /health/ | 200 | 3.496 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 08:56:50 [INFO] GET /health/ | 200 | 0.643 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 08:57:21 [INFO] GET /health/ | 200 | 0.646 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 08:57:51 [INFO] GET /health/ | 200 | 0.540 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 08:58:21 [INFO] GET /health/ | 200 | 0.393 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 10:20:32 [INFO] GET /health/ | 200 | 13.333 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 10:21:02 [INFO] GET /health/ | 200 | 0.915 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 10:21:33 [INFO] GET /health/ | 200 | 0.613 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 10:22:04 [INFO] GET /health/ | 200 | 0.425 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 10:22:34 [INFO] GET /health/ | 200 | 0.661 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:24:34 [INFO] GET /health/ | 200 | 3.527 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:25:04 [INFO] GET /health/ | 200 | 0.985 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:25:35 [INFO] GET /health/ | 200 | 0.866 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:26:05 [INFO] GET /health/ | 200 | 0.449 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:26:36 [INFO] GET /health/ | 200 | 1.333 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:27:54 [INFO] GET /health/ | 200 | 3.765 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:28:25 [INFO] GET /health/ | 200 | 1.006 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:29:14 [INFO] GET /health/ | 200 | 3.888 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:29:44 [INFO] GET /health/ | 200 | 0.767 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:30:14 [INFO] GET /health/ | 200 | 0.683 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:30:51 [INFO] GET /health/ | 200 | 4.072 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:31:21 [INFO] GET /health/ | 200 | 1.305 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:31:52 [INFO] GET /health/ | 200 | 0.504 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-05 11:32:22 [INFO] GET /health/ | 200 | 0.646 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-06 04:40:08 [INFO] GET /health/ | 200 | 3.592 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-06 04:40:38 [INFO] GET /health/ | 200 | 0.645 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-06 04:41:08 [INFO] GET /health/ | 200 | 0.445 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-06 04:41:39 [INFO] GET /health/ | 200 | 0.335 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-06 04:42:09 [INFO] GET /health/ | 200 | 1.010 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-06 05:07:37 [INFO] GET /health/ | 200 | 3.688 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-06 05:08:08 [INFO] GET /health/ | 200 | 0.714 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-06 05:08:38 [INFO] GET /health/ | 200 | 0.419 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-06 05:09:08 [INFO] GET /health/ | 200 | 0.601 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-06 05:09:39 [INFO] GET /health/ | 200 | 1.152 ms | IP: ::ffff:127.0.0.1 | User: Guest
+2026-08-06 10:50:48 [INFO] GET /api/health/ | 404 | 9.090 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-06 10:50:49 [INFO] GET /favicon.ico | 404 | 0.913 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-06 10:51:01 [INFO] GET /health/ | 200 | 1.720 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-06 11:05:00 [INFO] POST /api/v1/auth/register | 201 | 275.427 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-06 11:13:52 [INFO] GET /health/ | 200 | 5.117 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-06 11:37:35 [INFO] GET /health/ | 200 | 32.673 ms | IP: ::ffff:172.18.0.1 | User: Guest
+2026-08-10 16:17:11 [ERROR] Error: Email already exists
+    at registerUser (C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\services\auth.service.js:15:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:15:16
+2026-08-10 16:17:11 [INFO] POST /api/v1/auth/register | 409 | 67.055 ms | IP: 127.0.0.1 | User: Guest

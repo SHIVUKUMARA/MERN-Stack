@@ -1,0 +1,79 @@
+services:
+  # ===================================================
+  # BACKEND
+  # ===================================================
+  backend:
+    build:
+      context: ../..
+      dockerfile: docker/production/Dockerfile
+
+    container_name: backend-prod
+    restart: unless-stopped
+    env_file:
+      - .env
+    # ports:
+    #   - "5000:5000"
+    # Without ngnix we can use this, with ngnix we don't need to expose the backend directly to host.
+    # Instead we do it via ngnix. using expose
+
+    expose:
+      - "5000"
+
+    stop_grace_period: 30s
+
+    volumes:
+      - uploads-data-prod:/app/uploads
+    # Uncomment if using local MongoDB
+    # depends_on:
+    #   mongodb:
+    #     condition: service_healthy
+
+  # ===================================================
+  # MONGODB - Uncomment only if using local MongoDB
+  # ===================================================
+  # mongodb:
+  #   image: mongo:7
+  #   container_name: mongo-prod
+  #   restart: unless-stopped
+  #   stop_grace_period: 30s
+  #   volumes:
+  #     - mongo-data-prod:/data/db
+
+  #   healthcheck:
+  #     test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
+  #     start_period: 20s
+
+  # ===================================================
+  # NGINX
+  # ===================================================
+  nginx:
+    build:
+      context: ../..
+      dockerfile: docker/production/nginx/Dockerfile
+
+    container_name: nginx-prod
+    restart: unless-stopped
+    stop_grace_period: 10s
+    ports:
+      - "80:80"
+
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+    depends_on:
+      backend:
+        condition: service_healthy
+
+# ===================================================
+# VOLUMES
+# ===================================================
+volumes:
+  # mongo-data-prod:    # Uncomment if using local MongoDB
+  uploads-data-prod:
