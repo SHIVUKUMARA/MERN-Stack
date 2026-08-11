@@ -34,7 +34,6 @@ The local production environment and Render production environment use the same 
 - [22. Common Render Events](#22-common-render-events)
 - [23. Production Deployment Checklist](#23-production-deployment-checklist)
 - [24. Final Production Flow](#24-final-production-flow)
-
 ---
 
 ## 1. Production Architecture
@@ -926,7 +925,6 @@ Before considering a Render deployment complete, verify the following.
 ---
 
 ## 24. Final Production Flow
-
 The final deployment architecture is:
 
 ```text
