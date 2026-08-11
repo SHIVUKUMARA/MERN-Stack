@@ -32,8 +32,8 @@ The local production environment and Render production environment use the same 
 - [20. Rate Limiter Fix](#20-rate-limiter-fix)
 - [21. Graceful Shutdown](#21-graceful-shutdown)
 - [22. Common Render Events](#22-common-render-events)
-- [23. Final Production Flow](#24-final-production-flow)
-
+- [23. Production Deployment Checklist](#23-production-deployment-checklist)
+- [24. Final Production Flow](#24-final-production-flow)
 ---
 
 ## 1. Production Architecture
@@ -867,8 +867,64 @@ This means Render has detected that the service is healthy again.
 
 ---
 
-## 23. Final Production Flow
+## 23. Production Deployment Checklist
 
+Before considering a Render deployment complete, verify the following.
+
+### GitHub
+
+- [ ] Code pushed to GitHub
+- [ ] Correct branch contains production changes
+- [ ] No `.env` secrets committed
+- [ ] Production Docker files committed
+
+### Render
+
+- [ ] Render Web Service created
+- [ ] Correct GitHub repository connected
+- [ ] Root directory configured as `server`
+- [ ] Production Dockerfile configured
+- [ ] Environment variables configured
+- [ ] Render detects the correct port
+- [ ] Deployment is live
+
+### Backend
+
+- [ ] Application starts successfully
+- [ ] Environment is production
+- [ ] `/health` returns 200
+- [ ] `/health/ready` returns 200
+- [ ] MongoDB connection succeeds
+- [ ] Authentication works
+- [ ] Protected routes work
+- [ ] Logout works
+
+### MongoDB Atlas
+
+- [ ] MongoDB Atlas connection succeeds
+- [ ] Database documents are created
+- [ ] Database updates work
+- [ ] Database queries work
+
+### Cloudinary
+
+- [ ] Cloudinary credentials configured
+- [ ] Upload works
+- [ ] Uploaded file appears in Cloudinary
+- [ ] Returned URL works
+- [ ] Database stores the Cloudinary file information
+
+### Health Checks
+
+- [ ] Render health check uses `/health`
+- [ ] `/health` returns 200
+- [ ] `/health` is not rate limited
+- [ ] `/health/ready` is not rate limited
+- [ ] No repeated 429 health-check failures
+
+---
+
+## 24. Final Production Flow
 The final deployment architecture is:
 
 ```text

@@ -12,7 +12,7 @@ const createRateLimiter = ({
     max,
     standardHeaders: true,
     legacyHeaders: false,
-    skip,
+    skip, // to avoid rate limiting on health checks
     message: {
       status: false,
       statusCode,
