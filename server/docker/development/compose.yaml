@@ -44,6 +44,17 @@ services:
       timeout: 5s
       retries: 3
       start_period: 20s
+
+  # =============================================
+  # Redis
+  # =============================================
+  redis:
+    image: redis:8-alpine
+    container_name: redis-dev
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
 # ===============================================
 # Named Volumes
 # ===============================================
