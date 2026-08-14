@@ -24,9 +24,32 @@ services:
     volumes:
       - uploads-data-prod:/app/uploads
     # Uncomment if using local MongoDB
-    # depends_on:
-    #   mongodb:
-    #     condition: service_healthy
+    depends_on:
+      #   mongodb:
+      #     condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # ===================================================
+  # REDIS
+  # ===================================================
+  redis:
+    image: redis:8-alpine
+    container_name: redis-prod
+    restart: unless-stopped
+    stop_grace_period: 10s
+
+    command: redis-server --appendonly yes
+
+    volumes:
+      - redis-data-prod:/data
+
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
 
   # ===================================================
   # MONGODB - Uncomment only if using local MongoDB
@@ -75,5 +98,6 @@ services:
 # VOLUMES
 # ===================================================
 volumes:
-  # mongo-data-prod:    # Uncomment if using local MongoDB
+  # mongo-data-prod:    # Uncomment if using local MongoDB for production testing
   uploads-data-prod:
+  redis-data-prod:
