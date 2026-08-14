@@ -8,37 +8,41 @@ const {
   forgotPasswordSchema,
   resetPasswordSchema,
 } = require("../../validators/auth.validator");
-const { authRateLimit } = require("../../middleware/rateLimit");
+const {
+  loginRateLimit,
+  refreshTokenRateLimit,
+  forgotPasswordRateLimit,
+  resetPasswordRateLimit,
+} = require("../../middleware/rateLimit");
 const validate = require("../../validators/validate.middleware");
 
-router.post(
-  "/register",
-  authRateLimit,
-  validate(registerSchema),
-  authController.register,
-);
+router.post("/register", validate(registerSchema), authController.register);
 
 router.post(
   "/login",
-  authRateLimit,
+  loginRateLimit,
   validate(loginSchema),
   authController.login,
 );
 
-router.post("/refresh-token", authController.refreshToken);
+router.post(
+  "/refresh-token",
+  refreshTokenRateLimit,
+  authController.refreshToken,
+);
 
 router.post("/logout", protect, authController.logout);
 
 router.post(
   "/forgot-password",
-  authRateLimit,
+  forgotPasswordRateLimit,
   validate(forgotPasswordSchema),
   authController.forgotPassword,
 );
 
 router.post(
   "/reset-password",
-  authRateLimit,
+  resetPasswordRateLimit,
   validate(resetPasswordSchema),
   authController.resetPassword,
 );

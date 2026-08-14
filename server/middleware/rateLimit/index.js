@@ -1,7 +1,7 @@
-const authRateLimit = require("./auth.rateLimit");
+const authRateLimits = require("./auth.rateLimit");
 const apiRateLimit = require("./api.rateLimit");
 
 module.exports = {
-  authRateLimit,
-  apiRateLimit,
+  ...authRateLimits,
+  ...apiRateLimit,
 };

@@ -1019,3 +1019,564 @@
     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
     at async C:\Users\gitsi\OneDrive\Desktop\learning\MERN\server\controllers\auth.controller.js:15:16
 2026-08-10 16:17:11 [INFO] POST /api/v1/auth/register | 409 | 67.055 ms | IP: 127.0.0.1 | User: Guest
+2026-08-12 09:09:33 [INFO] GET /health/ | 200 | 22.380 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 09:09:41 [ERROR] ReferenceError: redisClient is not defined
+    at /app/routes/health.routes.js:28:28
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/router/index.js:291:5)
+    at router.handle (/app/node_modules/router/index.js:186:3)
+    at router (/app/node_modules/router/index.js:60:12)
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/app/node_modules/router/index.js:342:13)
+    at /app/node_modules/router/index.js:297:9
+    at processParams (/app/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/router/index.js:291:5)
+    at router.handle (/app/node_modules/router/index.js:186:3)
+    at router (/app/node_modules/router/index.js:60:12)
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/app/node_modules/router/index.js:342:13)
+    at /app/node_modules/router/index.js:297:9
+    at processParams (/app/node_modules/router/index.js:582:12)
+2026-08-12 09:09:41 [INFO] GET /health/ready | 500 | 15.920 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 09:11:31 [INFO] GET /health/ready | 200 | 30.888 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 09:11:37 [INFO] GET /health | 200 | 1.712 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:09:39 [ERROR] Error: Invalid email or password
+    at loginUser (/app/services/auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/auth.controller.js:23:47
+2026-08-12 11:09:39 [INFO] POST /api/v1/auth/login | 401 | 169.490 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:09:48 [ERROR] Error: Invalid email or password
+    at loginUser (/app/services/auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/auth.controller.js:23:47
+2026-08-12 11:09:48 [INFO] POST /api/v1/auth/login | 401 | 23.618 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:10:01 [ERROR] Error: Invalid email or password
+    at loginUser (/app/services/auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/auth.controller.js:23:47
+2026-08-12 11:10:01 [INFO] POST /api/v1/auth/login | 401 | 30.612 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:10:05 [ERROR] Error: Invalid email or password
+    at loginUser (/app/services/auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/auth.controller.js:23:47
+2026-08-12 11:10:05 [INFO] POST /api/v1/auth/login | 401 | 15.283 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:11:09 [INFO] POST /api/v1/auth/register | 201 | 261.948 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:16:20 [INFO] POST /api/v1/auth/login | 200 | 413.504 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:17:07 [ERROR] ReferenceError: caheKey is not defined
+    at getUserById (/app/services/user.service.js:46:15)
+    at /app/controllers/user.controller.js:36:22
+    at /app/utils/asyncHandler.js:22:21
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/router/lib/route.js:157:13)
+    at /app/middleware/auth.middleware.js:47:3
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-12 11:17:07 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 500 | 35.600 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:18:05 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 186.644 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:18:30 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 36.210 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:20:19 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 104.635 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:20:28 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 15.844 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:23:43 [ERROR] TypeError: cacheService.delete is not a function
+    at updateUser (/app/services/user.service.js:99:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/user.controller.js:42:16
+2026-08-12 11:23:43 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 500 | 196.877 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:24:11 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 186.788 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:24:21 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 52.759 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:24:29 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 18.717 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:24:47 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 60.048 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 11:24:52 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 21.165 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 12:20:50 [INFO] POST /api/v1/auth/login | 200 | 516.114 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 12:21:01 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 82.654 ms | IP: 172.18.0.1 | User: Guest
+2026-08-12 12:21:06 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 28.629 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 04:35:37 [INFO] POST /api/v1/auth/login | 200 | 531.831 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 04:39:24 [INFO] POST /api/v1/auth/login | 200 | 326.736 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 04:39:38 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 142.379 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 04:39:43 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 36.116 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 04:39:45 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 17.908 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 04:39:57 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 49.329 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 04:40:24 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 104.805 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 04:40:35 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 90.141 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 04:40:40 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 37.296 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 04:40:43 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 8.276 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 04:40:56 [INFO] POST /api/v1/auth/logout | 200 | 66.059 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 06:13:46 [INFO] POST /api/v1/auth/login | 200 | 349.794 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 06:14:09 [INFO] GET /api/v1/users | 200 | 92.422 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 06:15:10 [INFO] GET /api/v1/users | 200 | 40.062 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:06:12 [INFO] POST /api/v1/auth/login | 200 | 474.479 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:06:36 [ERROR] ReferenceError: users is not defined
+    at getAllUsers (/app/services/user.service.js:53:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/user.controller.js:28:17
+2026-08-13 07:06:36 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 500 | 124.663 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:07:56 [ERROR] ReferenceError: cacheStored is not defined
+    at getAllUsers (/app/services/user.service.js:55:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/user.controller.js:28:17
+2026-08-13 07:07:56 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 500 | 150.957 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:08:57 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 113.771 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:09:06 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 18.202 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:09:09 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 19.798 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:09:13 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 18.562 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:09:52 [ERROR] TypeError: cacheService.sadd is not a function
+    at getAllUsers (/app/services/user.service.js:56:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/user.controller.js:28:17
+2026-08-13 07:09:52 [INFO] GET /api/v1/users?role=student&page=2&limit=5&sort=firstName&fields=firstName,email | 500 | 70.309 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:15:44 [INFO] GET /api/v1/users?role=student&page=2&limit=5&sort=firstName&fields=firstName,email | 200 | 122.281 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:16:12 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 55.321 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:17:16 [ERROR] TokenExpiredError: jwt expired
+    at /app/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/app/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/app/node_modules/jsonwebtoken/verify.js:101:10)
+    at /app/middleware/auth.middleware.js:19:23
+    at /app/utils/asyncHandler.js:22:21
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/router/index.js:295:15
+    at param (/app/node_modules/router/index.js:600:14)
+    at param (/app/node_modules/router/index.js:610:14)
+    at processParams (/app/node_modules/router/index.js:664:3)
+    at next (/app/node_modules/router/index.js:291:5)
+    at router.handle (/app/node_modules/router/index.js:186:3)
+    at router (/app/node_modules/router/index.js:60:12)
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/app/node_modules/router/index.js:342:13)
+    at /app/node_modules/router/index.js:297:9
+    at processParams (/app/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/router/index.js:291:5)
+2026-08-13 07:17:16 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 500 | 29.574 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:17:23 [INFO] POST /api/v1/auth/login | 200 | 254.611 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:17:34 [ERROR] TypeError: cacheService.smember is not a function
+    at Object.invalidateUserLists (/app/utils/cache/user.cache.js:12:34)
+    at updateUser (/app/services/user.service.js:121:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/user.controller.js:42:16
+2026-08-13 07:17:34 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 500 | 54.106 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:19:00 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 97.626 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:19:05 [ERROR] ReferenceError: keys is not defined
+    at Object.invalidateUserLists (/app/utils/cache/user.cache.js:14:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async updateUser (/app/services/user.service.js:121:3)
+    at async /app/controllers/user.controller.js:42:16
+2026-08-13 07:19:05 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 500 | 70.778 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:19:43 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 152.296 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:19:47 [ERROR] ReferenceError: keys is not defined
+    at Object.invalidateUserLists (/app/utils/cache/user.cache.js:17:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async updateUser (/app/services/user.service.js:121:3)
+    at async /app/controllers/user.controller.js:42:16
+2026-08-13 07:19:47 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 500 | 88.284 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:20:53 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 120.542 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:21:02 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 136.390 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:21:19 [ERROR] TokenExpiredError: jwt expired
+    at /app/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/app/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/app/node_modules/jsonwebtoken/verify.js:101:10)
+    at /app/middleware/auth.middleware.js:19:23
+    at /app/utils/asyncHandler.js:22:21
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/router/index.js:295:15
+    at processParams (/app/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/router/index.js:291:5)
+    at router.handle (/app/node_modules/router/index.js:186:3)
+    at router (/app/node_modules/router/index.js:60:12)
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/app/node_modules/router/index.js:342:13)
+    at /app/node_modules/router/index.js:297:9
+    at processParams (/app/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/router/index.js:291:5)
+    at router.handle (/app/node_modules/router/index.js:186:3)
+    at router (/app/node_modules/router/index.js:60:12)
+2026-08-13 07:21:19 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 500 | 8.336 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:21:30 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 69.267 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 07:21:40 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 13.244 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 09:32:23 [INFO] POST /api/v1/auth/login | 200 | 337.103 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 09:32:33 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 98.732 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 10:15:34 [INFO] POST /api/v1/auth/login | 200 | 391.577 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 10:15:45 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 138.126 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 10:18:03 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 57.179 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 10:18:30 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 91.018 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 10:18:39 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 48.685 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 10:27:29 [INFO] POST /api/v1/auth/login | 200 | 307.291 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 10:27:38 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 73.805 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 10:27:56 [INFO] PATCH /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 69.089 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 10:28:08 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 50.977 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 10:33:53 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 200 | 27.584 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:02:23 [ERROR] Error: Validation failed
+    at /app/validators/validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-13 11:02:23 [INFO] POST /api/v1/auth/register | 400 | 50.973 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:02:36 [INFO] POST /api/v1/auth/register | 201 | 306.314 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:02:43 [INFO] POST /api/v1/auth/register | 201 | 161.884 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:02:49 [INFO] POST /api/v1/auth/register | 201 | 157.286 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:02:55 [INFO] POST /api/v1/auth/register | 201 | 148.207 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:03:23 [INFO] POST /api/v1/auth/register | 201 | 257.857 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:03:32 [INFO] POST /api/v1/auth/register | 201 | 170.972 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:03:41 [INFO] POST /api/v1/auth/register | 201 | 186.455 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:03:47 [INFO] POST /api/v1/auth/register | 201 | 154.005 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:03:54 [INFO] POST /api/v1/auth/register | 201 | 150.877 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:04:17 [INFO] POST /api/v1/auth/register | 201 | 362.144 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:04:25 [INFO] POST /api/v1/auth/register | 201 | 170.527 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:04:31 [INFO] POST /api/v1/auth/register | 201 | 154.589 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:04:38 [INFO] POST /api/v1/auth/register | 201 | 149.453 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:04:44 [INFO] POST /api/v1/auth/register | 201 | 167.942 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:05:06 [INFO] POST /api/v1/auth/register | 201 | 296.354 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:05:13 [INFO] POST /api/v1/auth/register | 201 | 178.767 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:05:19 [INFO] POST /api/v1/auth/register | 201 | 167.125 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:05:27 [INFO] POST /api/v1/auth/register | 201 | 165.199 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:05:36 [INFO] POST /api/v1/auth/register | 201 | 165.345 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:05:57 [INFO] POST /api/v1/auth/register | 201 | 247.960 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:06:08 [INFO] POST /api/v1/auth/register | 201 | 187.373 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:06:15 [INFO] POST /api/v1/auth/register | 201 | 153.043 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:06:44 [INFO] POST /api/v1/auth/login | 200 | 362.710 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:07:49 [INFO] GET /api/v1/users?role=student&page=1&limit=5&sort=firstName&fields=firstName,email | 200 | 111.331 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:08:06 [INFO] GET /api/v1/users?role=student&page=2&limit=5&sort=firstName&fields=firstName,email | 200 | 50.394 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:08:18 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 27.462 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:09:26 [ERROR] TokenExpiredError: jwt expired
+    at /app/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/app/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/app/node_modules/jsonwebtoken/verify.js:101:10)
+    at /app/middleware/auth.middleware.js:19:23
+    at /app/utils/asyncHandler.js:22:21
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at next (/app/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/app/node_modules/router/lib/route.js:117:3)
+    at handle (/app/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at /app/node_modules/router/index.js:295:15
+    at param (/app/node_modules/router/index.js:600:14)
+    at param (/app/node_modules/router/index.js:610:14)
+    at processParams (/app/node_modules/router/index.js:664:3)
+    at next (/app/node_modules/router/index.js:291:5)
+    at router.handle (/app/node_modules/router/index.js:186:3)
+    at router (/app/node_modules/router/index.js:60:12)
+    at Layer.handleRequest (/app/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/app/node_modules/router/index.js:342:13)
+    at /app/node_modules/router/index.js:297:9
+    at processParams (/app/node_modules/router/index.js:582:12)
+    at next (/app/node_modules/router/index.js:291:5)
+2026-08-13 11:09:26 [INFO] PATCH /api/v1/users/6a7da4cc90867b0a0697568f | 500 | 8.439 ms | IP: 172.18.0.1 | User: Guest
+2026-08-13 11:09:49 [INFO] PATCH /api/v1/users/6a7da4cc90867b0a0697568f | 200 | 182.622 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 02:09:35 [INFO] POST /api/v1/auth/login | 200 | 588.497 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 02:10:01 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 92.055 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 02:10:09 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 30.439 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 02:13:16 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 205.645 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 02:26:47 [ERROR] Redis cache RELEASE LOCK failed for key: lock:test
+2026-08-14 02:26:47 [ERROR] Error: The client is closed
+    at /app/node_modules/@redis/client/dist/lib/client/index.js:1128:39
+    at trace (/app/node_modules/@redis/client/dist/lib/client/tracing.js:94:12)
+    at Class.sendCommand (/app/node_modules/@redis/client/dist/lib/client/index.js:1126:36)
+    at fn (/app/node_modules/@redis/client/dist/lib/client/index.js:825:40)
+    at Class._executeCommand (/app/node_modules/@redis/client/dist/lib/client/index.js:839:29)
+    at Class.eval (/app/node_modules/@redis/client/dist/lib/client/index.js:100:31)
+    at Object.releaseLock (/app/services/redis.service.js:107:22)
+    at Object.releaseLock (/app/services/cache.service.js:148:31)
+    at [eval]:1:56
+    at runScriptInThisContext (node:internal/vm:219:10)
+2026-08-14 05:34:12 [INFO] POST /api/v1/auth/login | 200 | 440.695 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 05:34:23 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 156.469 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 05:34:28 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 20.869 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 05:34:30 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 20.257 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 05:34:32 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 22.613 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 05:34:57 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 94.318 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 05:35:01 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 25.871 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 05:35:03 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 17.045 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 05:35:05 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 21.886 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 05:35:06 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 23.550 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 06:43:32 [ERROR] Error: The client is closed
+    at /app/node_modules/@redis/client/dist/lib/client/index.js:1128:39
+    at trace (/app/node_modules/@redis/client/dist/lib/client/tracing.js:94:12)
+    at Class.sendCommand (/app/node_modules/@redis/client/dist/lib/client/index.js:1126:36)
+    at RedisStore.sendCommand (/app/middleware/rateLimit/createRateLimiter.js:39:45)
+    at RedisStore.sendCommand (/app/node_modules/rate-limit-redis/dist/index.cjs:78:49)
+    at RedisStore.loadIncrementScript (/app/node_modules/rate-limit-redis/dist/index.cjs:92:31)
+    at RedisStore.init (/app/node_modules/rate-limit-redis/dist/index.cjs:158:36)
+    at rateLimit (/app/node_modules/express-rate-limit/dist/index.cjs:890:38)
+    at createRateLimiter (/app/middleware/rateLimit/createRateLimiter.js:34:10)
+    at Object.<anonymous> (/app/middleware/rateLimit/api.rateLimit.js:4:18)
+2026-08-14 06:43:49 [ERROR] Error: The client is closed
+    at /app/node_modules/@redis/client/dist/lib/client/index.js:1128:39
+    at trace (/app/node_modules/@redis/client/dist/lib/client/tracing.js:94:12)
+    at Class.sendCommand (/app/node_modules/@redis/client/dist/lib/client/index.js:1126:36)
+    at RedisStore.sendCommand (/app/middleware/rateLimit/createRateLimiter.js:39:45)
+    at RedisStore.sendCommand (/app/node_modules/rate-limit-redis/dist/index.cjs:78:49)
+    at RedisStore.loadIncrementScript (/app/node_modules/rate-limit-redis/dist/index.cjs:92:31)
+    at RedisStore.init (/app/node_modules/rate-limit-redis/dist/index.cjs:158:36)
+    at rateLimit (/app/node_modules/express-rate-limit/dist/index.cjs:890:38)
+    at createRateLimiter (/app/middleware/rateLimit/createRateLimiter.js:34:10)
+    at Object.<anonymous> (/app/middleware/rateLimit/api.rateLimit.js:4:18)
+2026-08-14 07:08:10 [ERROR] Error: Invalid email or password
+    at loginUser (/app/services/auth.service.js:35:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/auth.controller.js:23:47
+2026-08-14 07:08:10 [INFO] POST /api/v1/auth/login | 401 | 97.731 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 07:08:15 [INFO] POST /api/v1/auth/register | 201 | 221.677 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 07:08:27 [INFO] POST /api/v1/auth/login | 200 | 240.448 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 07:08:35 [INFO] POST /api/v1/auth/login | 200 | 157.241 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 07:08:36 [INFO] POST /api/v1/auth/login | 200 | 292.924 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 07:16:08 [INFO] POST /api/v1/auth/login | 200 | 245.385 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 07:16:10 [INFO] POST /api/v1/auth/login | 200 | 184.805 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 07:16:12 [INFO] POST /api/v1/auth/login | 200 | 166.770 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 07:16:13 [INFO] POST /api/v1/auth/login | 200 | 151.880 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 07:16:14 [INFO] POST /api/v1/auth/login | 200 | 171.917 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:02:20 [INFO] POST /api/v1/auth/login | 200 | 396.031 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:02:38 [INFO] POST /api/v1/auth/login | 200 | 264.591 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:02:42 [INFO] POST /api/v1/auth/login | 200 | 167.607 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:02:43 [INFO] POST /api/v1/auth/login | 200 | 156.068 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:02:44 [INFO] POST /api/v1/auth/login | 200 | 154.253 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:20 [INFO] GET /health | 200 | 11.471 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:21 [INFO] GET /health | 200 | 1.820 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:21 [INFO] GET /health | 200 | 2.232 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:22 [INFO] GET /health | 200 | 0.699 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:23 [INFO] GET /health | 200 | 1.152 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:24 [INFO] GET /health | 200 | 0.508 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:24 [INFO] GET /health | 200 | 0.523 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:25 [INFO] GET /health | 200 | 1.048 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:26 [INFO] GET /health | 200 | 2.578 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:27 [INFO] GET /health | 200 | 0.957 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:44 [INFO] GET /health | 200 | 14.545 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:45 [INFO] GET /health | 200 | 1.333 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:46 [INFO] GET /health | 200 | 1.260 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:47 [INFO] GET /health | 200 | 0.770 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:48 [INFO] GET /health | 200 | 1.902 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:49 [INFO] GET /health | 200 | 1.048 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:50 [INFO] GET /health | 200 | 0.687 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:51 [INFO] GET /health | 200 | 2.842 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:51 [INFO] GET /health | 200 | 0.872 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:09:52 [INFO] GET /health | 200 | 0.806 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:31:52 [ERROR] Error: Validation failed
+    at /app/validators/validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-14 09:32:50 [ERROR] Error: Validation failed
+    at /app/validators/validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-14 09:35:44 [ERROR] Error: Validation failed
+    at /app/validators/validate.middleware.js:27:21
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-08-14 09:42:01 [INFO] POST /api/v1/auth/login | 200 | 371.182 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:42:04 [INFO] POST /api/v1/auth/login | 200 | 179.572 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:42:05 [INFO] POST /api/v1/auth/login | 429 | 2.841 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:42:23 [INFO] POST /api/v1/auth/login | 429 | 17.149 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:42:25 [INFO] POST /api/v1/auth/login | 429 | 3.666 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:44:15 [INFO] POST /api/v1/auth/login | 429 | 3.620 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:49:14 [INFO] POST /api/v1/auth/login | 200 | 246.214 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:49:28 [ERROR] Error: User not found
+    at getUserById (/app/services/user.service.js:72:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async /app/controllers/user.controller.js:36:16
+2026-08-14 09:49:28 [INFO] GET /api/v1/users/6a7c54cc5c0e2b032b7edcbd | 404 | 63.811 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:49:48 [INFO] GET /api/v1/users | 200 | 92.507 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:49:57 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 33.385 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:01 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 16.552 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:04 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 16.764 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:06 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 17.124 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:07 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 15.114 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:08 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 10.994 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:09 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 13.252 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:10 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 37.820 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:11 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 24.848 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:11 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.346 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:12 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.819 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:13 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 8.437 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:13 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 8.548 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:14 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 10.124 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:14 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 13.852 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:15 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.876 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:16 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.308 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:16 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 16.214 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:17 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.098 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:18 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 14.514 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:19 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.168 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:19 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.245 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:20 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 10.085 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:20 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 9.266 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:21 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 10.797 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:21 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 16.390 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:21 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 5.058 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:22 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.369 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:22 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 24.985 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:22 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 15.580 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:23 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 16.642 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:23 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 12.451 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:24 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.304 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:24 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 16.546 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:24 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 15.482 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:25 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.222 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:25 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 9.322 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:25 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.856 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:26 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 12.742 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:26 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 9.948 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:26 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 8.790 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:27 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.269 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:27 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 8.371 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:27 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.079 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:28 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 10.599 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:28 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 9.681 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:28 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 8.525 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:29 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 9.145 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:29 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.863 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:30 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.649 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:30 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 5.740 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:30 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 19.036 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:30 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 34.816 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:31 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.053 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:31 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 9.466 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:31 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.013 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:31 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 10.709 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:32 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 13.792 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:32 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 9.741 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:32 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.915 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:33 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 10.350 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:33 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 5.617 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:33 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 9.899 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:34 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.493 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:34 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 8.306 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:35 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 17.236 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:35 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 16.415 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:35 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 34.907 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:36 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 15.915 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:36 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 10.750 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:37 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 15.567 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:37 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 5.769 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:37 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 10.598 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:38 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 12.096 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:38 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 8.835 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:38 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 8.240 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:39 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 8.066 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:39 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.009 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:39 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 10.570 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:40 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.084 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:40 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 17.094 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:40 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 9.407 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:40 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 8.223 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:41 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.854 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:41 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.898 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:41 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 12.161 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:41 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.993 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:41 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 15.165 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:42 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.751 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:42 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 15.119 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:42 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 5.058 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:42 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 5.218 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:42 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.112 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:43 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 13.077 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:43 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 10.830 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:43 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 12.424 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:43 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 7.930 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:43 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 12.819 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:43 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 14.526 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:44 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 9.758 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:44 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 10.048 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:44 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 9.814 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:44 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.327 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:50:44 [INFO] GET /api/v1/users/6a7ebedf910eaf95d3c7796d | 200 | 6.940 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:07 [INFO] GET /api/v1/users/profile | 200 | 131.677 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:08 [INFO] GET /api/v1/users/profile | 200 | 32.060 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:09 [INFO] GET /api/v1/users/profile | 200 | 19.216 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:09 [INFO] GET /api/v1/users/profile | 200 | 20.121 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:10 [INFO] GET /api/v1/users/profile | 200 | 22.972 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:11 [INFO] GET /api/v1/users/profile | 200 | 15.252 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:12 [INFO] GET /api/v1/users/profile | 200 | 15.067 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:12 [INFO] GET /api/v1/users/profile | 200 | 17.475 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:13 [INFO] GET /api/v1/users/profile | 200 | 31.088 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:14 [INFO] GET /api/v1/users/profile | 200 | 7.794 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:14 [INFO] GET /api/v1/users/profile | 200 | 10.268 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:15 [INFO] GET /api/v1/users/profile | 200 | 7.193 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:16 [INFO] GET /api/v1/users/profile | 200 | 10.106 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:16 [INFO] GET /api/v1/users/profile | 200 | 12.953 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:17 [INFO] GET /api/v1/users/profile | 200 | 10.712 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:18 [INFO] GET /api/v1/users/profile | 200 | 15.971 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:18 [INFO] GET /api/v1/users/profile | 200 | 14.472 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:19 [INFO] GET /api/v1/users/profile | 200 | 16.650 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:19 [INFO] GET /api/v1/users/profile | 200 | 33.093 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:20 [INFO] GET /api/v1/users/profile | 200 | 23.007 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:21 [INFO] GET /api/v1/users/profile | 200 | 7.839 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:21 [INFO] GET /api/v1/users/profile | 200 | 12.783 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:22 [INFO] GET /api/v1/users/profile | 200 | 11.211 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:22 [INFO] GET /api/v1/users/profile | 200 | 8.664 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:23 [INFO] GET /api/v1/users/profile | 200 | 9.810 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:23 [INFO] GET /api/v1/users/profile | 200 | 11.509 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:24 [INFO] GET /api/v1/users/profile | 200 | 13.894 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:25 [INFO] GET /api/v1/users/profile | 200 | 7.162 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:25 [INFO] GET /api/v1/users/profile | 200 | 14.798 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:26 [INFO] GET /api/v1/users/profile | 200 | 12.733 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:26 [INFO] GET /api/v1/users/profile | 200 | 12.573 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:27 [INFO] GET /api/v1/users/profile | 200 | 7.412 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:28 [INFO] GET /api/v1/users/profile | 200 | 6.686 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:28 [INFO] GET /api/v1/users/profile | 200 | 9.441 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:29 [INFO] GET /api/v1/users/profile | 200 | 8.674 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:29 [INFO] GET /api/v1/users/profile | 200 | 11.982 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:30 [INFO] GET /api/v1/users/profile | 200 | 9.291 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:30 [INFO] GET /api/v1/users/profile | 200 | 27.024 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:30 [INFO] GET /api/v1/users/profile | 200 | 16.665 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:30 [INFO] GET /api/v1/users/profile | 200 | 18.210 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:30 [INFO] GET /api/v1/users/profile | 200 | 39.021 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:31 [INFO] GET /api/v1/users/profile | 200 | 23.878 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:31 [INFO] GET /api/v1/users/profile | 200 | 16.176 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:31 [INFO] GET /api/v1/users/profile | 200 | 29.655 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:31 [INFO] GET /api/v1/users/profile | 200 | 20.273 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:31 [INFO] GET /api/v1/users/profile | 200 | 12.894 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:32 [INFO] GET /api/v1/users/profile | 200 | 17.637 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:32 [INFO] GET /api/v1/users/profile | 200 | 12.018 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:32 [INFO] GET /api/v1/users/profile | 200 | 7.593 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:32 [INFO] GET /api/v1/users/profile | 200 | 13.017 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:32 [INFO] GET /api/v1/users/profile | 200 | 13.085 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:33 [INFO] GET /api/v1/users/profile | 200 | 18.860 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:33 [INFO] GET /api/v1/users/profile | 200 | 31.857 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:33 [INFO] GET /api/v1/users/profile | 200 | 11.279 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:33 [INFO] GET /api/v1/users/profile | 200 | 20.965 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:33 [INFO] GET /api/v1/users/profile | 200 | 22.344 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:34 [INFO] GET /api/v1/users/profile | 200 | 12.323 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:34 [INFO] GET /api/v1/users/profile | 200 | 7.171 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:34 [INFO] GET /api/v1/users/profile | 200 | 6.758 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:34 [INFO] GET /api/v1/users/profile | 200 | 7.251 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:34 [INFO] GET /api/v1/users/profile | 429 | 12.248 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:35 [INFO] GET /api/v1/users/profile | 429 | 7.474 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:35 [INFO] GET /api/v1/users/profile | 429 | 7.046 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:53:35 [INFO] GET /api/v1/users/profile | 429 | 8.588 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:00 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 126.901 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:01 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 7.129 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:02 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 6.667 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:02 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 8.463 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:02 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 36.703 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:03 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 12.502 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:03 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 12.500 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:03 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 20.286 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:03 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 17.527 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:03 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 17.489 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:04 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 18.027 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:04 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 10.553 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:04 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 13.609 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:04 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 7.055 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:04 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 9.943 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:05 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 13.966 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:05 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 7.270 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:05 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 12.061 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:05 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 8.503 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:05 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 10.996 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:06 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 11.828 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:06 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 8.958 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:06 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 11.795 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:06 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 11.302 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:06 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 10.988 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:07 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 7.183 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:07 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 8.792 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:07 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 9.640 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:07 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 19.041 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:07 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 200 | 15.132 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:08 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 429 | 6.776 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:08 [INFO] GET /api/v1/users?role=student&page=3&limit=5&sort=firstName&fields=firstName,email | 429 | 8.835 ms | IP: 172.18.0.1 | User: Guest
+2026-08-14 09:54:17 [INFO] GET /api/v1/users | 429 | 11.976 ms | IP: 172.18.0.1 | User: Guest
