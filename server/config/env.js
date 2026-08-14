@@ -6,6 +6,9 @@ module.exports = {
   mongoUrl: process.env.MONGO_URI,
   port: process.env.PORT,
 
+  // Redis-cacheing
+  redisUrl: process.env.REDIS_URL,
+
   // Access or authentication
   jwtSecret: process.env.JWT_SECRET,
   jwtExpiresIn: process.env.JWT_EXPIRES_IN,

@@ -1,6 +1,6 @@
-const app = require("./config/app");
 const env = require("./config/env");
 const connectDB = require("./database/mongodb");
+const { connectRedis, redisClient } = require("./database/redis");
 const logger = require("./logger/index");
 
 /* server.js only does three jobs:
@@ -48,8 +48,12 @@ const gracefulShutdown = async (signal) => {
       logger.info("MongoDB connection closed");
     }
 
-    logger.info("Graceful shutdown completed");
+    if (redisClient.isOpen) {
+      await redisClient.quit(); // quit() tells Redis: Finish processing the existing commands and then close the connection.
+      logger.info("Redis connection closed");
+    }
 
+    logger.info("Graceful shutdown completed");
     process.exit(0);
   } catch (error) {
     logger.error("Error during graceful shutdown");
@@ -74,6 +78,8 @@ process.on("SIGINT", () => {
 const startServer = async () => {
   try {
     await connectDB();
+    await connectRedis();
+    const app = require("./config/app");
 
     app.listen(env.port, "0.0.0.0", () => {
       console.log("==========================================");

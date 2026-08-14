@@ -1,12 +1,20 @@
-const config = require("../../config/env");
 const createRateLimiter = require("./createRateLimiter");
 
-module.exports = createRateLimiter({
-  windowMs: config.authRateLimitWindow,
-  max: config.authRateLimitMaxRequests,
-  message:
-    "Too many authentication attempts. Please try again after 15 minutes.",
-  skip: (req) => {
-    return req.path === "/health" || req.path === "/health/ready";
-  },
+const getUsersRateLimit = createRateLimiter({
+  windowMs: 60 * 1000,
+  max: 20,
+  prefix: "rate-limit:users-list",
+  message: "Too many user list requests. Please try again later.",
 });
+
+const getUserByIdRateLimit = createRateLimiter({
+  windowMs: 60 * 1000,
+  max: 15,
+  prefix: "rate-limit:user-details",
+  message: "Too many user detail requests. Please try again later.",
+});
+
+module.exports = {
+  getUsersRateLimit,
+  getUserByIdRateLimit,
+};

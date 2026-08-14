@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const User = require("../models/User");
 const ApiError = require("../utils/ApiError");
 const validateObjectId = require("../utils/validateObjectId");
@@ -5,6 +6,12 @@ const uploadService = require("./upload");
 
 const { QueryBuilder } = require("../core/query");
 const { MongooseExecutor } = require("../core/query/executors");
+const cacheService = require("./cache.service");
+const cacheKey = require("../utils/cacheKey");
+const userCache = require("../utils/cache/user.cache");
+
+const USER_CACHE_TTL = 300;
+const USER_LIST_CACHE_TTL = 600;
 
 // Get All Users with or without pagination
 const getAllUsers = async (query) => {
@@ -31,14 +38,31 @@ const getAllUsers = async (query) => {
     .populate()
     .paginate()
     .build();
-  const executor = new MongooseExecutor(User);
 
-  return await executor.execute(queryConfig);
+  // Generate cache key
+  const key = cacheKey.userList(queryConfig);
+  return await cacheService.getOrSet(
+    key,
+    async () => {
+      const executor = new MongooseExecutor(User);
+      const result = await executor.execute(queryConfig);
+      await cacheService.sadd(cacheKey.userListRegistry(), key);
+      return result;
+    },
+    USER_LIST_CACHE_TTL,
+  );
 };
 
 // Get Single user by ID
 const getUserById = async (id) => {
   validateObjectId(id, "User");
+
+  // Cache-get user details if exists in redis cache
+  const key = cacheKey.user(id);
+  const cachedUser = await cacheService.get(key);
+  if (cachedUser !== null) {
+    return cachedUser;
+  }
 
   const user = await User.findOne({
     _id: id,
@@ -47,6 +71,9 @@ const getUserById = async (id) => {
   if (!user) {
     throw new ApiError(404, "User not found");
   }
+
+  // Set user details in redis cache
+  await cacheService.set(key, user, USER_CACHE_TTL);
   return user;
 };
 
@@ -83,6 +110,9 @@ const updateUser = async (id, payload) => {
   // save document
   await user.save();
 
+  // delete user details from redis cache if exist, even from list also
+  await userCache.invalidateUser(id);
+  await userCache.invalidateUserLists();
   // return updated user
   return await User.findOne({
     _id: id,
@@ -108,6 +138,10 @@ const deleteUser = async (id) => {
   user.refreshToken = null;
 
   await user.save();
+  // delete user details from redis cache if exist
+  await userCache.invalidateUser(id);
+  await userCache.invalidateUserLists();
+
   return null;
 };
 
@@ -128,6 +162,11 @@ const restoreUser = async (id) => {
   user.deletedAt = null;
 
   await user.save();
+
+  // delete user details from redis cache if exist
+  await userCache.invalidateUser(id);
+  await userCache.invalidateUserLists();
+
   return await User.findById(id).select(
     "-password -refreshToken -isDeleted -deletedAt",
   );
@@ -154,6 +193,9 @@ const changePassword = async (userId, currentPassword, newPassword) => {
   user.refreshToken = null;
 
   await user.save();
+  // delete user details from redis cache if exist
+  await userCache.invalidateUser(userId);
+  await userCache.invalidateUserLists();
 
   return;
 };
@@ -185,6 +227,9 @@ const updateAvatar = async (userId, file) => {
   user.avatar = avatar;
 
   await user.save();
+  // delete user details from redis cache if exist
+  await userCache.invalidateUser(userId);
+  await userCache.invalidateUserLists();
 
   return await User.findById(userId).select("-password -refreshToken");
 };
@@ -208,6 +253,9 @@ const deleteAvatar = async (userId) => {
   user.avatar = undefined;
 
   await user.save();
+  // delete user details from redis cache if exist
+  await userCache.invalidateUser(userId);
+  await userCache.invalidateUserLists();
 
   return;
 };
@@ -240,6 +288,9 @@ const uploadSingleFile = async (userId, file, { field, folder }) => {
   user[field] = uploadedFile;
 
   await user.save();
+  // delete user details from redis cache if exist
+  await userCache.invalidateUser(userId);
+  await userCache.invalidateUserLists();
 
   return await User.findById(userId).select("-password -refreshToken");
 };
@@ -264,6 +315,9 @@ const deleteSingleFile = async (userId, { field }) => {
   user[field] = null;
 
   await user.save();
+  // delete user details from redis cache if exist
+  await userCache.invalidateUser(userId);
+  await userCache.invalidateUserLists();
 };
 
 // Upload multiple files
@@ -290,6 +344,9 @@ const uploadMultipleFiles = async (userId, files, { field, folder }) => {
 
   await user.save();
 
+  // delete user details from redis cache if exist
+  await userCache.invalidateUser(userId);
+  await userCache.invalidateUserLists();
   return await User.findById(userId).select("-password -refreshToken");
 };
 
@@ -315,6 +372,9 @@ const deleteMultipleFile = async (userId, { field, fileId }) => {
   file.deleteOne();
 
   await user.save();
+  // delete user details from redis cache if exist
+  await userCache.invalidateUser(userId);
+  await userCache.invalidateUserLists();
 };
 
 module.exports = {
@@ -331,3 +391,32 @@ module.exports = {
   uploadMultipleFiles,
   deleteMultipleFile,
 };
+
+// getAllUsers() has now - This is cache-aside + stampede protection.
+/*                     
+                      GET/users
+                         │
+                         ▼
+                    Redis GET
+                    /       \
+                 HIT        MISS
+                  │           │
+                  ▼           ▼
+               Return      Acquire Lock
+                              │
+                       ┌──────┴──────┐
+                       │             │
+                    Success        Failed
+                       │             │
+                       ▼             ▼
+                    MongoDB      Wait + GET
+                       │             │
+                       ▼          ┌──┴──┐
+                    Redis SET     │     │
+                       │         HIT   MISS
+                       ▼          │     │
+                  Release Lock    ▼     ▼
+                       │         Return Retry
+                       ▼
+                    Return 
+*/

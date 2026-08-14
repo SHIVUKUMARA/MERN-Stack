@@ -8,6 +8,10 @@ const {
   updateProfileSchema,
   changePasswordSchema,
 } = require("../../validators/profile.validator");
+const {
+  getUsersRateLimit,
+  getUserByIdRateLimit,
+} = require("../../middleware/rateLimit");
 const uploadMiddleware = require("../../middleware/upload.middleware");
 const {
   MIME_TYPES,
@@ -17,15 +21,21 @@ const {
 } = require("../../utils/file");
 
 // Logged in user profile
-router.get("/profile", protect, userController.getProfile);
+router.get(
+  "/profile",
+  protect,
+  getUserByIdRateLimit,
+  userController.getProfile,
+);
 
 // Get all users with or without pagination and filters
-router.get("/", protect, userController.getUsers);
+router.get("/", protect, getUsersRateLimit, userController.getUsers);
 
 // update logged in user details
 router.patch(
   "/profile",
   protect,
+  getUserByIdRateLimit,
   validate(updateProfileSchema),
   userController.updateProfile,
 );
@@ -34,6 +44,7 @@ router.patch(
 router.patch(
   "/profile/avatar",
   protect,
+  getUserByIdRateLimit,
   uploadMiddleware({
     type: "single",
     field: "avatar",
@@ -45,7 +56,12 @@ router.patch(
 );
 
 // Delete Avatar
-router.delete("/profile/avatar", protect, userController.deleteAvatar);
+router.delete(
+  "/profile/avatar",
+  protect,
+  getUserByIdRateLimit,
+  userController.deleteAvatar,
+);
 
 // Upload Multiple Images
 router.post(
@@ -107,11 +123,7 @@ router.post(
 );
 
 // Delete One Video
-router.delete(
-  "/profile/videos/:fileId",
-  protect,
-  userController.deleteVideo,
-);
+router.delete("/profile/videos/:fileId", protect, userController.deleteVideo);
 
 // Change logged in users current password
 router.post(
