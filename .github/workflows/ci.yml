@@ -1,0 +1,53 @@
+# name it gives our workflow a human-readable name.
+name: CI
+
+# This tells GitHub: "When should this workflow run?" ===>>> "on" is called the event trigger configuration.
+on:
+  # Runs when code is pushed to main branch.
+  push: # Run this workflow when a push event happens.
+    branches: # lets us restrict the event to particular branches
+      - feature/CICD #Temporaly using this branch for testing cicd
+      # - main   # `-` means This is a YAML list item. `main` It is the branch we want to perform CI/CD
+
+  # Runs when someone creates/updates a Pull Request event targeting main branch.
+  pull_request:
+    branches:
+      - feature/CICD #Temporaly using this branch for testing cicd
+      # - main
+
+# Now we move from: WHEN should the workflow run? to: WHAT should the workflow do?
+# That's: jobs: A workflow contains one or more jobs.
+jobs:
+  ci: # ci is the job ID. we can choose whatever wwe needed, It's an identifier used internally by GitHub Actions.
+    runs-on: ubuntu-latest # This tells GitHub: Which machine should execute this job? GitHub provides a temporary machine called a runner.
+    # This is a GitHub-hosted Ubuntu runner label. It means: Give this job the latest Ubuntu runner image supported by GitHub. The runner comes with common development tools, including things we need for our workflow.
+
+    defaults: # This defines default settings. Instead of repeating the same configuration for every step, we can define it once.
+      run: # We're telling GitHub: For all run commands in this job, use the following defaults.
+        working-directory: server # When GitHub checks out your repository, its working directory starts at the repository root: But your Node.js application is inside: `MERN/server/` So we tell GitHub: working-directory: server
+
+    steps: # A job consists of steps. our job currently has three steps:1. Checkout repository, 2. Setup Node.js, 3. Install dependencies, Steps normally execute sequentially.
+      - name: Checkout repository # The - means this is an item in the YAML list of steps. name gives the step a readable name. So GitHub will display: ✓ Checkout repository
+        uses: actions/checkout@v4 # This tells GitHub: Use an existing GitHub Action. This is different from:
+        # actions/checkout@v4 ===>>> Its purpose is: Download/check out your repository's code onto the runner. Without it, the runner doesn't automatically have your repository files available for your job.
+        # actions/checkout@v4 ===>>> Action - published under the actions organization. checkout - Its job is to check out repository code. @v4 - Use version 4 of the checkout Action.
+
+      - name: Setup Node.js # This step prepares Node.js on the GitHub runner.
+        uses: actions/setup-node@v4 # This uses GitHub's Node setup Action. Its job is to install/configure the requested Node.js version on the runner.
+        with: # `with` provides inputs/options to an Action.
+          node-version: 24 # This specifies the Node.js version. our runner should use:Node.js 24
+          cache: npm # This tells setup-node to enable caching for npm's downloaded package data.
+          cache-dependency-path: server/package-lock.json # This tells the caching mechanism: Use this lockfile when determining whether the dependency cache is still valid.
+
+      - name: Install dependencies # This is another step. We're giving it the human-readable name: Install dependencies
+        run: npm ci # This time we're not using an Action. We're telling the runner: Execute this shell command.
+        # ci means Clean Install.It installs dependencies based on:package.json + package-lock.json, For CI environments, npm ci is preferred because it provides a clean, reproducible installation based on the lockfile.
+
+      - name: Lint # This is another step. We're giving it the human-readable name: Lint
+        run: npm run lint # This time we're not using an Action. We're telling the runner: Execute this shell command.
+
+      - name: Run tests # This is another step. We're giving it the human-readable name: Run tests
+        run: npm test # This time we're not using an Action. We're telling the runner: Execute this shell command.
+
+      - name: Build Docker image
+        run: docker build -f docker/production/Dockerfile -t mern-backend:ci .
