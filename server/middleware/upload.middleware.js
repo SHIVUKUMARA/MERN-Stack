@@ -1,6 +1,6 @@
 const multer = require("../config/multer");
 const ApiError = require("../utils/ApiError");
-const { FILE_TYPES, getExtension, formatFileSize } = require("../utils/file");
+const { getExtension, formatFileSize } = require("../utils/file");
 
 const uploadMiddleware = (config) => {
   const {
@@ -9,7 +9,7 @@ const uploadMiddleware = (config) => {
     fields = [],
     maxFiles = 1,
     fileType,
-    maxFileSize,
+    // maxFileSize,
     required = false,
   } = config;
 

@@ -14,9 +14,9 @@ const {
 } = require("../../middleware/rateLimit");
 const uploadMiddleware = require("../../middleware/upload.middleware");
 const {
-  MIME_TYPES,
-  EXTENSIONS,
-  FILE_SIZE,
+  // MIME_TYPES,
+  // EXTENSIONS,
+  // FILE_SIZE,
   FILE_TYPES,
 } = require("../../utils/file");
 
@@ -49,7 +49,7 @@ router.patch(
     type: "single",
     field: "avatar",
     fileType: FILE_TYPES.IMAGE,
-    maxFileSize: FILE_SIZE.image,
+    // maxFileSize: FILE_SIZE.image,
     required: true,
   }),
   userController.updateAvatar,
@@ -72,7 +72,7 @@ router.post(
     field: "gallery",
     fileType: FILE_TYPES.IMAGE,
     maxFiles: 10,
-    maxFileSize: FILE_SIZE.image,
+    // maxFileSize: FILE_SIZE.image,
     required: true,
   }),
   userController.uploadGallery,
@@ -94,7 +94,7 @@ router.post(
     field: "documents",
     fileType: FILE_TYPES.DOCUMENT,
     maxFiles: 20,
-    maxFileSize: FILE_SIZE.document,
+    // maxFileSize: FILE_SIZE.document,
     required: true,
   }),
   userController.uploadDocuments,
@@ -116,7 +116,7 @@ router.post(
     field: "videos",
     fileType: FILE_TYPES.VIDEO,
     maxFiles: 5,
-    maxFileSize: FILE_SIZE.video,
+    // maxFileSize: FILE_SIZE.video,
     required: true,
   }),
   userController.uploadVideos,

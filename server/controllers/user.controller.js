@@ -1,6 +1,6 @@
 const asyncHandler = require("../utils/asyncHandler");
 const ApiResponse = require("../utils/ApiResponse");
-const ApiError = require("../utils/ApiError");
+// const ApiError = require("../utils/ApiError");
 const {
   getAllUsers,
   getUserById,
@@ -8,8 +8,6 @@ const {
   deleteUser,
   restoreUser,
   changePassword,
-  updateAvatar,
-  deleteAvatar,
   uploadSingleFile,
   deleteSingleFile,
   uploadMultipleFiles,
