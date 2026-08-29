@@ -217,6 +217,9 @@ jobs:
     # creates/updates a Pull Request.
     if: github.event_name == 'push' && github.ref == 'refs/heads/feature/CICD'
 
+    # Later we need to use this for production
+    # if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
     # Run the CD job on a fresh Ubuntu GitHub runner.
     runs-on: ubuntu-latest
 
@@ -274,7 +277,7 @@ jobs:
       # Build the production Docker image.
       - name: Build Docker image
 
-      # `run: |` allows us to write a multiline shell command.
+        # `run: |` allows us to write a multiline shell command.
         run: |
           # `docker build` builds a Docker image.
           #

@@ -424,6 +424,7 @@ All routes are prefixed with `/api/v1` (see [`docs/11-API-Versioning.md`](./docs
 | [`docs/11-API-Versioning.md`](./docs/11-API-Versioning.md)               | API versioning strategy                                                    |
 | [`docs/12-Query-Builder.md`](./docs/12-Query-Builder.md)                 | How the generic pagination/filter/search/sort/select/populate system works |
 | [`docs/13-File-Upload-System.md`](./docs/13-File-Upload-System.md)       | Multi-provider upload architecture, image/document/video processing        |
+| [`docs/14-CICD-Githubactions.md`](./docs/14-CICD-githubactions.md)           | High-level goals and architecture philosophy    
 
 ---
 
