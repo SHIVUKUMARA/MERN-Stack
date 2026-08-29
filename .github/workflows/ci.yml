@@ -19,10 +19,10 @@ on:
     branches:
       # `-` means this is an item in a YAML list.
       # Currently we are using feature/CICD for testing.
-      - feature/CICD
+      # - feature/CICD
 
       # Later, when we move to the production branch:
-      # - main
+      - main
 
   # `pull_request` means run this workflow when a Pull Request
   # is opened, updated, or synchronized against the specified branch.
@@ -30,10 +30,10 @@ on:
     # Restrict Pull Request triggering to Pull Requests targeting feature/CICD.
     branches:
       # Currently using feature/CICD for testing.
-      - feature/CICD
+      # - feature/CICD
 
       # Later, this will normally become:
-      # - main
+      - main
 
 # ==========================================================
 # GITHUB TOKEN PERMISSIONS
@@ -215,10 +215,10 @@ jobs:
     # 2. That push must have happened on feature/CICD.
     # This prevents CD from deploying when someone
     # creates/updates a Pull Request.
-    if: github.event_name == 'push' && github.ref == 'refs/heads/feature/CICD'
+    # if: github.event_name == 'push' && github.ref == 'refs/heads/feature/CICD'
 
     # Later we need to use this for production
-    # if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     # Run the CD job on a fresh Ubuntu GitHub runner.
     runs-on: ubuntu-latest
