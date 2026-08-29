@@ -33,3 +33,6 @@ jobs:
 
       - name: Push Docker image
         run: docker push ghcr.io/shivukumara/mern-backend:${{ github.sha }}
+
+      - name: Deploy to Render
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
