@@ -32,4 +32,4 @@ jobs:
             server
 
       - name: Push Docker image
-          run: docker push ghcr.io/shivukumara/mern-backend:${{ github.sha }}
+        run: docker push ghcr.io/shivukumara/mern-backend:${{ github.sha }}
