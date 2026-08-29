@@ -1,76 +1,368 @@
-# name it gives our workflow a human-readable name.
-name: CI
+# ==========================================================
+# WORKFLOW NAME
+# ==========================================================
 
-# This tells GitHub: "When should this workflow run?" ===>>> "on" is called the event trigger configuration.
+# `name` gives our GitHub Actions workflow a human-readable name.
+# This name appears in GitHub -> Actions.
+name: CI/CD
+
+# ==========================================================
+# WORKFLOW TRIGGERS
+# ==========================================================
+
+# `on` defines WHEN GitHub should start this workflow.
+# It is called the event trigger configuration.
 on:
-  # Runs when code is pushed to main branch.
-  push: # Run this workflow when a push event happens.
-    branches: # lets us restrict the event to particular branches
-      - feature/CICD #Temporaly using this branch for testing cicd
-      # - main   # `-` means This is a YAML list item. `main` It is the branch we want to perform CI/CD
-
-  # Runs when someone creates/updates a Pull Request event targeting main branch.
-  pull_request:
+  # `push` means run this workflow when code is pushed to GitHub.
+  push:
+    # `branches` allows us to restrict the push event to specific branches.
     branches:
-      - feature/CICD #Temporaly using this branch for testing cicd
+      # `-` means this is an item in a YAML list.
+      # Currently we are using feature/CICD for testing.
+      - feature/CICD
+
+      # Later, when we move to the production branch:
       # - main
 
+  # `pull_request` means run this workflow when a Pull Request
+  # is opened, updated, or synchronized against the specified branch.
+  pull_request:
+    # Restrict Pull Request triggering to Pull Requests targeting feature/CICD.
+    branches:
+      # Currently using feature/CICD for testing.
+      - feature/CICD
+
+      # Later, this will normally become:
+      # - main
+
+# ==========================================================
+# GITHUB TOKEN PERMISSIONS
+# ==========================================================
+
+# `permissions` controls what the automatically generated
+# GITHUB_TOKEN is allowed to do inside this workflow.
 permissions:
-  contents: read # allows the workflow to read repository contents.
-  packages: write # allows it to upload packages/images to GHCR.
+  # `contents: read` allows the workflow to read repository contents.
+  # Required for operations such as checking out the repository.
+  contents: read
 
-# Now we move from: WHEN should the workflow run? to: WHAT should the workflow do?
-# That's: jobs: A workflow contains one or more jobs.
+  # `packages: write` allows the workflow to upload/push
+  # Docker images to GitHub Container Registry (GHCR).
+  packages: write
+
+# ==========================================================
+# JOBS
+# ==========================================================
+
+# `jobs` defines the actual work that GitHub Actions will perform.
+# A workflow can contain one or more jobs.
 jobs:
-  ci: # ci is the job ID. we can choose whatever wwe needed, It's an identifier used internally by GitHub Actions.
-    runs-on: ubuntu-latest # This tells GitHub: Which machine should execute this job? GitHub provides a temporary machine called a runner.
-    # This is a GitHub-hosted Ubuntu runner label. It means: Give this job the latest Ubuntu runner image supported by GitHub. The runner comes with common development tools, including things we need for our workflow.
+  # ========================================================
+  # CI JOB
+  # ========================================================
 
-    defaults: # This defines default settings. Instead of repeating the same configuration for every step, we can define it once.
-      run: # We're telling GitHub: For all run commands in this job, use the following defaults.
-        working-directory: server # When GitHub checks out your repository, its working directory starts at the repository root: But your Node.js application is inside: `MERN/server/` So we tell GitHub: working-directory: server
+  # `ci` is the ID/name of our first job.
+  # This is an identifier that we choose ourselves.
+  ci:
+    # `runs-on` specifies which GitHub-hosted machine should
+    # execute this job.
+    # `ubuntu-latest` means GitHub provides a temporary
+    # Ubuntu Linux runner for this job.
+    runs-on: ubuntu-latest
 
-    steps: # A job consists of steps. our job currently has three steps:1. Checkout repository, 2. Setup Node.js, 3. Install dependencies, Steps normally execute sequentially.
-      - name: Checkout repository # The - means this is an item in the YAML list of steps. name gives the step a readable name. So GitHub will display: ✓ Checkout repository
-        uses: actions/checkout@v4 # This tells GitHub: Use an existing GitHub Action. This is different from:
-        # actions/checkout@v4 ===>>> Its purpose is: Download/check out your repository's code onto the runner. Without it, the runner doesn't automatically have your repository files available for your job.
-        # actions/checkout@v4 ===>>> Action - published under the actions organization. checkout - Its job is to check out repository code. @v4 - Use version 4 of the checkout Action.
+    # --------------------------------------------------------
+    # DEFAULT SETTINGS FOR RUN COMMANDS
+    # --------------------------------------------------------
 
-      - name: Setup Node.js # This step prepares Node.js on the GitHub runner.
-        uses: actions/setup-node@v4 # This uses GitHub's Node setup Action. Its job is to install/configure the requested Node.js version on the runner.
-        with: # `with` provides inputs/options to an Action.
-          node-version: 24 # This specifies the Node.js version. our runner should use:Node.js 24
-          cache: npm # This tells setup-node to enable caching for npm's downloaded package data.
-          cache-dependency-path: server/package-lock.json # This tells the caching mechanism: Use this lockfile when determining whether the dependency cache is still valid.
+    # `defaults` defines default configuration for commands
+    # executed by this job.
+    defaults:
+      # `run` means these defaults apply to commands using `run:`.
+      run:
+        # All `run:` commands in this CI job will execute
+        # from the `server` directory.
+        # Repository:
+        # MERN/
+        # └── server/
+        # Our Node.js application is inside server/.
+        working-directory: server
 
-      - name: Install dependencies # This is another step. We're giving it the human-readable name: Install dependencies
-        run: npm ci # This time we're not using an Action. We're telling the runner: Execute this shell command.
-        # ci means Clean Install.It installs dependencies based on:package.json + package-lock.json, For CI environments, npm ci is preferred because it provides a clean, reproducible installation based on the lockfile.
+    # --------------------------------------------------------
+    # CI STEPS
+    # --------------------------------------------------------
 
-      - name: Lint # This is another step. We're giving it the human-readable name: Lint
-        run: npm run lint # This time we're not using an Action. We're telling the runner: Execute this shell command.
+    # `steps` contains the individual tasks executed by the job.
+    # Steps normally execute sequentially from top to bottom.
+    steps:
+      # ------------------------------------------------------
+      # 1. CHECKOUT SOURCE CODE
+      # ------------------------------------------------------
 
-      - name: Run tests # This is another step. We're giving it the human-readable name: Run tests
-        run: npm test # This time we're not using an Action. We're telling the runner: Execute this shell command.
+      # `name` gives this step a human-readable name.
+      # GitHub displays this name in the Actions UI.
+      - name: Checkout repository
 
+        # `uses` tells GitHub to use an existing reusable Action
+        # instead of writing the implementation ourselves.
+        # `actions` = GitHub's official Actions organization.
+        # `checkout` = Action that downloads/checks out repository code.
+        # `@v4` = version 4 of the checkout Action.
+        uses: actions/checkout@v4
 
-      # Moved everything to cd.yaml for better pipeline management
+      # ------------------------------------------------------
+      # 2. SETUP NODE.JS
+      # ------------------------------------------------------
 
-      # - name: Build Docker image
-      #   run: |
-      #     docker build \
-      #       -f docker/production/Dockerfile \
-      #       -t ghcr.io/shivukumara/mern-backend:${{ github.sha }} \
-      #       .
+      # This step prepares Node.js on the GitHub runner.
+      - name: Setup Node.js
 
-      # - name: Login to GHCR
-      #   uses: docker/login-action@v3 # Uses Docker's official login action.
-      #   with:
-      #     registry: ghcr.io # We're logging into: GitHub Container Registry
-      #     username: ${{ github.actor }} # github.actor means: The GitHub user that triggered this workflow.
-      #     password: ${{ secrets.GITHUB_TOKEN }} # GitHub automatically provides: GITHUB_TOKEN We don't create a password
+        # Use GitHub's official Node.js setup Action.
+        # `actions` = GitHub's Actions organization.
+        # `setup-node` = Action responsible for installing/configuring Node.js.
+        # `@v4` = version 4.
+        uses: actions/setup-node@v4
 
-      # - name: Push Docker image
-      #   run: |
-      #     docker push \
-      #       ghcr.io/${{ github.repository_owner }}/mern-backend:${{ github.sha }}
+        # `with` provides configuration/input values
+        # to the Action used above.
+        with:
+          # Tell the runner to use Node.js version 24.
+          node-version: 24
+
+          # Enable npm dependency caching.
+          # This can make future workflow runs faster because
+          # npm package data can be reused when the cache is valid.
+          cache: npm
+
+          # Tell setup-node which lock file should be used
+          # when determining the dependency cache.
+          # Our lock file is:
+          # server/package-lock.json
+          cache-dependency-path: server/package-lock.json
+
+      # ------------------------------------------------------
+      # 3. INSTALL DEPENDENCIES
+      # ------------------------------------------------------
+
+      # Human-readable name shown in GitHub Actions.
+      - name: Install dependencies
+
+        # `run` tells GitHub to execute a shell command.
+        # `npm ci` means Clean Install.
+        # It installs dependencies using package.json
+        # and package-lock.json.
+        # `npm ci` is preferred in CI because it performs
+        # a clean and reproducible dependency installation.
+        run: npm ci
+
+      # ------------------------------------------------------
+      # 4. LINT
+      # ------------------------------------------------------
+
+      # Run our project's linting process.
+      - name: Lint
+
+        # Execute the `lint` script from package.json.
+        # For example:
+        # "scripts": {
+        #   "lint": "eslint ."
+        # }
+        # Therefore:
+        # npm run lint
+        #        ↓
+        # npm executes the lint script
+        #        ↓
+        # eslint .
+        run: npm run lint
+
+      # ------------------------------------------------------
+      # 5. RUN TESTS
+      # ------------------------------------------------------
+
+      # Run automated tests.
+      - name: Run tests
+
+        # Execute the `test` script from package.json.
+        # For example:
+        # "scripts": {
+        #   "test": "jest"
+        # }
+        # Therefore:
+        # npm test
+        #    ↓
+        # jest
+        run: npm test
+
+  # ========================================================
+  # CD JOB
+  # ========================================================
+
+  # `cd` is the ID of our second job.
+  # We choose this name ourselves.
+  cd:
+    # `needs: ci` creates the dependency between the jobs.
+    # This means:
+    # CI
+    #  ↓
+    # must succeed
+    #  ↓
+    # CD can start
+    # If CI fails, CD will not run.
+    needs: ci
+
+    # `if` controls whether the CD job should run.
+    # There are TWO conditions here:
+    # 1. The workflow must have been triggered by a PUSH.
+    # 2. That push must have happened on feature/CICD.
+    # This prevents CD from deploying when someone
+    # creates/updates a Pull Request.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/feature/CICD'
+
+    # Run the CD job on a fresh Ubuntu GitHub runner.
+    runs-on: ubuntu-latest
+
+    # --------------------------------------------------------
+    # CD STEPS
+    # --------------------------------------------------------
+
+    # Individual CD tasks.
+    steps:
+      # ------------------------------------------------------
+      # 1. CHECKOUT SOURCE CODE
+      # ------------------------------------------------------
+
+      # Give the step a readable name.
+      - name: Checkout repository
+
+        # Download the repository source code to the runner.
+        uses: actions/checkout@v4
+
+      # ------------------------------------------------------
+      # 2. LOGIN TO GITHUB CONTAINER REGISTRY
+      # ------------------------------------------------------
+
+      # Give the login step a readable name.
+      - name: Login to GHCR
+
+        # Use Docker's official login Action.
+        # `docker` = Docker organization.
+        # `login-action` = Action that performs Docker registry login.
+        # `@v3` = version 3.
+        uses: docker/login-action@v3
+
+        # Configuration values passed to docker/login-action.
+        with:
+          # Specify the registry we want to log into.
+          # GHCR = GitHub Container Registry.
+          registry: ghcr.io
+
+          # `${{ github.actor }}` is a GitHub Actions expression.
+          # It gives the username of the GitHub user who
+          # triggered the workflow.
+          username: ${{ github.actor }}
+
+          # `${{ secrets.GITHUB_TOKEN }}` is the automatically
+          # generated GitHub token available to the workflow.
+          # We don't manually create this token.
+          # The `packages: write` permission above allows this
+          # token to push our Docker image to GHCR.
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # ------------------------------------------------------
+      # 3. BUILD DOCKER IMAGE
+      # ------------------------------------------------------
+
+      # Give the Docker build step a readable name.
+      - name: Build Docker image
+
+        # `run: |` means we are going to execute
+        # multiple shell commands/lines as one script.
+        # `|` is YAML's multiline block syntax.
+        run: |
+
+          # `docker build` tells Docker to build an image.
+          docker build \
+
+            # `-f` tells Docker which Dockerfile to use.
+            # Our production Dockerfile is located at:
+            # server/docker/production/Dockerfile
+            -f server/docker/production/Dockerfile \
+
+            # `-t` means "tag".
+            #
+            # We give the Docker image a name and tag.
+            #
+            # Result:
+            #
+            # ghcr.io/shivukumara/mern-backend:<commit-sha>
+            #
+            # `${{ github.sha }}` is the commit SHA of
+            # the commit that triggered this workflow.
+            -t ghcr.io/shivukumara/mern-backend:${{ github.sha }} \
+
+            # `server` is the Docker build context.
+            #
+            # Docker can access files inside this context
+            # while building the image.
+            server
+
+      # ------------------------------------------------------
+      # 4. PUSH DOCKER IMAGE TO GHCR
+      # ------------------------------------------------------
+
+      # Give the step a readable name.
+      - name: Push Docker image
+
+        # Execute the Docker push command.
+        run: |
+
+          # `docker push` uploads the Docker image
+          # from the GitHub runner to GHCR.
+          # The image we built above:
+          # ghcr.io/shivukumara/mern-backend:<commit-sha>
+          # is uploaded to GitHub Container Registry.
+          docker push \
+            ghcr.io/shivukumara/mern-backend:${{ github.sha }}
+
+      # ------------------------------------------------------
+      # 5. DEPLOY TO RENDER
+      # ------------------------------------------------------
+
+      # Give the deployment step a readable name.
+      - name: Deploy to Render
+
+        # Execute a HTTP POST request using curl.
+        # `${{ secrets.RENDER_DEPLOY_HOOK }}`
+        # contains the Render deployment webhook URL.
+        # The URL is stored as a GitHub Secret so we don't
+        # expose it directly in the workflow file.
+        # Calling this URL tells Render:
+        # "Start a new deployment."
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+
+    # --------------------------------------------------------
+    # END OF CD STEPS
+    # --------------------------------------------------------
+
+    #       PUSH
+    #         │
+    #         ▼
+    #  ┌─────────────┐
+    #  │     CI      │
+    #  ├─────────────┤
+    #  │ npm ci      │
+    #  │ lint        │
+    #  │ test        │
+    #  └──────┬──────┘
+    #         │
+    #   CI SUCCESS
+    #         │
+    #         ▼
+    #  ┌─────────────┐
+    #  │     CD      │
+    #  ├─────────────┤
+    #  │ Docker Build│
+    #  │     ↓       │
+    #  │    GHCR     │
+    #  │     ↓       │
+    #  │   Render    │
+    #  └─────────────┘
