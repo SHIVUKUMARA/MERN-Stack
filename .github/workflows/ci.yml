@@ -271,38 +271,19 @@ jobs:
       # 3. BUILD DOCKER IMAGE
       # ------------------------------------------------------
 
-      # Give the Docker build step a readable name.
+      # Build the production Docker image.
       - name: Build Docker image
 
-        # `run: |` means we are going to execute
-        # multiple shell commands/lines as one script.
-        # `|` is YAML's multiline block syntax.
+      # `run: |` allows us to write a multiline shell command.
         run: |
-
-          # `docker build` tells Docker to build an image.
+          # `docker build` builds a Docker image.
+          #
+          # `-f` specifies the Dockerfile to use.
+          # `-t` assigns a name and tag to the image.
+          # `server` is the Docker build context.
           docker build \
-
-            # `-f` tells Docker which Dockerfile to use.
-            # Our production Dockerfile is located at:
-            # server/docker/production/Dockerfile
             -f server/docker/production/Dockerfile \
-
-            # `-t` means "tag".
-            #
-            # We give the Docker image a name and tag.
-            #
-            # Result:
-            #
-            # ghcr.io/shivukumara/mern-backend:<commit-sha>
-            #
-            # `${{ github.sha }}` is the commit SHA of
-            # the commit that triggered this workflow.
             -t ghcr.io/shivukumara/mern-backend:${{ github.sha }} \
-
-            # `server` is the Docker build context.
-            #
-            # Docker can access files inside this context
-            # while building the image.
             server
 
       # ------------------------------------------------------
