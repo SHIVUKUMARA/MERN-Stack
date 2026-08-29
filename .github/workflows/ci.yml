@@ -15,9 +15,9 @@ on:
       - feature/CICD #Temporaly using this branch for testing cicd
       # - main
 
-  permissions:
-    contents: read # allows the workflow to read repository contents.
-    packages: write # allows it to upload packages/images to GHCR.
+permissions:
+  contents: read # allows the workflow to read repository contents.
+  packages: write # allows it to upload packages/images to GHCR.
 
 # Now we move from: WHEN should the workflow run? to: WHAT should the workflow do?
 # That's: jobs: A workflow contains one or more jobs.
@@ -57,7 +57,7 @@ jobs:
         run: |
           docker build \
             -f docker/production/Dockerfile \
-            -t ghcr.io/${{ github.repository_owner }}/mern-backend:${{ github.sha }} \ 
+            -t ghcr.io/${{ github.repository_owner }}/mern-backend:${{ github.sha }} \
             .
 
       # - name: Login to GHCR
