@@ -1,16 +1,9 @@
 name: CD
 
-# on:
-#   push:
-#     branches:
-#       - feature/CICD
-
-# Instead of above workflow we are using below one because we need to make CD dependable on CI runs successfull
 on:
-  workflow_run:
-    workflows: ["CI"]
-    types:
-      - completed
+  push:
+    branches:
+      - feature/CICD
 
 permissions:
   contents: read
@@ -18,10 +11,8 @@ permissions:
 
 jobs:
   docker:
-    if: >
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.head_branch == 'feature/CICD'
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -37,30 +28,11 @@ jobs:
         run: |
           docker build \
             -f server/docker/production/Dockerfile \
-            -t ghcr.io/shivukumara/mern-backend:${{ github.event.workflow_run.head_sha }} \
+            -t ghcr.io/shivukumara/mern-backend:${{ github.sha }} \
             server
 
       - name: Push Docker image
-        run: docker push ghcr.io/shivukumara/mern-backend:${{ github.event.workflow_run.head_sha }}
+        run: docker push ghcr.io/shivukumara/mern-backend:${{ github.sha }}
 
       - name: Deploy to Render
         run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
-
-# Push feature/CICD
-#        ↓
-# CI
-#  ├─ npm ci
-#  ├─ lint
-#  └─ test
-#        ↓
-#    success?
-#     ↙     ↘
-#   NO       YES
-#   ↓         ↓
-# STOP       CD
-#            ↓
-#        Docker build
-#            ↓
-#         GHCR
-#            ↓
-#         Render 🚀
