@@ -409,22 +409,23 @@ All routes are prefixed with `/api/v1` (see [`docs/11-API-Versioning.md`](./docs
 
 ## Documentation Index
 
-| File                                                                     | Covers                                                                     |
-| ------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
-| [`docs/01-Project-Overview.md`](./docs/01-Project-Overview.md)           | High-level goals and architecture philosophy                               |
-| [`docs/02-Project-Setup.md`](./docs/02-Project-Setup.md)                 | Step-by-step local setup                                                   |
-| [`docs/03-Folder-Structure.md`](./docs/03-Folder-Structure.md)           | Purpose of every folder/file (expanded)                                    |
-| [`docs/04-Authentication.md`](./docs/04-Authentication.md)               | Full auth flow: JWT, refresh rotation, email verification, password reset  |
-| [`docs/05-Validation.md`](./docs/05-Validation.md)                       | Zod validation approach                                                    |
-| [`docs/06-Error-Handling.md`](./docs/06-Error-Handling.md)               | ApiError, ApiResponse, asyncHandler, global middleware                     |
-| [`docs/07-Request-Life-Cycle.md`](./docs/07-Request-Life-Cycle.md)       | How a request travels through the app                                      |
-| [`docs/08-Environment-Variables.md`](./docs/08-Environment-Variables.md) | Every `.env` key explained                                                 |
-| [`docs/09-Packages-Used.md`](./docs/09-Packages-Used.md)                 | Why each dependency was chosen                                             |
-| [`docs/10-API-Reference.md`](./docs/10-API-Reference.md)                 | Full endpoint reference with sample requests/responses                     |
-| [`docs/11-API-Versioning.md`](./docs/11-API-Versioning.md)               | API versioning strategy                                                    |
-| [`docs/12-Query-Builder.md`](./docs/12-Query-Builder.md)                 | How the generic pagination/filter/search/sort/select/populate system works |
-| [`docs/13-File-Upload-System.md`](./docs/13-File-Upload-System.md)       | Multi-provider upload architecture, image/document/video processing        |
-| [`docs/14-CICD-Githubactions.md`](./docs/14-CICD-githubactions.md)           | High-level goals and architecture philosophy    
+| File                                                                     | Covers                                                                                                |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| [`docs/01-Project-Overview.md`](./docs/01-Project-Overview.md)           | High-level goals and architecture philosophy                                                          |
+| [`docs/02-Project-Setup.md`](./docs/02-Project-Setup.md)                 | Step-by-step local setup                                                                              |
+| [`docs/03-Folder-Structure.md`](./docs/03-Folder-Structure.md)           | Purpose of every folder/file (expanded)                                                               |
+| [`docs/04-Authentication.md`](./docs/04-Authentication.md)               | Full auth flow: JWT, refresh rotation, email verification, password reset                             |
+| [`docs/05-Validation.md`](./docs/05-Validation.md)                       | Zod validation approach                                                                               |
+| [`docs/06-Error-Handling.md`](./docs/06-Error-Handling.md)               | ApiError, ApiResponse, asyncHandler, global middleware                                                |
+| [`docs/07-Request-Life-Cycle.md`](./docs/07-Request-Life-Cycle.md)       | How a request travels through the app                                                                 |
+| [`docs/08-Environment-Variables.md`](./docs/08-Environment-Variables.md) | Every `.env` key explained                                                                            |
+| [`docs/09-Packages-Used.md`](./docs/09-Packages-Used.md)                 | Why each dependency was chosen                                                                        |
+| [`docs/10-API-Reference.md`](./docs/10-API-Reference.md)                 | Full endpoint reference with sample requests/responses                                                |
+| [`docs/11-API-Versioning.md`](./docs/11-API-Versioning.md)               | API versioning strategy                                                                               |
+| [`docs/12-Query-Builder.md`](./docs/12-Query-Builder.md)                 | How the generic pagination/filter/search/sort/select/populate system works                            |
+| [`docs/13-File-Upload-System.md`](./docs/13-File-Upload-System.md)       | Multi-provider upload architecture, image/document/video processing                                   |
+| [`docs/14-CICD-Githubactions.md`](./docs/14-CICD-githubactions.md)       | CI/CD pipeline, and docker image building, github actions to trigger the render to deploy latest code |
+| [`docs/15-Eslint-config.md`](./docs/15-Eslint-config.md)                 | EsLint to identify potential problems                                                                 |
 
 ---
 
