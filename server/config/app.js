@@ -5,6 +5,8 @@ const helmet = require("helmet");
 const requestLogger = require("../logger/request.logger");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./swagger");
 
 const env = require("./env");
 /* request come from server.js --->>>, app.use(routes); ====>>>>> It tells Express:
@@ -15,6 +17,9 @@ const notFound = require("../middleware/notfound.middleware");
 const errorHandler = require("../middleware/error.middleware");
 
 const app = express();
+
+// API Documentation
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // make sure Express aware that Nginx is the trusted reverse proxy.
 app.set("trust proxy", 1);
