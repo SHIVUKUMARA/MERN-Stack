@@ -81,7 +81,7 @@ const startServer = async () => {
     await connectRedis();
     const app = require("./config/app");
 
-    app.listen(env.port, "0.0.0.0", () => {
+    server = app.listen(env.port, "0.0.0.0", () => {
       console.log("==========================================");
       console.log("Backend server is running on port :", env.port);
       console.log("Environment is : ", env.nodeEnv);

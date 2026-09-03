@@ -26,7 +26,9 @@ const deleteTempFile = async (filepath) => {
     if (filepath && existsSync(filepath)) {
       await fs.unlink(filepath);
     }
-  } catch (_) {}
+  } catch {
+    // Ignore cleanup errors.
+  }
 };
 
 const getMetadata = (videoPath) =>
@@ -96,7 +98,9 @@ const process = async (file) => {
         height: thumbMetadata.height,
         isOptimized: true,
       };
-    } catch (_) {}
+    } catch {
+      // Thumbnail generation failure should not fail video processing.
+    }
     return {
       original: file,
       thumbnail,
