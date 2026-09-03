@@ -21,6 +21,24 @@ const {
 } = require("../../utils/file");
 
 // Logged in user profile
+/**
+ * @swagger
+ * /users/profile:
+ *   get:
+ *     tags:
+ *       - Users
+ *     summary: Get logged-in user profile
+ *     description: Returns the profile of the currently authenticated user.
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: User profile retrieved successfully
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: User account is inactive or deleted
+ */
 router.get(
   "/profile",
   protect,
@@ -29,9 +47,187 @@ router.get(
 );
 
 // Get all users with or without pagination and filters
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     tags:
+ *       - Users
+ *     summary: Get all users
+ *     description: >
+ *       Returns users with pagination, searching, filtering, sorting,
+ *       field selection, and population support.
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         description: Page number.
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *         example: 1
+ *
+ *       - in: query
+ *         name: limit
+ *         description: Number of users per page. Maximum is 100.
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           maximum: 100
+ *           default: 10
+ *         example: 10
+ *
+ *       - in: query
+ *         name: search
+ *         description: Search users by first name, last name, or email.
+ *         schema:
+ *           type: string
+ *         example: john
+ *
+ *       - in: query
+ *         name: sort
+ *         description: >
+ *           Comma-separated fields used for sorting. Prefix a field with -
+ *           for descending order.
+ *         schema:
+ *           type: string
+ *           default: -createdAt
+ *         example: -createdAt
+ *
+ *       - in: query
+ *         name: fields
+ *         description: Comma-separated list of fields to include in the response.
+ *         schema:
+ *           type: string
+ *         example: firstName,lastName,email,role
+ *
+ *       - in: query
+ *         name: populate
+ *         description: Comma-separated Mongoose relationship paths to populate.
+ *         schema:
+ *           type: string
+ *
+ *       - in: query
+ *         name: firstName
+ *         description: Filter users by first name.
+ *         schema:
+ *           type: string
+ *         example: John
+ *
+ *       - in: query
+ *         name: lastName
+ *         description: Filter users by last name.
+ *         schema:
+ *           type: string
+ *         example: Doe
+ *
+ *       - in: query
+ *         name: email
+ *         description: Filter users by email.
+ *         schema:
+ *           type: string
+ *           format: email
+ *         example: john@example.com
+ *
+ *       - in: query
+ *         name: role
+ *         description: Filter users by role.
+ *         schema:
+ *           type: string
+ *           enum:
+ *             - admin
+ *             - staff
+ *             - student
+ *         example: staff
+ *
+ *       - in: query
+ *         name: isActive
+ *         description: Filter users by account status.
+ *         schema:
+ *           type: boolean
+ *         example: true
+ *
+ *       - in: query
+ *         name: createdAt
+ *         description: Filter users by exact creation date.
+ *         schema:
+ *           type: string
+ *           format: date-time
+ *
+ *       - in: query
+ *         name: updatedAt
+ *         description: Filter users by exact update date.
+ *         schema:
+ *           type: string
+ *           format: date-time
+ *
+ *       - in: query
+ *         name: createdAt[gte]
+ *         description: Filter users created on or after the specified date.
+ *         schema:
+ *           type: string
+ *           format: date
+ *         example: 2026-01-01
+ *
+ *       - in: query
+ *         name: createdAt[lte]
+ *         description: Filter users created on or before the specified date.
+ *         schema:
+ *           type: string
+ *           format: date
+ *         example: 2026-12-31
+ *
+ *     responses:
+ *       200:
+ *         description: Users retrieved successfully
+ *       401:
+ *         description: Unauthorized
+ */
 router.get("/", protect, getUsersRateLimit, userController.getUsers);
 
 // update logged in user details
+/**
+ * @swagger
+ * /users/profile:
+ *   patch:
+ *     tags:
+ *       - Users
+ *     summary: Update logged-in user profile
+ *     description: Updates one or more profile fields of the currently authenticated user.
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             minProperties: 1
+ *             properties:
+ *               firstName:
+ *                 type: string
+ *                 minLength: 2
+ *                 maxLength: 50
+ *                 example: John
+ *               lastName:
+ *                 type: string
+ *                 minLength: 2
+ *                 maxLength: 50
+ *                 example: Doe
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: john@example.com
+ *     responses:
+ *       200:
+ *         description: Profile updated successfully
+ *       400:
+ *         description: Invalid request data
+ *       401:
+ *         description: Unauthorized
+ */
 router.patch(
   "/profile",
   protect,
@@ -41,6 +237,37 @@ router.patch(
 );
 
 // Upload / Replace Avatar
+/**
+ * @swagger
+ * /users/profile/avatar:
+ *   patch:
+ *     tags:
+ *       - Users
+ *     summary: Upload or replace profile avatar
+ *     description: Uploads a new profile avatar or replaces the existing avatar.
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - avatar
+ *             properties:
+ *               avatar:
+ *                 type: string
+ *                 format: binary
+ *                 description: Profile image file.
+ *     responses:
+ *       200:
+ *         description: Avatar uploaded successfully
+ *       400:
+ *         description: Invalid or missing image file
+ *       401:
+ *         description: Unauthorized
+ */
 router.patch(
   "/profile/avatar",
   protect,
@@ -56,6 +283,24 @@ router.patch(
 );
 
 // Delete Avatar
+/**
+ * @swagger
+ * /users/profile/avatar:
+ *   delete:
+ *     tags:
+ *       - Users
+ *     summary: Delete profile avatar
+ *     description: Deletes the currently authenticated user's profile avatar.
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Avatar deleted successfully
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Avatar not found
+ */
 router.delete(
   "/profile/avatar",
   protect,
@@ -64,6 +309,40 @@ router.delete(
 );
 
 // Upload Multiple Images
+/**
+ * @swagger
+ * /users/profile/gallery:
+ *   post:
+ *     tags:
+ *       - Users
+ *     summary: Upload gallery images
+ *     description: Uploads one or more images to the authenticated user's gallery. A maximum of 10 images can be uploaded per request.
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - gallery
+ *             properties:
+ *               gallery:
+ *                 type: array
+ *                 maxItems: 10
+ *                 items:
+ *                   type: string
+ *                   format: binary
+ *                 description: Image files to upload to the user's gallery.
+ *     responses:
+ *       200:
+ *         description: Gallery images uploaded successfully
+ *       400:
+ *         description: Invalid, missing, or too many image files
+ *       401:
+ *         description: Unauthorized
+ */
 router.post(
   "/profile/gallery",
   protect,
@@ -79,6 +358,33 @@ router.post(
 );
 
 // Delete One Gallery Image
+/**
+ * @swagger
+ * /users/profile/gallery/{fileId}:
+ *   delete:
+ *     tags:
+ *       - Users
+ *     summary: Delete a gallery image
+ *     description: Deletes a specific image from the authenticated user's gallery.
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: fileId
+ *         required: true
+ *         description: MongoDB ObjectId of the gallery file.
+ *         schema:
+ *           type: string
+ *           pattern: "^[a-fA-F0-9]{24}$"
+ *         example: 507f1f77bcf86cd799439011
+ *     responses:
+ *       200:
+ *         description: Gallery image deleted successfully
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Gallery image not found
+ */
 router.delete(
   "/profile/gallery/:fileId",
   protect,
@@ -86,6 +392,40 @@ router.delete(
 );
 
 // Upload Multiple Documents
+/**
+ * @swagger
+ * /users/profile/documents:
+ *   post:
+ *     tags:
+ *       - Users
+ *     summary: Upload profile documents
+ *     description: Uploads one or more documents for the authenticated user. A maximum of 20 documents can be uploaded per request.
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - documents
+ *             properties:
+ *               documents:
+ *                 type: array
+ *                 maxItems: 20
+ *                 items:
+ *                   type: string
+ *                   format: binary
+ *                 description: Document files to upload.
+ *     responses:
+ *       200:
+ *         description: Documents uploaded successfully
+ *       400:
+ *         description: Invalid, missing, or too many document files
+ *       401:
+ *         description: Unauthorized
+ */
 router.post(
   "/profile/documents",
   protect,
@@ -101,6 +441,33 @@ router.post(
 );
 
 // Delete One Document
+/**
+ * @swagger
+ * /users/profile/documents/{fileId}:
+ *   delete:
+ *     tags:
+ *       - Users
+ *     summary: Delete a document
+ *     description: Deletes a specific document belonging to the authenticated user.
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: fileId
+ *         required: true
+ *         description: MongoDB ObjectId of the document.
+ *         schema:
+ *           type: string
+ *           pattern: "^[a-fA-F0-9]{24}$"
+ *         example: 507f1f77bcf86cd799439011
+ *     responses:
+ *       200:
+ *         description: Document deleted successfully
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Document not found
+ */
 router.delete(
   "/profile/documents/:fileId",
   protect,
@@ -108,6 +475,40 @@ router.delete(
 );
 
 // Upload Multiple Videos
+/**
+ * @swagger
+ * /users/profile/videos:
+ *   post:
+ *     tags:
+ *       - Users
+ *     summary: Upload profile videos
+ *     description: Uploads one or more videos for the authenticated user. A maximum of 5 videos can be uploaded per request.
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - videos
+ *             properties:
+ *               videos:
+ *                 type: array
+ *                 maxItems: 5
+ *                 items:
+ *                   type: string
+ *                   format: binary
+ *                 description: Video files to upload.
+ *     responses:
+ *       200:
+ *         description: Videos uploaded successfully
+ *       400:
+ *         description: Invalid, missing, or too many video files
+ *       401:
+ *         description: Unauthorized
+ */
 router.post(
   "/profile/videos",
   protect,
@@ -123,9 +524,75 @@ router.post(
 );
 
 // Delete One Video
+/**
+ * @swagger
+ * /users/profile/videos/{fileId}:
+ *   delete:
+ *     tags:
+ *       - Users
+ *     summary: Delete a video
+ *     description: Deletes a specific video belonging to the authenticated user.
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: fileId
+ *         required: true
+ *         description: MongoDB ObjectId of the video file.
+ *         schema:
+ *           type: string
+ *           pattern: "^[a-fA-F0-9]{24}$"
+ *         example: 507f1f77bcf86cd799439011
+ *     responses:
+ *       200:
+ *         description: Video deleted successfully
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Video not found
+ */
 router.delete("/profile/videos/:fileId", protect, userController.deleteVideo);
 
 // Change logged in users current password
+/**
+ * @swagger
+ * /users/change-password:
+ *   post:
+ *     tags:
+ *       - Users
+ *     summary: Change logged-in user's password
+ *     description: Changes the password of the currently authenticated user.
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - currentPassword
+ *               - newPassword
+ *             properties:
+ *               currentPassword:
+ *                 type: string
+ *                 format: password
+ *                 minLength: 1
+ *                 example: OldPassword@123
+ *               newPassword:
+ *                 type: string
+ *                 format: password
+ *                 minLength: 8
+ *                 maxLength: 50
+ *                 example: NewPassword@123
+ *     responses:
+ *       200:
+ *         description: Password changed successfully
+ *       400:
+ *         description: Invalid request data or new password matches current password
+ *       401:
+ *         description: Unauthorized
+ */
 router.post(
   "/change-password",
   protect,
@@ -134,9 +601,94 @@ router.post(
 );
 
 // Get user by id
+/**
+ * @swagger
+ * /users/{id}:
+ *   get:
+ *     tags:
+ *       - Users
+ *     summary: Get user by ID
+ *     description: Returns a user by MongoDB ObjectId.
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: MongoDB ObjectId of the user.
+ *         schema:
+ *           type: string
+ *           pattern: "^[a-fA-F0-9]{24}$"
+ *         example: 507f1f77bcf86cd799439011
+ *     responses:
+ *       200:
+ *         description: User retrieved successfully
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: User not found
+ */
 router.get("/:id", protect, userController.getUserById);
 
 // Update user by id
+/**
+ * @swagger
+ * /users/{id}:
+ *   patch:
+ *     tags:
+ *       - Users
+ *     summary: Update user by ID
+ *     description: Updates one or more fields of a user.
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: MongoDB ObjectId of the user.
+ *         schema:
+ *           type: string
+ *           pattern: "^[a-fA-F0-9]{24}$"
+ *         example: 507f1f77bcf86cd799439011
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             minProperties: 1
+ *             properties:
+ *               firstName:
+ *                 type: string
+ *                 minLength: 2
+ *                 maxLength: 50
+ *                 example: John
+ *               lastName:
+ *                 type: string
+ *                 minLength: 2
+ *                 maxLength: 50
+ *                 example: Doe
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: john@example.com
+ *               role:
+ *                 type: string
+ *                 enum:
+ *                   - admin
+ *                   - staff
+ *                   - student
+ *                 example: staff
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *       400:
+ *         description: Invalid request data
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: User not found
+ */
 router.patch(
   "/:id",
   protect,
@@ -145,9 +697,62 @@ router.patch(
 );
 
 // soft delete user
+/**
+ * @swagger
+ * /users/{id}:
+ *   delete:
+ *     tags:
+ *       - Users
+ *     summary: Soft delete user
+ *     description: Soft deletes a user by MongoDB ObjectId.
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           pattern: "^[a-fA-F0-9]{24}$"
+ *         example: 507f1f77bcf86cd799439011
+ *     responses:
+ *       200:
+ *         description: User deleted successfully
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: User not found
+ */
 router.delete("/:id", protect, userController.deleteUser);
 
 // restore soft deleted user
+/**
+ * @swagger
+ * /users/{id}/restore:
+ *   patch:
+ *     tags:
+ *       - Users
+ *     summary: Restore soft-deleted user
+ *     description: Restores a previously soft-deleted user.
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: MongoDB ObjectId of the user.
+ *         schema:
+ *           type: string
+ *           pattern: "^[a-fA-F0-9]{24}$"
+ *         example: 507f1f77bcf86cd799439011
+ *     responses:
+ *       200:
+ *         description: User restored successfully
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: User not found
+ */
 router.patch("/:id/restore", protect, userController.restoreUser);
 
 module.exports = router;
