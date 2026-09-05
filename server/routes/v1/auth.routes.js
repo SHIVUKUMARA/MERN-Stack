@@ -23,6 +23,8 @@ const validate = require("../../validators/validate.middleware");
  *     tags:
  *       - Authentication
  *     summary: Register a new user
+ *     description: Creates a new user account.
+ *
  *     requestBody:
  *       required: true
  *       content:
@@ -40,21 +42,25 @@ const validate = require("../../validators/validate.middleware");
  *                 minLength: 2
  *                 maxLength: 50
  *                 example: John
+ *
  *               lastName:
  *                 type: string
  *                 minLength: 2
  *                 maxLength: 50
  *                 example: Doe
+ *
  *               email:
  *                 type: string
  *                 format: email
  *                 example: john@example.com
+ *
  *               password:
  *                 type: string
- *                 format: password
  *                 minLength: 8
  *                 maxLength: 50
- *                 example: Password@123
+ *                 format: password
+ *                 example: password123
+ *
  *               role:
  *                 type: string
  *                 enum:
@@ -62,11 +68,33 @@ const validate = require("../../validators/validate.middleware");
  *                   - staff
  *                   - student
  *                 example: student
+ *
  *     responses:
  *       201:
  *         description: User registered successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               allOf:
+ *                 - $ref: '#/components/schemas/SuccessResponse'
+ *                 - type: object
+ *                   properties:
+ *                     data:
+ *                       $ref: '#/components/schemas/User'
+ *
  *       400:
- *         description: Bad request
+ *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *
+ *       409:
+ *         description: Email already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post("/register", validate(registerSchema), authController.register);
 
@@ -76,10 +104,12 @@ router.post("/register", validate(registerSchema), authController.register);
  *   post:
  *     tags:
  *       - Authentication
- *     summary: Login a user
- *     description: |
- *       Authenticates a user and returns an access token.
- *       A refresh token is stored in an HttpOnly cookie.
+ *     summary: Login user
+ *     description: >
+ *       Authenticates a user using email and password.
+ *       Returns an access token and user information.
+ *       A refresh token is stored in an HTTP-only cookie.
+ *
  *     requestBody:
  *       required: true
  *       content:
@@ -97,25 +127,60 @@ router.post("/register", validate(registerSchema), authController.register);
  *               password:
  *                 type: string
  *                 format: password
- *                 minLength: 8
- *                 maxLength: 50
- *                 example: Password@123
+ *                 example: Password123
+ *
  *     responses:
  *       200:
  *         description: Login successful
+ *         headers:
+ *           Set-Cookie:
+ *             description: >
+ *               HTTP-only refresh token cookie.
+ *             schema:
+ *               type: string
  *         content:
  *           application/json:
- *             example:
- *               status: true
- *               statusCode: 200
- *               message: Login Successful
- *               data:
- *                 user: {}
- *                 accessToken: your-jwt-access-token
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   example: true
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Login Successful
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     user:
+ *                       $ref: '#/components/schemas/User'
+ *                     accessToken:
+ *                       type: string
+ *                       example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+ *
  *       400:
- *         description: Invalid request data
+ *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *
  *       401:
  *         description: Invalid email or password
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *
+ *       429:
+ *         description: Too many login attempts
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post(
   "/login",
@@ -131,23 +196,59 @@ router.post(
  *     tags:
  *       - Authentication
  *     summary: Refresh access token
- *     description: |
- *       Uses the refresh token stored in the HttpOnly cookie to generate
- *       a new access token. A new refresh token is also stored in the
- *       HttpOnly cookie.
+ *     description: >
+ *       Generates a new access token using the refresh token stored in the
+ *       httpOnly refreshToken cookie. The refresh token is also rotated and
+ *       replaced in the cookie.
+ *
  *     responses:
  *       200:
  *         description: Access token refreshed successfully
+ *         headers:
+ *           Set-Cookie:
+ *             description: >
+ *               Rotated refresh token stored in the httpOnly refreshToken cookie.
+ *             schema:
+ *               type: string
  *         content:
  *           application/json:
+ *             schema:
+ *               allOf:
+ *                 - $ref: '#/components/schemas/SuccessResponse'
  *             example:
  *               status: true
  *               statusCode: 200
  *               message: Access Token refreshed successfully
  *               data:
- *                 accessToken: your-new-jwt-access-token
+ *                 accessToken: eyJhbGciOiJIUzI1NiIs...
+ *
  *       401:
  *         description: Invalid, expired, or missing refresh token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *             examples:
+ *               missingToken:
+ *                 summary: Refresh token missing
+ *                 value:
+ *                   success: false
+ *                   message: Refresh token is required
+ *                   errors: []
+ *
+ *               invalidToken:
+ *                 summary: Invalid refresh token
+ *                 value:
+ *                   success: false
+ *                   message: Invalid refresh token
+ *                   errors: []
+ *
+ *       429:
+ *         description: Too many refresh token requests
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post(
   "/refresh-token",
@@ -161,8 +262,10 @@ router.post(
  *   post:
  *     tags:
  *       - Authentication
- *     summary: Logout the authenticated user
- *     description: Logs out the authenticated user and clears the refresh token cookie.
+ *     summary: Logout user
+ *     description: >
+ *       Logs out the currently authenticated user by revoking their refresh
+ *       token and clearing the refresh token cookie.
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -170,15 +273,24 @@ router.post(
  *         description: Logout successful
  *         content:
  *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *             example:
  *               status: true
  *               statusCode: 200
  *               message: Logout Successful
  *               data: null
+ *
  *       401:
- *         description: Unauthorized
- *       403:
- *         description: Account is inactive or deleted
+ *         description: Unauthorized. A valid access token is required.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *             example:
+ *               success: false
+ *               message: Unauthorized access, Please login again
+ *               errors: []
  */
 router.post("/logout", protect, authController.logout);
 
@@ -188,8 +300,11 @@ router.post("/logout", protect, authController.logout);
  *   post:
  *     tags:
  *       - Authentication
- *     summary: Request a password reset
- *     description: Sends a password reset email for the provided email address.
+ *     summary: Request password reset
+ *     description: >
+ *       Sends a password reset email to the specified email address.
+ *       The reset token is used to set a new password.
+ *
  *     requestBody:
  *       required: true
  *       content:
@@ -203,18 +318,28 @@ router.post("/logout", protect, authController.logout);
  *                 type: string
  *                 format: email
  *                 example: john@example.com
+ *
  *     responses:
  *       200:
- *         description: Password reset email processed successfully
+ *         description: Password reset email sent successfully
  *         content:
  *           application/json:
- *             example:
- *               status: true
- *               statusCode: 200
- *               message: Email sent successfully
- *               data: null
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
+ *
  *       400:
- *         description: Invalid request data
+ *         description: Invalid email address
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *
+ *       429:
+ *         description: Too many password reset requests
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post(
   "/forgot-password",
@@ -229,8 +354,10 @@ router.post(
  *   post:
  *     tags:
  *       - Authentication
- *     summary: Reset user password
- *     description: Resets a user's password using a valid password reset token.
+ *     summary: Reset password
+ *     description: >
+ *       Resets the user's password using the password reset token received
+ *       from the forgot password process.
  *     requestBody:
  *       required: true
  *       content:
@@ -243,28 +370,35 @@ router.post(
  *             properties:
  *               token:
  *                 type: string
- *                 minLength: 64
- *                 maxLength: 64
  *                 description: Password reset token.
- *                 example: 1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+ *                 example: 64-character-reset-token
  *               password:
  *                 type: string
  *                 format: password
  *                 minLength: 8
  *                 maxLength: 50
- *                 example: NewPassword@123
+ *                 example: NewPassword123
  *     responses:
  *       200:
  *         description: Password reset successfully
  *         content:
  *           application/json:
- *             example:
- *               status: true
- *               statusCode: 200
- *               message: Password reset Successfully
- *               data: null
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
+ *
  *       400:
  *         description: Invalid or expired reset token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *
+ *       404:
+ *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post(
   "/reset-password",
