@@ -33,11 +33,24 @@ const {
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: User profile retrieved successfully
+ *         description: Profile fetched successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
+ *
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       403:
  *         description: User account is inactive or deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.get(
   "/profile",
@@ -60,6 +73,7 @@ router.get(
  *     security:
  *       - bearerAuth: []
  *     parameters:
+ *
  *       - in: query
  *         name: page
  *         description: Page number.
@@ -88,9 +102,7 @@ router.get(
  *
  *       - in: query
  *         name: sort
- *         description: >
- *           Comma-separated fields used for sorting. Prefix a field with -
- *           for descending order.
+ *         description: Comma-separated fields used for sorting. Prefix a field with - for descending order.
  *         schema:
  *           type: string
  *           default: -createdAt
@@ -179,11 +191,36 @@ router.get(
  *           format: date
  *         example: 2026-12-31
  *
+ *       - in: query
+ *         name: updatedAt[gte]
+ *         description: Filter users updated on or after the specified date.
+ *         schema:
+ *           type: string
+ *           format: date
+ *         example: 2026-01-01
+ *
+ *       - in: query
+ *         name: updatedAt[lte]
+ *         description: Filter users updated on or before the specified date.
+ *         schema:
+ *           type: string
+ *           format: date
+ *         example: 2026-12-31
+ *
  *     responses:
  *       200:
  *         description: Users retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
+ *
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.get("/", protect, getUsersRateLimit, userController.getUsers);
 
@@ -195,7 +232,7 @@ router.get("/", protect, getUsersRateLimit, userController.getUsers);
  *     tags:
  *       - Users
  *     summary: Update logged-in user profile
- *     description: Updates one or more profile fields of the currently authenticated user.
+ *     description: Updates the first name, last name, or email of the currently authenticated user.
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -223,10 +260,28 @@ router.get("/", protect, getUsersRateLimit, userController.getUsers);
  *     responses:
  *       200:
  *         description: Profile updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       400:
  *         description: Invalid request data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       409:
+ *         description: Email already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.patch(
   "/profile",
@@ -244,7 +299,7 @@ router.patch(
  *     tags:
  *       - Users
  *     summary: Upload or replace profile avatar
- *     description: Uploads a new profile avatar or replaces the existing avatar.
+ *     description: Uploads a new avatar or replaces the existing avatar.
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -259,14 +314,25 @@ router.patch(
  *               avatar:
  *                 type: string
  *                 format: binary
- *                 description: Profile image file.
  *     responses:
  *       200:
- *         description: Avatar uploaded successfully
+ *         description: Avatar updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       400:
- *         description: Invalid or missing image file
+ *         description: Invalid or missing file
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.patch(
   "/profile/avatar",
@@ -290,16 +356,28 @@ router.patch(
  *     tags:
  *       - Users
  *     summary: Delete profile avatar
- *     description: Deletes the currently authenticated user's profile avatar.
+ *     description: Deletes the avatar of the currently authenticated user.
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Avatar deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: Avatar not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.delete(
   "/profile/avatar",
@@ -316,7 +394,7 @@ router.delete(
  *     tags:
  *       - Users
  *     summary: Upload gallery images
- *     description: Uploads one or more images to the authenticated user's gallery. A maximum of 10 images can be uploaded per request.
+ *     description: Uploads multiple images to the logged-in user's gallery. Maximum 10 files.
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -334,14 +412,25 @@ router.delete(
  *                 items:
  *                   type: string
  *                   format: binary
- *                 description: Image files to upload to the user's gallery.
  *     responses:
  *       200:
- *         description: Gallery images uploaded successfully
+ *         description: Gallery uploaded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       400:
- *         description: Invalid, missing, or too many image files
+ *         description: Invalid or missing files
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post(
   "/profile/gallery",
@@ -364,26 +453,37 @@ router.post(
  *   delete:
  *     tags:
  *       - Users
- *     summary: Delete a gallery image
- *     description: Deletes a specific image from the authenticated user's gallery.
+ *     summary: Delete gallery image
+ *     description: Deletes one image from the logged-in user's gallery.
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: fileId
  *         required: true
- *         description: MongoDB ObjectId of the gallery file.
+ *         description: MongoDB ID of the gallery file.
  *         schema:
  *           type: string
- *           pattern: "^[a-fA-F0-9]{24}$"
  *         example: 507f1f77bcf86cd799439011
  *     responses:
  *       200:
  *         description: Gallery image deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: Gallery image not found
+ *         description: File not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.delete(
   "/profile/gallery/:fileId",
@@ -398,8 +498,8 @@ router.delete(
  *   post:
  *     tags:
  *       - Users
- *     summary: Upload profile documents
- *     description: Uploads one or more documents for the authenticated user. A maximum of 20 documents can be uploaded per request.
+ *     summary: Upload documents
+ *     description: Uploads multiple documents for the logged-in user. Maximum 20 files.
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -417,14 +517,25 @@ router.delete(
  *                 items:
  *                   type: string
  *                   format: binary
- *                 description: Document files to upload.
  *     responses:
  *       200:
  *         description: Documents uploaded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       400:
- *         description: Invalid, missing, or too many document files
+ *         description: Invalid or missing files
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post(
   "/profile/documents",
@@ -447,26 +558,37 @@ router.post(
  *   delete:
  *     tags:
  *       - Users
- *     summary: Delete a document
- *     description: Deletes a specific document belonging to the authenticated user.
+ *     summary: Delete document
+ *     description: Deletes one document belonging to the logged-in user.
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: fileId
  *         required: true
- *         description: MongoDB ObjectId of the document.
+ *         description: MongoDB ID of the document.
  *         schema:
  *           type: string
- *           pattern: "^[a-fA-F0-9]{24}$"
  *         example: 507f1f77bcf86cd799439011
  *     responses:
  *       200:
  *         description: Document deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: Document not found
+ *         description: File not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.delete(
   "/profile/documents/:fileId",
@@ -481,8 +603,8 @@ router.delete(
  *   post:
  *     tags:
  *       - Users
- *     summary: Upload profile videos
- *     description: Uploads one or more videos for the authenticated user. A maximum of 5 videos can be uploaded per request.
+ *     summary: Upload videos
+ *     description: Uploads multiple videos for the logged-in user. Maximum 5 files.
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -500,14 +622,25 @@ router.delete(
  *                 items:
  *                   type: string
  *                   format: binary
- *                 description: Video files to upload.
  *     responses:
  *       200:
  *         description: Videos uploaded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       400:
- *         description: Invalid, missing, or too many video files
+ *         description: Invalid or missing files
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post(
   "/profile/videos",
@@ -530,26 +663,37 @@ router.post(
  *   delete:
  *     tags:
  *       - Users
- *     summary: Delete a video
- *     description: Deletes a specific video belonging to the authenticated user.
+ *     summary: Delete video
+ *     description: Deletes one video belonging to the logged-in user.
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: fileId
  *         required: true
- *         description: MongoDB ObjectId of the video file.
+ *         description: MongoDB ID of the video.
  *         schema:
  *           type: string
- *           pattern: "^[a-fA-F0-9]{24}$"
  *         example: 507f1f77bcf86cd799439011
  *     responses:
  *       200:
  *         description: Video deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: Video not found
+ *         description: File not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.delete("/profile/videos/:fileId", protect, userController.deleteVideo);
 
@@ -561,7 +705,7 @@ router.delete("/profile/videos/:fileId", protect, userController.deleteVideo);
  *     tags:
  *       - Users
  *     summary: Change logged-in user's password
- *     description: Changes the password of the currently authenticated user.
+ *     description: Changes the password of the currently authenticated user and revokes the refresh token.
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -576,22 +720,31 @@ router.delete("/profile/videos/:fileId", protect, userController.deleteVideo);
  *             properties:
  *               currentPassword:
  *                 type: string
- *                 format: password
- *                 minLength: 1
- *                 example: OldPassword@123
+ *                 example: OldPassword123
  *               newPassword:
  *                 type: string
- *                 format: password
  *                 minLength: 8
  *                 maxLength: 50
- *                 example: NewPassword@123
+ *                 example: NewPassword123
  *     responses:
  *       200:
  *         description: Password changed successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       400:
- *         description: Invalid request data or new password matches current password
+ *         description: Invalid request data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
- *         description: Unauthorized
+ *         description: Unauthorized or current password is incorrect
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.post(
   "/change-password",
@@ -608,25 +761,36 @@ router.post(
  *     tags:
  *       - Users
  *     summary: Get user by ID
- *     description: Returns a user by MongoDB ObjectId.
+ *     description: Returns a user using the provided MongoDB user ID.
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: MongoDB ObjectId of the user.
+ *         description: MongoDB user ID.
  *         schema:
  *           type: string
- *           pattern: "^[a-fA-F0-9]{24}$"
  *         example: 507f1f77bcf86cd799439011
  *     responses:
  *       200:
- *         description: User retrieved successfully
+ *         description: User fetched successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.get("/:id", protect, userController.getUserById);
 
@@ -638,17 +802,16 @@ router.get("/:id", protect, userController.getUserById);
  *     tags:
  *       - Users
  *     summary: Update user by ID
- *     description: Updates one or more fields of a user.
+ *     description: Updates the first name, last name, email, or role of a user.
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: MongoDB ObjectId of the user.
+ *         description: MongoDB user ID.
  *         schema:
  *           type: string
- *           pattern: "^[a-fA-F0-9]{24}$"
  *         example: 507f1f77bcf86cd799439011
  *     requestBody:
  *       required: true
@@ -682,12 +845,34 @@ router.get("/:id", protect, userController.getUserById);
  *     responses:
  *       200:
  *         description: User updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       400:
  *         description: Invalid request data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       409:
+ *         description: Email already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.patch(
   "/:id",
@@ -704,24 +889,36 @@ router.patch(
  *     tags:
  *       - Users
  *     summary: Soft delete user
- *     description: Soft deletes a user by MongoDB ObjectId.
+ *     description: Soft deletes a user by marking the account as deleted.
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
+ *         description: MongoDB user ID.
  *         schema:
  *           type: string
- *           pattern: "^[a-fA-F0-9]{24}$"
  *         example: 507f1f77bcf86cd799439011
  *     responses:
  *       200:
  *         description: User deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
  *         description: User not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.delete("/:id", protect, userController.deleteUser);
 
@@ -740,18 +937,29 @@ router.delete("/:id", protect, userController.deleteUser);
  *       - in: path
  *         name: id
  *         required: true
- *         description: MongoDB ObjectId of the user.
+ *         description: MongoDB user ID.
  *         schema:
  *           type: string
- *           pattern: "^[a-fA-F0-9]{24}$"
  *         example: 507f1f77bcf86cd799439011
  *     responses:
  *       200:
  *         description: User restored successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessResponse'
  *       401:
  *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  *       404:
- *         description: User not found
+ *         description: Deleted user not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.patch("/:id/restore", protect, userController.restoreUser);
 
