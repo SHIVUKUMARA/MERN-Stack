@@ -15,4 +15,7 @@ router.use("/health", require("./health.routes"));
 // Version 1
 router.use("/api/v1", require("./v1"));
 
+// Metrics
+router.use("/metrics", require("./metrics.routes"));
+
 module.exports = router;

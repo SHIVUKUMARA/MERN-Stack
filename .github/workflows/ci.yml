@@ -22,7 +22,7 @@ on:
       # - feature/CICD
 
       # Later, when we move to the production branch:
-      - main
+      - master
 
   # `pull_request` means run this workflow when a Pull Request
   # is opened, updated, or synchronized against the specified branch.
@@ -33,7 +33,7 @@ on:
       # - feature/CICD
 
       # Later, this will normally become:
-      - main
+      - master
 
 # ==========================================================
 # GITHUB TOKEN PERMISSIONS
@@ -218,7 +218,7 @@ jobs:
     # if: github.event_name == 'push' && github.ref == 'refs/heads/feature/CICD'
 
     # Later we need to use this for production
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
 
     # Run the CD job on a fresh Ubuntu GitHub runner.
     runs-on: ubuntu-latest

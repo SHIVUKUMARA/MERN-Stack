@@ -15,6 +15,7 @@ Think of it like the reception desk in a company. */
 const routes = require("../routes");
 const notFound = require("../middleware/notfound.middleware");
 const errorHandler = require("../middleware/error.middleware");
+const monitoringMiddleware = require("../middleware/monitoring.middleware");
 
 const app = express();
 
@@ -26,6 +27,9 @@ app.set("trust proxy", 1);
 // Do not use `app.set("trust proxy", true);` for this setup. because we have a known single proxy
 
 // Security Middleware
+
+// Monitoring middleware
+app.use(monitoringMiddleware);
 
 /* Helmet automatically adds several security-related HTTP headers.
 For example, it helps protect against:

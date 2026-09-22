@@ -1,0 +1,74 @@
+name: monitoring
+
+services:
+  prometheus:
+    image: prom/prometheus::v3.14.0
+    container_name: prometheus
+    restart: unless-stopped
+
+    # Remove comments to expose the port for local development or testing not for production
+    # ports:
+    #   - "9090:9090"
+
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
+
+    networks:
+      - backend-production_default
+
+  grafana:
+    image: grafana/grafana:12.1.1
+    container_name: grafana
+    restart: unless-stopped
+
+    # ports:
+    #   - "3000:3000"
+
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+    networks:
+      - backend-production_default
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.53.0
+    container_name: cadvisor
+    restart: unless-stopped
+    # ports:
+    #   - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+    networks:
+      - backend-production_default
+
+  alertmanager:
+    image: prom/alertmanager:v0.28.1
+    container_name: alertmanager
+    restart: unless-stopped
+
+    # ports:
+    #   - "9093:9093"
+
+    volumes:
+      - ./prometheus/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+
+    secrets:
+      - mailtrap_password
+
+    networks:
+      - backend-production_default
+
+networks:
+  backend-production_default:
+    external: true
+
+volumes:
+  grafana-data:
+
+secrets:
+  mailtrap_password:
+    environment: EMAIL_PASS

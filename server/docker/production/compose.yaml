@@ -19,6 +19,8 @@ services:
     expose:
       - "5000"
 
+    mem_limit: 512m
+
     stop_grace_period: 30s
 
     volumes:
