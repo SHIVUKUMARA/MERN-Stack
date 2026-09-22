@@ -1,0 +1,58 @@
+groups:
+  - name: backend-alerts
+    rules:
+      # Backend is unreachable
+      - alert: BackendDown
+        expr: up{job="backend"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Backend is down"
+          description: "Prometheus cannot reach the backend for more than 1 minute."
+
+      # Too many server errors
+      - alert: High5xxErrorRate
+        expr: |
+          (
+            sum(rate(http_requests_total{status_code=~"5.."}[5m]))
+            /
+            sum(rate(http_requests_total[5m]))
+          ) * 100 > 5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High 5xx error rate"
+          description: "The backend 5xx error rate has been above 5% for 5 minutes."
+
+      # Slow API responses
+      - alert: HighResponseTime
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum by (le) (
+              rate(http_request_duration_seconds_bucket[5m])
+            )
+          ) > 2
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High API response time"
+          description: "95th percentile API response time has exceeded 2 seconds for 5 minutes."
+
+      # High backend container memory
+      - alert: HighContainerMemory
+        expr: |
+          (
+            container_memory_usage_bytes{name="backend-prod"}
+            /
+            container_spec_memory_limit_bytes{name="backend-prod"}
+          ) * 100 > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Backend container memory is high"
+          description: "Backend container memory usage has exceeded 80% for 5 minutes."

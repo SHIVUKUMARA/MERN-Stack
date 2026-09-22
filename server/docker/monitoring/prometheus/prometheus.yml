@@ -53,6 +53,15 @@ global:
   # interval now gives us a standard production structure.
   evaluation_interval: 15s
 
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - "alertmanager:9093"
+
+rule_files:
+  - "alerts.yml"
+
 # ==========================================================
 # Scrape Configurations
 # ==========================================================
@@ -94,6 +103,10 @@ scrape_configs:
       - targets:
           - "backend:5000"
 
+  - job_name: "cadvisor"
+    static_configs:
+      - targets:
+          - "cadvisor:8080"
 # ==========================================================
 # Future Monitoring
 # ==========================================================
