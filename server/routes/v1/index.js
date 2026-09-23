@@ -26,4 +26,21 @@ router.use("/auth", authRoutes);
 
 // User Routes
 router.use("/users", userRoutes);
+
+// Test Routes for Monitoring
+// router.get("/test-500", (req, res, next) => {
+//   const error = new Error("Monitoring test error");
+//   error.statusCode = 500;
+//   next(error);
+// });
+
+// router.get("/test-slow", async (req, res) => {
+//   await new Promise((resolve) => setTimeout(resolve, 3000));
+
+//   res.json({
+//     success: true,
+//     message: "Slow response test",
+//   });
+// });
+
 module.exports = router;
