@@ -427,6 +427,7 @@ All routes are prefixed with `/api/v1` (see [`docs/11-API-Versioning.md`](./docs
 | [`docs/14-CICD-Githubactions.md`](./docs/14-CICD-githubactions.md)       | CI/CD pipeline, and docker image building, github actions to trigger the render to deploy latest code |
 | [`docs/15-Eslint-config.md`](./docs/15-Eslint-config.md)                 | EsLint to identify potential problems                                                                 |
 | [`docs/16-Swagger-Openapi.md`](./docs/16-Swagger-Openapi.md)             | Swagger and Openapi Documentation                                                                     |
+| [`docs/17-BullMQ-MessageQueue.md`](./docs/17-BullMQ-messagequeue.md)     | BullMQ Message queue or background worker Documentation                                               |
 
 ---
 

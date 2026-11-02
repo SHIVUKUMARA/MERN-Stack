@@ -857,6 +857,7 @@ docker restart alertmanager
 
 ```bash
 docker compose \
+  --env-file docker/production/.env \
   -f docker/monitoring/compose.yaml \
   down
 ```

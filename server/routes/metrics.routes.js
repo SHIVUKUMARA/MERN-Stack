@@ -1,14 +1,29 @@
 const express = require("express");
-const { client } = require("../config/metrics");
+const { client, updateBullMQMetrics } = require("../config/metrics");
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  res.set("Content-Type", client.register.contentType);
+  try {
+    // Update BullMQ queue metrics before returning Prometheus metrics.
+    try {
+      await updateBullMQMetrics();
+    } catch (error) {
+      // Queue metrics should not prevent other metrics from being exposed.
+      console.error("Failed to update BullMQ metrics:", error.message);
+    }
 
-  const metrics = await client.register.metrics();
+    res.set("Content-Type", client.register.contentType);
 
-  res.end(metrics);
+    const metrics = await client.register.metrics();
+
+    res.end(metrics);
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to collect application metrics",
+    });
+  }
 });
 
 module.exports = router;

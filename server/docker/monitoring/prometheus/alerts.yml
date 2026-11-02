@@ -56,3 +56,53 @@ groups:
         annotations:
           summary: "Backend container memory is high"
           description: "Backend container memory usage has exceeded 80% for 5 minutes."
+      
+      # BullMQ email queue has a growing backlog
+      - alert: EmailQueueBacklog
+        expr: bullmq_waiting_jobs > 50
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Email queue backlog is growing"
+          description: "More than 50 email jobs have been waiting for over 5 minutes."
+
+      # BullMQ email queue has a critical backlog
+      - alert: EmailQueueCriticalBacklog
+        expr: bullmq_waiting_jobs > 100
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Critical email queue backlog"
+          description: "More than 100 email jobs have been waiting for over 5 minutes."
+
+      # Too many retained failed email jobs
+      - alert: EmailJobsFailing
+        expr: bullmq_failed_jobs > 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Too many failed email jobs"
+          description: "More than 10 failed email jobs are currently retained in BullMQ."
+
+      # All worker concurrency slots are occupied and jobs are waiting
+      - alert: EmailWorkersSaturated
+        expr: bullmq_active_jobs >= 10 and bullmq_waiting_jobs > 20
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Email workers are saturated"
+          description: "All 10 worker concurrency slots are occupied and more than 20 jobs are waiting."
+
+      # BullMQ metrics are missing
+      - alert: EmailQueueMetricsUnavailable
+        expr: absent(bullmq_waiting_jobs)
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "BullMQ metrics unavailable"
+          description: "Prometheus has not received the BullMQ waiting jobs metric for more than 2 minutes."

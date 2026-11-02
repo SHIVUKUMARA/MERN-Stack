@@ -2,7 +2,9 @@ const User = require("../models/User");
 const ApiError = require("../utils/ApiError");
 const jwt = require("jsonwebtoken");
 const config = require("../config/env");
-const { sendEmail } = require("../utils/email");
+// const { sendEmail } = require("../utils/email");
+const { redisClient, waitForRedis } = require("../database/redis");
+const { enqueueEmailDelivery, JOB_PRIORITY } = require("./queue.service");
 const crypto = require("crypto");
 
 const registerUser = async (userData) => {
@@ -22,6 +24,24 @@ const registerUser = async (userData) => {
     email,
     password,
   });
+
+  // Enqueue welcome email using MongoDB-backed idempotency.
+  await enqueueEmailDelivery(
+    {
+      to: user.email,
+      subject: "Welcome to our platform!",
+      html: `
+      <h2>Welcome, ${firstName}!</h2>
+      <p>Your account has been created successfully.</p>
+      <p>We're happy to have you with us.</p>
+    `,
+    },
+    `welcome-${user._id}`,
+    {
+      delay: 10_000,
+    },
+    JOB_PRIORITY.NORMAL,
+  );
 
   const userResponse = await User.findById(user._id);
 
@@ -124,21 +144,67 @@ const forgotPassword = async (email) => {
     return;
   }
 
-  // Generate the token
-  const resetToken = user.generatePasswordResetToken();
+  await waitForRedis();
 
-  // save hashed token and expiry
-  await user.save({ validateBeforeSave: false });
+  const lockKey = `lock:password-reset:${user._id}`;
+  const lockToken = crypto.randomUUID();
+  const lockTtlSeconds = 30;
 
-  // building reset url
-  const resetUrl = `http://localhost:5000/api/auth/reset-password?token=${resetToken}`;
-
-  // sending email
-  await sendEmail({
-    to: user.email,
-    subject: "Reset your password",
-    html: `<h2>Reset your password</h2>\n\n<p>Click the link below to reset your password</p>\n\n<a href="${resetUrl}">Reset Password</a>\n\n<p>This link will expire in 10 minutes</p>\n\n<p>Ignore this email if you did not request a password reset</p>`,
+  const acquired = await redisClient.set(lockKey, lockToken, {
+    NX: true,
+    EX: lockTtlSeconds,
   });
+
+  if (acquired !== "OK") {
+    return;
+  }
+
+  try {
+    // Generate and save the reset token.
+    const resetToken = user.generatePasswordResetToken();
+
+    await user.save({ validateBeforeSave: false });
+
+    const resetUrl = `http://localhost:5000/api/auth/reset-password?token=${resetToken}`;
+
+    // Generate a unique idempotency key for this reset operation.
+    const tokenHash = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
+
+    const idempotencyKey = `password-reset-${user._id}-${tokenHash}`;
+
+    await enqueueEmailDelivery(
+      {
+        to: user.email,
+        subject: "Reset your password",
+        html: `
+      <h2>Reset your password</h2>
+      <p>Click the link below to reset your password.</p>
+      <a href="${resetUrl}">Reset Password</a>
+      <p>This link will expire in 10 minutes.</p>
+      <p>Ignore this email if you did not request a password reset.</p>
+    `,
+      },
+      idempotencyKey,
+      {},
+  JOB_PRIORITY.CRITICAL,
+    );
+  } finally {
+    // Release only if this request still owns the lock.
+    await redisClient.eval(
+      `if redis.call("GET", KEYS[1]) == ARGV[1] then
+         return redis.call("DEL", KEYS[1])
+       else
+         return 0
+       end`,
+      {
+        keys: [lockKey],
+        arguments: [lockToken],
+      },
+    );
+  }
 };
 
 const resetPassword = async (token, password) => {

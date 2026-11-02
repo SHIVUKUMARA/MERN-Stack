@@ -1,6 +1,7 @@
 const express = require("express");
 const authRoutes = require("./auth.routes");
 const userRoutes = require("./user.routes");
+const queueRoutes = require("./queue.routes");
 const router = express.Router();
 
 /* 
@@ -26,6 +27,9 @@ router.use("/auth", authRoutes);
 
 // User Routes
 router.use("/users", userRoutes);
+
+// Queue Routes
+router.use("/queue", queueRoutes);
 
 // Test Routes for Monitoring
 // router.get("/test-500", (req, res, next) => {

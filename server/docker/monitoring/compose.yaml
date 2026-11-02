@@ -2,13 +2,13 @@ name: monitoring
 
 services:
   prometheus:
-    image: prom/prometheus::v3.14.0
+    image: prom/prometheus:v3.14.0
     container_name: prometheus
     restart: unless-stopped
 
     # Remove comments to expose the port for local development or testing not for production
-    # ports:
-    #   - "9090:9090"
+    ports:
+      - "9090:9090"
 
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
@@ -22,8 +22,8 @@ services:
     container_name: grafana
     restart: unless-stopped
 
-    # ports:
-    #   - "3000:3000"
+    ports:
+      - "3000:3000"
 
     volumes:
       - grafana-data:/var/lib/grafana
@@ -32,11 +32,11 @@ services:
       - backend-production_default
 
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.53.0
+    image: gcr.io/cadvisor/cadvisor:v0.49.1
     container_name: cadvisor
     restart: unless-stopped
-    # ports:
-    #   - "8080:8080"
+    ports:
+      - "8080:8080"
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro
@@ -50,8 +50,8 @@ services:
     container_name: alertmanager
     restart: unless-stopped
 
-    # ports:
-    #   - "9093:9093"
+    ports:
+      - "9093:9093"
 
     volumes:
       - ./prometheus/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro

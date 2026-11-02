@@ -25,7 +25,10 @@ const sendEmail = async ({ to, subject, html, text, attachments = [] }) => {
   } catch (error) {
     console.error("Mail Error:", error);
 
-    throw new ApiError(500, "Failed to send email");
+    // throw new ApiError(500, "Failed to send email");
+
+    // Preserve the original Nodemailer error for delivery classification, bcz it is no more apierror.
+    throw error;
   }
 };
 

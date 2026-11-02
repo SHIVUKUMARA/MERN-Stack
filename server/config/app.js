@@ -71,7 +71,7 @@ app.use(requestLogger);
 
 // The reception doesn't solve the customer's problem. It only forwards them to the correct department. --->>> routes.index.js
 app.use(routes);
-app.use(errorHandler);
 app.use(notFound);
+app.use(errorHandler);
 
 module.exports = app;
