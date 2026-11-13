@@ -1,5 +1,6 @@
 const path = require("path");
 const crypto = require("crypto");
+const fs = require("fs/promises");
 
 const pdfParse = require("pdf-parse");
 const mammoth = require("mammoth");
@@ -14,7 +15,48 @@ const SUPPORTED_TYPES = {
   txt: processText,
 };
 
+// async function process(file) {
+//   const extension = path.extname(file.originalname).slice(1).toLowerCase();
+
+//   const processor = SUPPORTED_TYPES[extension];
+
+//   if (!processor) {
+//     throw new Error(
+//       `Unsupported document type "${extension}". Supported types: pdf, docx, xlsx, pptx, txt.`,
+//     );
+//   }
+
+//   const info = await processor(file);
+
+//   return {
+//     original: {
+//       ...file,
+//       width: null,
+//       height: null,
+//       isOptimized: false,
+//     },
+//     thumbnail: null,
+//     metadata: info,
+//   };
+// }
+
+// PDF processing using pdf-parse
+
 async function process(file) {
+  if (!file?.path) {
+    throw new Error("Document file path is required.");
+  }
+
+  // Read the staged document from disk.
+  const buffer = await fs.readFile(file.path);
+
+  // Create a file object containing the buffer.
+  const documentFile = {
+    ...file,
+    buffer,
+    size: buffer.length,
+  };
+
   const extension = path.extname(file.originalname).slice(1).toLowerCase();
 
   const processor = SUPPORTED_TYPES[extension];
@@ -25,11 +67,11 @@ async function process(file) {
     );
   }
 
-  const info = await processor(file);
+  const info = await processor(documentFile);
 
   return {
     original: {
-      ...file,
+      ...documentFile,
       width: null,
       height: null,
       isOptimized: false,
@@ -39,18 +81,40 @@ async function process(file) {
   };
 }
 
-// PDF processing using pdf-parse
-async function processPdf(file) {
-  const pdf = await pdfParse(file.buffer);
+// async function processPdf(file) {
+//   const pdf = await pdfParse(file.buffer);
 
-  return {
-    type: "pdf",
-    pages: pdf.numpages,
-    words: pdf.text.trim().split(/\s+/).length,
-    characters: pdf.text.length,
-    preview: pdf.text.substring(0, 500),
-    sha256: sha256(file.buffer),
-  };
+//   return {
+//     type: "pdf",
+//     pages: pdf.numpages,
+//     words: pdf.text.trim().split(/\s+/).length,
+//     characters: pdf.text.length,
+//     preview: pdf.text.substring(0, 500),
+//     sha256: sha256(file.buffer),
+//   };
+// }
+
+async function processPdf(file) {
+  const parser = new pdfParse.PDFParse({
+    data: file.buffer,
+  });
+
+  try {
+    const result = await parser.getText();
+
+    const text = result.text || "";
+
+    return {
+      type: "pdf",
+      pages: result.total,
+      words: text.trim() ? text.trim().split(/\s+/).length : 0,
+      characters: text.length,
+      preview: text.substring(0, 500),
+      sha256: sha256(file.buffer),
+    };
+  } finally {
+    await parser.destroy();
+  }
 }
 
 // DOCX processing using mammoth
@@ -90,14 +154,45 @@ async function processExcel(file) {
 }
 
 // PPTX processing using pptx2json
+// async function processPowerPoint(file) {
+//   const presentation = await pptx2json(file.buffer);
+
+//   return {
+//     type: "pptx",
+//     slides: presentation.slides?.length || 0,
+//     title: presentation.title || null,
+//     author: presentation.author || null,
+//     sha256: sha256(file.buffer),
+//   };
+// }
+// async function processPowerPoint(file) {
+//   const parser = new pptx2json();
+
+//   const presentation = await parser.buffer2json(file.buffer);
+
+//   return {
+//     type: "pptx",
+//     slides: presentation.slides?.length || 0,
+//     title: presentation.title || null,
+//     author: presentation.author || null,
+//     sha256: sha256(file.buffer),
+//   };
+// }
 async function processPowerPoint(file) {
-  const presentation = await pptx2json(file.buffer);
+  const parser = new pptx2json();
+
+  const presentation = await parser.toJson(file.path);
+
+  // Count actual slide XML files.
+  const slideFiles = Object.keys(presentation).filter((key) =>
+    /^ppt\/slides\/slide\d+\.xml$/.test(key),
+  );
 
   return {
     type: "pptx",
-    slides: presentation.slides?.length || 0,
-    title: presentation.title || null,
-    author: presentation.author || null,
+    slides: slideFiles.length,
+    title: null,
+    author: null,
     sha256: sha256(file.buffer),
   };
 }

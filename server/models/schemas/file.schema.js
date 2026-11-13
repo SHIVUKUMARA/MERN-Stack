@@ -74,6 +74,12 @@ const fileSchema = new mongoose.Schema(
       default: null,
     },
 
+    // Extracted processing metadata.
+    metadata: {
+      type: mongoose.Schema.Types.Mixed,
+      default: null,
+    },
+
     uploadedAt: {
       type: Date,
       default: Date.now,

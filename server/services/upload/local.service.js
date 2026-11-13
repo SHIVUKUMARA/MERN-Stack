@@ -22,7 +22,14 @@ const upload = async (file, options = {}) => {
   const extension = getExtension(file.originalname);
   const filename = `${crypto.randomUUID()}.${extension}`;
   const absolutePath = path.join(uploadDir, filename);
-  await fs.writeFile(absolutePath, file.buffer);
+  // await fs.writeFile(absolutePath, file.buffer);
+  if (file.buffer) {
+    await fs.writeFile(absolutePath, file.buffer);
+  } else if (file.path) {
+    await fs.copyFile(file.path, absolutePath);
+  } else {
+    throw new ApiError(500, "File buffer or file path is required.");
+  }
   const relativePath = path
     .join(config.uploadDestination, folder, filename)
     .replace(/\\/g, "/");

@@ -1,6 +1,7 @@
 const asyncHandler = require("../utils/asyncHandler");
 const ApiResponse = require("../utils/ApiResponse");
-// const ApiError = require("../utils/ApiError");
+const ApiError = require("../utils/ApiError");
+const cloudinaryService = require("../services/upload/cloudinary.service");
 const {
   getAllUsers,
   getUserById,
@@ -12,6 +13,7 @@ const {
   deleteSingleFile,
   uploadMultipleFiles,
   deleteMultipleFile,
+  completeCloudinaryUpload,
 } = require("../services/user.service");
 
 // Get logged in user profile
@@ -81,6 +83,70 @@ const changePasswordController = asyncHandler(async (req, res) => {
         200,
         null,
         "Password changed successfully. Please login again",
+      ),
+    );
+});
+
+// Generate Cloudinary Direct Upload Signature
+// const createCloudinaryUploadSignature = asyncHandler(async (req, res) => {
+//   const { field } = req.body;
+
+//   const folders = {
+//     avatar: "users/avatar",
+//     gallery: "users/gallery",
+//     documents: "users/documents",
+//     videos: "users/videos",
+//   };
+
+//   const folder = folders[field];
+
+//   if (!folder) {
+//     throw new ApiError(400, "Invalid upload field.");
+//   }
+
+//   const signature = cloudinaryService.createUploadSignature({
+//     folder,
+//   });
+
+//   return res
+//     .status(200)
+//     .json(
+//       new ApiResponse(
+//         200,
+//         signature,
+//         "Cloudinary upload signature generated successfully.",
+//       ),
+//     );
+// });
+const createCloudinaryUploadSignature = asyncHandler(async (req, res) => {
+  const { field } = req.body;
+
+  const folders = {
+    avatar: "users/avatar",
+    gallery: "users/gallery",
+    documents: "users/documents",
+    videos: "users/videos",
+  };
+
+  const folder = folders[field];
+
+  if (!folder) {
+    throw new ApiError(400, "Invalid upload field.");
+  }
+
+  const signature = cloudinaryService.createUploadSignature({
+    folder,
+    userId: req.user._id,
+    field,
+  });
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(
+        200,
+        signature,
+        "Cloudinary upload signature generated successfully.",
       ),
     );
 });
@@ -180,6 +246,22 @@ const deleteVideoController = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, null, "Video deleted successfully"));
 });
 
+const completeCloudinaryUploadController = asyncHandler(async (req, res) => {
+  const { field, token, resourceType } = req.body;
+
+  const user = await completeCloudinaryUpload(req.user._id, {
+    field,
+    token,
+    resourceType,
+  });
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, user, "Cloudinary upload completed successfully."),
+    );
+});
+
 module.exports = {
   getProfile,
   getUsers,
@@ -189,6 +271,8 @@ module.exports = {
   deleteUser: deleteUserController,
   restoreUser: restoreUserController,
   changePassword: changePasswordController,
+  createCloudinaryUploadSignature,
+  completeCloudinaryUploadController,
   // Avatar
   updateAvatar: updateAvatarController,
   deleteAvatar: deleteAvatarController,

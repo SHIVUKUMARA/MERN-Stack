@@ -3,6 +3,7 @@ const User = require("../models/User");
 const ApiError = require("../utils/ApiError");
 const validateObjectId = require("../utils/validateObjectId");
 const uploadService = require("./upload");
+const cloudinaryService = require("./upload/cloudinary.service");
 
 const { QueryBuilder } = require("../core/query");
 const { MongooseExecutor } = require("../core/query/executors");
@@ -377,6 +378,74 @@ const deleteMultipleFile = async (userId, { field, fileId }) => {
   await userCache.invalidateUserLists();
 };
 
+const completeCloudinaryUpload = async (
+  userId,
+  { field, token, resourceType },
+) => {
+  const allowedFields = {
+    avatar: "users/avatar",
+    gallery: "users/gallery",
+    documents: "users/documents",
+    videos: "users/videos",
+  };
+
+  if (!allowedFields[field]) {
+    throw new ApiError(400, "Invalid upload field.");
+  }
+
+  const user = await User.findOne({
+    _id: userId,
+    isDeleted: false,
+  });
+
+  if (!user) {
+    throw new ApiError(404, "User not found.");
+  }
+
+  // Verify the token and fetch actual file metadata from Cloudinary.
+  const uploadedFile = await cloudinaryService.verifyDirectUpload({
+    token,
+    userId,
+    field,
+    resourceType,
+  });
+
+  // Verify that the issued folder matches the expected field folder.
+  // The token verification already binds the public ID and folder.
+  // The expected folder is checked below using the verified asset.
+  if (!uploadedFile.publicId.startsWith(`${allowedFields[field]}/`)) {
+    throw new ApiError(403, "Invalid upload destination.");
+  }
+
+  let oldFile = null;
+
+  if (field === "avatar") {
+    oldFile = user.avatar;
+
+    user.avatar = uploadedFile;
+  } else {
+    user[field].push(uploadedFile);
+  }
+
+  try {
+    await user.save();
+  } catch (error) {
+    // Avoid leaving an unreferenced asset if the database save fails.
+    await cloudinaryService.delete(uploadedFile);
+    throw error;
+  }
+
+  // Delete the previous avatar only after the database save succeeds.
+  if (oldFile) {
+    await uploadService.delete(oldFile);
+  }
+
+  await userCache.invalidateUser(userId);
+  await userCache.invalidateUserLists();
+
+  return await User.findById(userId).select("-password -refreshToken");
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
@@ -390,6 +459,7 @@ module.exports = {
   deleteSingleFile,
   uploadMultipleFiles,
   deleteMultipleFile,
+  completeCloudinaryUpload
 };
 
 // getAllUsers() has now - This is cache-aside + stampede protection.

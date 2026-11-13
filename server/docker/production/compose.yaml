@@ -72,6 +72,9 @@ services:
     mem_limit: 256m
     stop_grace_period: 30s
 
+    volumes:
+      - uploads-data-prod:/app/uploads
+
     depends_on:
       redis:
         condition: service_healthy

@@ -291,6 +291,182 @@ router.patch(
   userController.updateProfile,
 );
 
+/**
+ * @swagger
+ * tags:
+ *   name: User Uploads
+ *   description: User file upload operations using Cloudinary direct uploads
+ */
+
+/**
+ * @swagger
+ * /users/profile/uploads/signature:
+ *   post:
+ *     summary: Generate Cloudinary direct upload signature
+ *     description: >
+ *       Generates a secure, temporary Cloudinary upload signature.
+ *       The client uses the returned credentials to upload a file
+ *       directly to Cloudinary without sending the file through the backend.
+ *     tags: [User Uploads]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - field
+ *             properties:
+ *               field:
+ *                 type: string
+ *                 enum: [avatar, gallery, documents, videos]
+ *                 example: avatar
+ *     responses:
+ *       200:
+ *         description: Cloudinary upload signature generated successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   example: true
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Cloudinary upload signature generated successfully.
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     cloudName:
+ *                       type: string
+ *                       example: your-cloud-name
+ *                     apiKey:
+ *                       type: string
+ *                       example: your-cloudinary-api-key
+ *                     timestamp:
+ *                       type: integer
+ *                       example: 1794573923
+ *                     signature:
+ *                       type: string
+ *                       example: generated-signature
+ *                     folder:
+ *                       type: string
+ *                       example: users/avatar
+ *                     publicId:
+ *                       type: string
+ *                       example: generated-uuid
+ *                     resourceType:
+ *                       type: string
+ *                       example: auto
+ *                     completionToken:
+ *                       type: string
+ *                       example: generated-completion-token
+ *                     uploadUrl:
+ *                       type: string
+ *                       format: uri
+ *                       example: https://api.cloudinary.com/v1_1/your-cloud-name/auto/upload
+ *                     uploadParams:
+ *                       type: object
+ *                       properties:
+ *                         timestamp:
+ *                           type: integer
+ *                         folder:
+ *                           type: string
+ *                         public_id:
+ *                           type: string
+ *                         overwrite:
+ *                           type: boolean
+ *                         unique_filename:
+ *                           type: boolean
+ *                         use_filename:
+ *                           type: boolean
+ *       400:
+ *         description: Invalid upload field or missing upload details.
+ *       401:
+ *         description: Unauthorized.
+ */
+router.post(
+  "/profile/uploads/signature",
+  protect,
+  userController.createCloudinaryUploadSignature,
+);
+
+/**
+ * @swagger
+ * /users/profile/cloudinary/complete:
+ *   post:
+ *     summary: Complete Cloudinary direct upload
+ *     description: >
+ *       Verifies the uploaded Cloudinary asset using the completion token
+ *       and saves its metadata to the authenticated user's profile.
+ *       The actual file is uploaded directly from the client to Cloudinary.
+ *     tags: [User Uploads]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - field
+ *               - token
+ *               - resourceType
+ *             properties:
+ *               field:
+ *                 type: string
+ *                 enum: [avatar, gallery, documents, videos]
+ *                 example: avatar
+ *               token:
+ *                 type: string
+ *                 description: Completion token returned by the signature endpoint.
+ *                 example: generated-completion-token
+ *               resourceType:
+ *                 type: string
+ *                 enum: [image, video, raw]
+ *                 example: image
+ *     responses:
+ *       200:
+ *         description: Cloudinary upload completed successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                   example: true
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 200
+ *                 message:
+ *                   type: string
+ *                   example: Cloudinary upload completed successfully.
+ *                 data:
+ *                   type: object
+ *                   description: Updated authenticated user document.
+ *       400:
+ *         description: Invalid upload details or uploaded asset could not be verified.
+ *       401:
+ *         description: Unauthorized or invalid/expired completion token.
+ *       403:
+ *         description: Uploaded asset does not match the issued upload.
+ *       404:
+ *         description: User not found.
+ */
+router.post(
+  "/profile/cloudinary/complete",
+  protect,
+  userController.completeCloudinaryUploadController,
+);
+
 // Upload / Replace Avatar
 /**
  * @swagger

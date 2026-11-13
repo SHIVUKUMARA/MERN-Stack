@@ -21,6 +21,7 @@ const MIME_TYPES = {
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     "application/vnd.ms-excel",
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation",
     "text/plain",
   ],
 
@@ -38,7 +39,7 @@ const MIME_TYPES = {
 const EXTENSIONS = {
   IMAGES: ["jpg", "jpeg", "png", "webp", "gif", "svg"],
 
-  DOCUMENTS: ["pdf", "doc", "docx", "xls", "xlsx", "txt"],
+  DOCUMENTS: ["pdf", "doc", "docx", "xls", "xlsx", "txt", "pptx"],
 
   VIDEOS: ["mp4", "mov", "avi", "mkv", "mpeg"],
 

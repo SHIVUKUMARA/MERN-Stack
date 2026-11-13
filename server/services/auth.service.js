@@ -189,7 +189,7 @@ const forgotPassword = async (email) => {
       },
       idempotencyKey,
       {},
-  JOB_PRIORITY.CRITICAL,
+      JOB_PRIORITY.CRITICAL,
     );
   } finally {
     // Release only if this request still owns the lock.
